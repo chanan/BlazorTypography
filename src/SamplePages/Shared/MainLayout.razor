@@ -1,33 +1,5 @@
 @inherits LayoutComponentBase
-@inject ITypography Typography
 
 <div>
     @Body
 </div>
-
-@code { 
-    private bool isServerSide, hasBeenDone;
-
-    protected override async Task OnInitAsync()
-    {
-        try
-        {
-            await Typography.ApplyTypography(new Alton());
-            //await Typography.ApplyTypography();
-        }
-        catch (Exception)
-        {
-            isServerSide = true;
-        }
-    }
-
-    protected async override Task OnAfterRenderAsync()
-    {
-        if(!hasBeenDone & isServerSide)
-        {
-            await Typography.ApplyTypography(new Alton());
-            //await Typography.ApplyTypography();
-            hasBeenDone = true;
-        }
-    }
-}

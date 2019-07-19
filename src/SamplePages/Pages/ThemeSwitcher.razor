@@ -1,0 +1,110 @@
+@inject ITypography Typography
+
+    <form>
+        <div>
+            <label for="themename">Pick Theme</label>
+            <select id="themename" value="@Selected" @onchange="@onChangeSelected">
+                @foreach (string theme in Typography.Themes)
+                {
+                    <option value="@theme">@theme</option>
+                }
+            </select>
+        </div>
+        <div>
+            <h3>Base Sizes</h3>
+        </div>
+        <div style="display: table;">
+            <div style="display: table-row;">
+                <div style="display: table-cell;">
+                    <label for="fontsize">Font size (px)</label>
+                    <input id="fontsize" type="number" value="@fontsize"  @onchange="@onChangeFontsize" />
+                </div>
+                <div style="display: table-cell;">
+                    <label for="lineheight">Line height</label>
+                    <input id="lineheight" type="number" value="@lineheight" @onchange="@onChangeLineheight" />
+                </div>
+            </div>
+            <div style="display: table-row;">
+                <div style="display: table-cell;">
+                    <label for="fontsize">Scale Ratio (ratio)</label>
+                    <input id="fontsize" type="number" value="@ratio" @onchange="@onChangeRatio" />
+                </div>
+                <div style="display: table-cell;">
+                    <label for="lineheight">Paragraph Spacing (rhythm)</label>
+                    <input id="lineheight" type="number" value="@spacing" @onchange="@onChangeSpacing" />
+                </div>
+            </div>
+        </div>
+        <button type="button" @onclick="@onclick">Change Theme</button>
+    </form>
+
+@code {
+    private string Selected { set; get; } = "Default";
+    private string fontsize { get; set; } = "16.00";
+    private string lineheight { get; set; } = "1.50";
+    private string ratio { get; set; } = "2.00";
+    private string spacing { get; set; } = "1.00";
+
+    private bool isServerSide, hasBeenDone;
+
+    protected override async Task OnInitAsync()
+    {
+        try
+        {
+            await Typography.ApplyTypography();
+        }
+        catch (Exception)
+        {
+            isServerSide = true;
+        }
+    }
+
+    protected async override Task OnAfterRenderAsync()
+    {
+        if (!hasBeenDone & isServerSide)
+        {
+            await Typography.ApplyTypography();
+            hasBeenDone = true;
+        }
+    }
+
+    void onChangeSelected(UIChangeEventArgs e)
+    {
+        Selected = (string)e.Value;
+        ITypographyOptions theme = Typography.ThemeForName(Selected);
+        fontsize = Typography.Unitless(theme.BaseFontSize) + ".00";
+        lineheight = theme.BaseLineHeight;
+        ratio = theme.ScaleRatio.ToString();
+        spacing = theme.BlockMarginBottom;
+    }
+
+    void onChangeFontsize(UIChangeEventArgs e)
+    {
+        fontsize = (string)e.Value;
+    }
+
+    void onChangeLineheight(UIChangeEventArgs e)
+    {
+        lineheight = (string)e.Value;
+    }
+
+    void onChangeRatio(UIChangeEventArgs e)
+    {
+        ratio = (string)e.Value;
+    }
+
+    void onChangeSpacing(UIChangeEventArgs e)
+    {
+        spacing = (string)e.Value;
+    }
+
+    private async void onclick()
+    {
+        ITypographyOptions theme = Typography.ThemeForName(Selected);
+        theme.BaseFontSize = fontsize + "px";
+        theme.BaseLineHeight = lineheight;
+        theme.ScaleRatio = double.Parse(ratio);
+        theme.BlockMarginBottom = spacing;
+        await Typography.ApplyTypography(theme);
+    }
+}

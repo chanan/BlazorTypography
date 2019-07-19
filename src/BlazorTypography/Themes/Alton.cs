@@ -54,38 +54,25 @@ namespace BlazorTypography.Themes
                         margin-bottom: 0;
                     "),
                     new KeyValuePair<string, string>("blockquote cite", $@"
-                        {vr.AdjustFontSizeTo(options.BaseFontSize)},
+                        {vr.AdjustFontSizeTo(options.BaseFontSize)}
                         color: {options.BodyColor};
                         font-weight: {options.BodyWeight};
                     "),
                     new KeyValuePair<string, string>("blockquote cite:before", @"
                         content: ""— "";
+                    "),
+                    new KeyValuePair<string, string>(vr.MOBILE_MEDIA_QUERY, $@"
+                        html {{
+                            font-size: 100%;
+                        }}
+                         blockquote {{
+                            margin-left: {vr.Rhythm(-3 / 4f)};
+                            margin-right: 0;
+                            padding-left: {vr.Rhythm(9 / 16f)};
+                        }}
                     ")
-
-
                 };
                 return list;
             });
     }
 }
-
-
-/*
- * new KeyValuePair<string, string>(vr.MOBILE_MEDIA_QUERY, @"
-                        html: {
-                            font-size: 100%;
-                        }
-                    ")*/
-
-//BlazorStyled doesn't currently support media queries on html elements
-/*
- * [MOBILE_MEDIA_QUERY]: {
-    html: {
-    fontSize: `${(16 / 16) * 100}%`,
-    },
-    blockquote: {
-    marginLeft: rhythm(-3 / 4),
-    marginRight: 0,
-    paddingLeft: rhythm(9 / 16),
-    },
-},*/

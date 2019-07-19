@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BlazorTypography.Internal;
+using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
@@ -42,14 +43,14 @@ namespace BlazorTypography
             _convert = ConvertFactory(_options.BaseFontSize);
             _rhythm = RhythmFactory();
 
-            if (!string.IsNullOrWhiteSpace(Unit(_options.BaseLineHeight)))
+            if (!string.IsNullOrWhiteSpace(Util.Unit(_options.BaseLineHeight)))
             {
-                float fontSizeInPx = UnitLess(_convert(_options.BaseFontSize, "px", null, null));
+                float fontSizeInPx = Util.UnitLess(_convert(_options.BaseFontSize, "px", null, null));
                 _baseLineHeightInPx = _convert(_options.BaseLineHeight, "px", null, null);
             }
             else
             {
-                float lineheight = UnitLess(_options.BaseFontSize) * UnitLess(_options.BaseLineHeight);
+                float lineheight = Util.UnitLess(_options.BaseFontSize) * Util.UnitLess(_options.BaseLineHeight);
                 _baseLineHeightInPx = $"{lineheight}px";
             }
         }
@@ -94,9 +95,9 @@ namespace BlazorTypography
                 fromSize = _options.BaseFontSize;
             }
 
-            if (Unit(toSize) == "%")
+            if (Util.Unit(toSize) == "%")
             {
-                toSize = UnitLess(_options.BaseFontSize) * (UnitLess(toSize) / 100) + "px";
+                toSize = Util.UnitLess(_options.BaseFontSize) * (Util.UnitLess(toSize) / 100) + "px";
             }
 
             fromSize = _convert(fromSize, "px", null, null);
@@ -107,7 +108,7 @@ namespace BlazorTypography
                 lines = Math.Round(LinesForFontSize(toSize), 2).ToString();
             }
 
-            float linesFloat = UnitLess(lines);
+            float linesFloat = Util.UnitLess(lines);
 
             return new BaseLine
             {
@@ -202,9 +203,9 @@ namespace BlazorTypography
         public float LinesForFontSize(string fontSize)
         {
             float lines;
-            float fontSizeInPx = UnitLess(_convert(fontSize, "px", null, null));
-            float lineHeightInPx = UnitLess(_baseLineHeightInPx);
-            float minLinePadding = UnitLess(_convert(_options.MinLinePadding, "px", null, null));
+            float fontSizeInPx = Util.UnitLess(_convert(fontSize, "px", null, null));
+            float lineHeightInPx = Util.UnitLess(_baseLineHeightInPx);
+            float minLinePadding = Util.UnitLess(_convert(_options.MinLinePadding, "px", null, null));
 
             if (_options.RoundToNearestHalfLine)
             {
@@ -235,7 +236,7 @@ namespace BlazorTypography
         {
             return new BaseLine
             {
-                FontSize = UnitLess(_options.BaseFontSize) / 16 * 100 + "%",
+                FontSize = Util.UnitLess(_options.BaseFontSize) / 16 * 100 + "%",
                 LineHeight = _options.BaseLineHeight
             };
         }
@@ -262,14 +263,14 @@ namespace BlazorTypography
 
         public BaseLine Scale(float value)
         {
-            int baseFont = int.Parse(UnitLess(_options.BaseFontSize).ToString());
+            int baseFont = int.Parse(Util.UnitLess(_options.BaseFontSize).ToString());
             string newFontSize = $"{ModularScale(value, null) * baseFont}px";
             return AdjustFontSizeTo(newFontSize, null, null);
         }
 
         public BaseLine Scale(float value, string scaleRatio)
         {
-            int baseFont = int.Parse(UnitLess(_options.BaseFontSize).ToString());
+            int baseFont = int.Parse(Util.UnitLess(_options.BaseFontSize).ToString());
             string newFontSize = $"{ModularScale(value, scaleRatio) * baseFont}px";
             return AdjustFontSizeTo(newFontSize, null, null);
         }
@@ -293,15 +294,15 @@ namespace BlazorTypography
                     offset = 0;
                 }
 
-                string length = lines * UnitLess(_baseLineHeightInPx) - offset + "px";
+                string length = lines * Util.UnitLess(_baseLineHeightInPx) - offset + "px";
                 string rhythmLength = _convert(length, _options.RhythmUnit, fontSize, null);
-                if (Unit(rhythmLength) == "px")
+                if (Util.Unit(rhythmLength) == "px")
                 {
-                    rhythmLength = Math.Floor(UnitLess(rhythmLength)) + Unit(rhythmLength);
+                    rhythmLength = Math.Floor(Util.UnitLess(rhythmLength)) + Util.Unit(rhythmLength);
                 }
 
                 // Limit to 5 decimals.
-                return Math.Round(UnitLess(rhythmLength), 5) + Unit(rhythmLength);
+                return Math.Round(Util.UnitLess(rhythmLength), 5) + Util.Unit(rhythmLength);
             });
         }
 
@@ -317,7 +318,7 @@ namespace BlazorTypography
                 {
                     toContext = fromContext;
                 }
-                string fromUnit = Unit(length);
+                string fromUnit = Util.Unit(length);
 
                 // Optimize for cases where `from` and `to` units are accidentally the same.
                 if (fromUnit == toUnit)
@@ -325,20 +326,20 @@ namespace BlazorTypography
                     return length;
                 }
 
-                float pxLength = UnitLess(length);
+                float pxLength = Util.UnitLess(length);
                 if (fromUnit != "px")
                 {
                     if (fromUnit == "em")
                     {
-                        pxLength = UnitLess(length) * UnitLess(fromContext);
+                        pxLength = Util.UnitLess(length) * Util.UnitLess(fromContext);
                     }
                     else if (fromUnit == "rem")
                     {
-                        pxLength = UnitLess(length) * UnitLess(baseFontSize);
+                        pxLength = Util.UnitLess(length) * Util.UnitLess(baseFontSize);
                     }
                     else if (fromUnit == "ex")
                     {
-                        pxLength = UnitLess(length) * UnitLess(fromContext) * 2;
+                        pxLength = Util.UnitLess(length) * Util.UnitLess(fromContext) * 2;
                     }
                     else
                     {
@@ -351,15 +352,15 @@ namespace BlazorTypography
                 {
                     if (toUnit == "em")
                     {
-                        outputLength = pxLength / UnitLess(toContext);
+                        outputLength = pxLength / Util.UnitLess(toContext);
                     }
                     else if (toUnit == "rem")
                     {
-                        outputLength = pxLength / UnitLess(baseFontSize);
+                        outputLength = pxLength / Util.UnitLess(baseFontSize);
                     }
                     else if (toUnit == "ex")
                     {
-                        outputLength = pxLength / UnitLess(toContext) / 2;
+                        outputLength = pxLength / Util.UnitLess(toContext) / 2;
                     }
                     else
                     {
@@ -368,17 +369,6 @@ namespace BlazorTypography
                 }
                 return Math.Round(outputLength, 2) + toUnit;
             });
-        }
-
-        private float UnitLess(string length)
-        {
-            return float.Parse(Regex.Replace(length, "[^0-9.]", ""));
-        }
-
-        private string Unit(string length)
-        {
-            MatchCollection matches = new Regex(@"([ 0-9]*[0-9]+(?:\.|,)?[0-9]*)[ ]*(.*)").Matches(length);
-            return matches.Count > 0 ? matches[0].Groups[2].Value.ToLower() : string.Empty;
         }
 
         private float ModularScale(float value, string ratio = "golden")

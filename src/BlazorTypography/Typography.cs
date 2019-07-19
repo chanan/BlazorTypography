@@ -14,6 +14,8 @@ namespace BlazorTypography
         private readonly IStyled _styled;
         private readonly IMixins _mixins;
         private readonly BlazorTypographyInterop _blazorTypographyInterop;
+        private readonly Type _pluginType = typeof(IPlugin);
+        private readonly Type _themeType = typeof(ITypographyOptions);
 
         private readonly List<string> _genericFontFamilies = new List<string> {
           "inherit",
@@ -33,6 +35,11 @@ namespace BlazorTypography
             _blazorTypographyInterop = blazorTypographyInterop;
         }
 
+        public List<string> Themes => (from type in Assembly.GetAssembly(_themeType).DefinedTypes
+                                       where type.ImplementedInterfaces.Contains(_themeType)
+                                       && !type.IsAbstract
+                                       select GetTitle(type)).ToList();
+
         public Task ApplyTypography()
         {
             return ApplyTypography(new DefaultTypographyOptions());
@@ -40,6 +47,7 @@ namespace BlazorTypography
 
         public async Task ApplyTypography(ITypographyOptions options)
         {
+            await _styled.ClearStyles();
             VerticalRhythm vr = new VerticalRhythm(new VerticalRhythmOptions
             {
                 BaseFontSize = options.BaseFontSize,
@@ -348,10 +356,8 @@ namespace BlazorTypography
             // for now, plugins are all in the same project, so it seems silly to use reflection to load them
             // However, the idea is to move them out of the main project
 
-            Type pluginType = typeof(IPlugin);
-
-            List<TypeInfo> plugins = (from type in Assembly.GetAssembly(pluginType).DefinedTypes
-                                      where type.ImplementedInterfaces.Contains(pluginType)
+            List<TypeInfo> plugins = (from type in Assembly.GetAssembly(_pluginType).DefinedTypes
+                                      where type.ImplementedInterfaces.Contains(_pluginType)
                                       select type).ToList();
 
             foreach (TypeInfo plugin in plugins)
@@ -400,6 +406,36 @@ namespace BlazorTypography
         private string WrapFontFamily(string fontFamily)
         {
             return _genericFontFamilies.Contains(fontFamily) ? fontFamily : $@"""{fontFamily}""";
+        }
+
+        private string GetTitle(TypeInfo type)
+        {
+            PropertyInfo prop = type.GetProperty("Title");
+            return (string)prop.GetGetMethod().Invoke(Activator.CreateInstance(type, null), null);
+        }
+
+        public ITypographyOptions ThemeForName(string name)
+        {
+            ITypographyOptions theme = null;
+            var themes = (from type in Assembly.GetAssembly(_themeType).DefinedTypes
+                         where type.ImplementedInterfaces.Contains(_themeType)
+                         && !type.IsAbstract
+                         select type).ToList();
+
+            foreach(var type in themes)
+            {
+                if(GetTitle(type).ToLower() == name.ToLower())
+                {
+                    theme = (ITypographyOptions)Activator.CreateInstance(type, null);
+                    break;
+                }
+            }
+            return theme;
+        }
+
+        public float Unitless(string value)
+        {
+            return Util.UnitLess(value);
         }
     }
 }
