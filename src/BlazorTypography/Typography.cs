@@ -381,6 +381,14 @@ namespace BlazorTypography
             }
 
             // Call overrideThemeStyles function on options (if set).
+            if (options.OverrideThemeStyles != null)
+            {
+                IList<KeyValuePair<string, string>> list = options.OverrideThemeStyles(vr, options);
+                if (list != null)
+                {
+                    await AddList(list);
+                }
+            }
 
             // Set google fonts
             if (options.GoogleFonts != null)

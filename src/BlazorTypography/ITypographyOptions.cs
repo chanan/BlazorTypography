@@ -21,5 +21,6 @@ namespace BlazorTypography
         string Title { get; set; }
         List<GoogleFont> GoogleFonts { get; set; }
         Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>> OverrideStyles { get; set; }
+        Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>> OverrideThemeStyles { get; set; }
     }
 }

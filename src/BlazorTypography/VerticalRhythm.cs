@@ -122,17 +122,17 @@ namespace BlazorTypography
             return Gray(0, null, false);
         }
 
-        public string Gray(int lightness)
+        public string Gray(float lightness)
         {
             return Gray(lightness, null, false);
         }
 
-        public string Gray(int lightness, string hue = null)
+        public string Gray(float lightness, string hue = null)
         {
             return Gray(lightness, hue, false);
         }
 
-        public string Gray(int lightness, string hue = null, bool darkBackground = false)
+        public string Gray(float lightness, string hue = null, bool darkBackground = false)
         {
             int? hueNum = null;
             if (hue == null)

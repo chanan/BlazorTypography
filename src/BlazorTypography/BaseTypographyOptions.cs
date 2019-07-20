@@ -34,5 +34,7 @@ namespace BlazorTypography
         public virtual List<GoogleFont> GoogleFonts { get; set; }
         public virtual Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>> OverrideStyles { get; set; } =
             new Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>>((vr, options) => null);
+        public Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>> OverrideThemeStyles { get; set; } =
+            new Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>>((vr, options) => null);
     }
 }
