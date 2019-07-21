@@ -13,7 +13,6 @@ namespace BlazorTypography
     {
         private readonly IStyled _styled;
         private readonly IMixins _mixins;
-        private readonly BlazorTypographyInterop _blazorTypographyInterop;
         private readonly Type _pluginType = typeof(IPlugin);
         private readonly Type _themeType = typeof(ITypographyOptions);
 
@@ -28,11 +27,10 @@ namespace BlazorTypography
           "-apple-system",
         };
 
-        public Typography(IStyled styled, IMixins mixins, BlazorTypographyInterop blazorTypographyInterop)
+        public Typography(IStyled styled, IMixins mixins)
         {
             _styled = styled;
             _mixins = mixins;
-            _blazorTypographyInterop = blazorTypographyInterop;
         }
 
         public List<string> Themes => (from type in Assembly.GetAssembly(_themeType).DefinedTypes
@@ -393,9 +391,8 @@ namespace BlazorTypography
             // Set google fonts
             if (options.GoogleFonts != null)
             {
-                string fontString = string.Join("|", options.GoogleFonts.Select(googleFont => googleFont.Name.Replace(' ', '+') + ':' + string.Join(",", googleFont.Styles)));
-                string uri = $"//fonts.googleapis.com/css?family={fontString}";
-                await _blazorTypographyInterop.SetGoogleFont(uri);
+                List<BlazorStyled.GoogleFont> list = options.GoogleFonts.Select(font => new BlazorStyled.GoogleFont { Name = font.Name, Styles = font.Styles }).ToList();
+                await _styled.AddGoogleFonts(list);
             }
         }
 

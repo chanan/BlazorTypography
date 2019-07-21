@@ -2,6 +2,8 @@
 
 namespace BlazorTypography
 {
+    //GoogleFont from BlazorStyled could be used instead
+    //However, I think it would be nicer to supply our own here
     public class GoogleFont
     {
         public string Name { get; set; }
