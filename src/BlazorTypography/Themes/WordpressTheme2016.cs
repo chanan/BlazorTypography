@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace BlazorTypography.Themes
 {
-    class WordpressTheme2016 : BaseTypographyOptions
+    internal class WordpressTheme2016 : BaseTypographyOptions
     {
         public override string Title { get; set; } = "Wordpress Theme 2016";
         public override string BaseFontSize { get; set; } = "16px";
@@ -24,50 +23,51 @@ namespace BlazorTypography.Themes
         public override Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>> OverrideStyles { get; set; } =
             new Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>>((vr, options) =>
             {
-                var ret = new List<KeyValuePair<string, string>>();
-                ret.Add(new KeyValuePair<string, string>("h1", $@"
+                List<KeyValuePair<string, string>> ret = new List<KeyValuePair<string, string>>
+                {
+                    new KeyValuePair<string, string>("h1", $@"
                     font-family: Montserrat, sans-serif;
-                "));
-                ret.Add(new KeyValuePair<string, string>("h1,h2,h3,h4,h5,h6", $@"
+                "),
+                    new KeyValuePair<string, string>("h1,h2,h3,h4,h5,h6", $@"
                     margin-top: {vr.Rhythm(2f)};
-                "));
-                ret.Add(new KeyValuePair<string, string>("blockquote", $@"
+                "),
+                    new KeyValuePair<string, string>("blockquote", $@"
                     {vr.Scale(1 / 5f)}
                     font-style: italic;
                     color: {vr.Gray(41)};
                     margin-left: {vr.Rhythm(-1f)};
                     padding-left: {vr.Rhythm(13 / 16f)};
                     border-left: {vr.Rhythm(3 / 16f)} solid {vr.Gray(10)};
-                "));
-                ret.Add(new KeyValuePair<string, string>("blockquote > :last-child", "margin-bottom: 0;"));
-                ret.Add(new KeyValuePair<string, string>("blockquote cite", $@"
+                "),
+                    new KeyValuePair<string, string>("blockquote > :last-child", "margin-bottom: 0;"),
+                    new KeyValuePair<string, string>("blockquote cite", $@"
                     {vr.AdjustFontSizeTo(options.BaseFontSize)}
                     color: {options.BodyColor};
                     font-weight: {options.BodyWeight};
-                "));
-                ret.Add(new KeyValuePair<string, string>("blockquote cite:before", @"content: ""-"";"));
-                ret.Add(new KeyValuePair<string, string>("ul", "list-style: disc;"));
-                ret.Add(new KeyValuePair<string, string>("ul,ol", $@"
+                "),
+                    new KeyValuePair<string, string>("blockquote cite:before", @"content: ""-"";"),
+                    new KeyValuePair<string, string>("ul", "list-style: disc;"),
+                    new KeyValuePair<string, string>("ul,ol", $@"
                     margin-left: 0;
-                "));
-                ret.Add(new KeyValuePair<string, string>("h4", $@"
+                "),
+                    new KeyValuePair<string, string>("h4", $@"
                     letter-spacing: 0.140625em;
                     text-transform: uppercase;
-                "));
-                ret.Add(new KeyValuePair<string, string>("h6", "font-style: italic;"));
-                ret.Add(new KeyValuePair<string, string>("a", @"
+                "),
+                    new KeyValuePair<string, string>("h6", "font-style: italic;"),
+                    new KeyValuePair<string, string>("a", @"
                     box-shadow: 0 1px 0 0 currentColor;
                     color: #007acc;
                     text-decoration: none;
-                "));
-                ret.Add(new KeyValuePair<string, string>("a:hover,a:active", "box-shadow: none;"));
-                ret.Add(new KeyValuePair<string, string>("mark,ins", $@"
+                "),
+                    new KeyValuePair<string, string>("a:hover,a:active", "box-shadow: none;"),
+                    new KeyValuePair<string, string>("mark,ins", $@"
                     background: #007acc;
                     color: white;
                     padding: {vr.Rhythm(1 / 16f)} {vr.Rhythm(1 / 8f)};
                     text-decoration: none;
-                "));
-                ret.Add(new KeyValuePair<string, string>(vr.MOBILE_MEDIA_QUERY, $@"
+                "),
+                    new KeyValuePair<string, string>(vr.MOBILE_MEDIA_QUERY, $@"
                     ul,ol {{
                         margin-left: {vr.Rhythm(1)};
                     }}
@@ -76,7 +76,8 @@ namespace BlazorTypography.Themes
                         margin-right: 0;
                         padding-left: {vr.Rhythm(9 / 16f)};
                     }}
-                "));
+                ")
+                };
                 return ret;
             });
     }

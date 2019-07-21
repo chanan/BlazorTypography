@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace BlazorTypography.Themes
 {
-    class Kirkham : BaseTypographyOptions
+    internal class Kirkham : BaseTypographyOptions
     {
         public override string Title { get; set; } = "Kirkham";
         public override string BaseFontSize { get; set; } = "18px";
@@ -26,32 +25,34 @@ namespace BlazorTypography.Themes
         public override Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>> OverrideStyles { get; set; } =
             new Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>>((vr, options) =>
             {
-                var ret = new List<KeyValuePair<string, string>>();
-                ret.Add(new KeyValuePair<string, string>("a", $@"
+                List<KeyValuePair<string, string>> ret = new List<KeyValuePair<string, string>>
+                {
+                    new KeyValuePair<string, string>("a", $@"
                     color: #9f392b;
-                "));
-                ret.Add(new KeyValuePair<string, string>("blockquote", $@"
+                "),
+                    new KeyValuePair<string, string>("blockquote", $@"
                     {vr.Scale(1 / 5f)}
                     border-left: {vr.Rhythm(3 / 16f)} solid {vr.Gray(80)};
                     color: {vr.Gray(41)};
                     font-style: italic;
                     padding-left: {vr.Rhythm(13 / 16f)};
                     margin-left: 0;
-                "));
-                ret.Add(new KeyValuePair<string, string>("blockquote > :last-child", "margin-bottom: 0;"));
-                ret.Add(new KeyValuePair<string, string>("blockquote cite", $@"
+                "),
+                    new KeyValuePair<string, string>("blockquote > :last-child", "margin-bottom: 0;"),
+                    new KeyValuePair<string, string>("blockquote cite", $@"
                     {vr.AdjustFontSizeTo(options.BaseFontSize)}
                     color: {options.BodyColor};
                     font-weight: {options.BodyWeight};
-                "));
-                ret.Add(new KeyValuePair<string, string>("blockquote cite:before", @"content: ""-"";"));
-                ret.Add(new KeyValuePair<string, string>(vr.MOBILE_MEDIA_QUERY, $@"
+                "),
+                    new KeyValuePair<string, string>("blockquote cite:before", @"content: ""-"";"),
+                    new KeyValuePair<string, string>(vr.MOBILE_MEDIA_QUERY, $@"
                     blockquote {{
                         padding-left: {vr.Rhythm(9 / 16)};
                         margin-left: {vr.Rhythm(-3 / 4f)};
                         margin-right: 0;
                     }}
-                "));
+                ")
+                };
                 return ret;
             });
     }

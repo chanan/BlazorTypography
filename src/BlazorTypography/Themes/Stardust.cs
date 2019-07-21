@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace BlazorTypography.Themes
 {
-    class Stardust : BaseTypographyOptions
+    internal class Stardust : BaseTypographyOptions
     {
         public override string Title { get; set; } = "Stardust";
         public override string BaseFontSize { get; set; } = "20px";

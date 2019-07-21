@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace BlazorTypography.Themes
 {
-    class WordpressTheme2014 : BaseTypographyOptions
+    internal class WordpressTheme2014 : BaseTypographyOptions
     {
         public override string Title { get; set; } = "Wordpress Theme 2014";
         public override string BaseFontSize { get; set; } = "16px";
@@ -22,34 +21,36 @@ namespace BlazorTypography.Themes
         public override Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>> OverrideStyles { get; set; } =
             new Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>>((vr, options) =>
             {
-                var ret = new List<KeyValuePair<string, string>>();
-                ret.Add(new KeyValuePair<string, string>("h1,h2,h3,h4,h5,h6", $@"
+                List<KeyValuePair<string, string>> ret = new List<KeyValuePair<string, string>>
+                {
+                    new KeyValuePair<string, string>("h1,h2,h3,h4,h5,h6", $@"
                     margin-top: {vr.Rhythm(1.5f)};
                     margin-bottom: {vr.Rhythm(0.5f)};
-                "));
-                ret.Add(new KeyValuePair<string, string>("blockquote", $@"
+                "),
+                    new KeyValuePair<string, string>("blockquote", $@"
                     {vr.Scale(1 / 5f)}
                     font-weight: 300;
                     font-style: italic;
                     color: {vr.Gray(46)};
                     margin-left: 0;
                     margin-right: 0;
-                "));
-                ret.Add(new KeyValuePair<string, string>("blockquote > :last-child", "margin-bottom: 0;"));
-                ret.Add(new KeyValuePair<string, string>("blockquote cite", $@"
+                "),
+                    new KeyValuePair<string, string>("blockquote > :last-child", "margin-bottom: 0;"),
+                    new KeyValuePair<string, string>("blockquote cite", $@"
                     {vr.AdjustFontSizeTo(options.BaseFontSize)}
                     color: {options.BodyColor};
                     font-weight: {options.BodyWeight};
                     font-style: normal;
-                "));
-                ret.Add(new KeyValuePair<string, string>("blockquote cite:before", @"content: ""-"";"));
-                ret.Add(new KeyValuePair<string, string>("ul,ol", $@"
+                "),
+                    new KeyValuePair<string, string>("blockquote cite:before", @"content: ""-"";"),
+                    new KeyValuePair<string, string>("ul,ol", $@"
                     margin-left: {vr.Rhythm(5 / 6f)};
-                "));
-                ret.Add(new KeyValuePair<string, string>("li>ul,li>ol", $@"
+                "),
+                    new KeyValuePair<string, string>("li>ul,li>ol", $@"
                     margin-left: vr.Rhythm(5 / 6f);
                     margin-bottom: 0;
-                "));
+                ")
+                };
                 return ret;
             });
     }

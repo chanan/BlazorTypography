@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace BlazorTypography.Themes
 {
-    class Doelger : BaseTypographyOptions
+    internal class Doelger : BaseTypographyOptions
     {
         public override string Title { get; set; } = "Doelger";
         public override string BaseFontSize { get; set; } = "17px";
@@ -15,7 +14,7 @@ namespace BlazorTypography.Themes
             { new GoogleFont{ Name ="Arvo", Styles = new List<string>{ "700" } } },
             { new GoogleFont{ Name = "Cabin", Styles = new List<string>{ "400", "400i", "700" } } }
         };
-        public override List<string> BodyFontFamily { get; set; } = new List<string>{ "Cabin", "serif" };
+        public override List<string> BodyFontFamily { get; set; } = new List<string> { "Cabin", "serif" };
         public override string BodyColor { get; set; } = "hsla(0,0%,0%,0.8)";
         public override string BodyWeight { get; set; } = "400";
         public override string HeaderColor { get; set; } = "hsla(0,0%,0%,0.9)";
@@ -26,23 +25,24 @@ namespace BlazorTypography.Themes
             new Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>>((vr, options) =>
             {
                 string linkColor = "#ff483b";
-                var ret = new List<KeyValuePair<string, string>>();
-                ret.Add(new KeyValuePair<string, string>("a", $@"
+                List<KeyValuePair<string, string>> ret = new List<KeyValuePair<string, string>>
+                {
+                    new KeyValuePair<string, string>("a", $@"
                     color: {linkColor};
                     text-decoration: none;
                     text-shadow: .03em 0 #fff,-.03em 0 #fff,0 .03em #fff,0 -.03em #fff,.06em 0 #fff,-.06em 0 #fff,.09em 0 #fff,-.09em 0 #fff,.12em 0 #fff,-.12em 0 #fff,.15em 0 #fff,-.15em 0 #fff;
                     background-image: linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 1px, {linkColor} 1px, {linkColor} 2px, rgba(0, 0, 0, 0) 2px);
-                "));
-                ret.Add(new KeyValuePair<string, string>("a:hover,a:active", @"
+                "),
+                    new KeyValuePair<string, string>("a:hover,a:active", @"
                     text-shadow: none;
                     background-image: none;
-                "));
-                ret.Add(new KeyValuePair<string, string>("h1,h2,h3,h4,h5,h6", $@"
+                "),
+                    new KeyValuePair<string, string>("h1,h2,h3,h4,h5,h6", $@"
                     line-height: 1.2;
                     margin-top: {vr.Rhythm(1.5f)};
                     margin-bottom: {vr.Rhythm(0.5f)};
-                "));
-                ret.Add(new KeyValuePair<string, string>("blockquote", $@"
+                "),
+                    new KeyValuePair<string, string>("blockquote", $@"
                     {vr.Scale(1 / 5f)}
                     border-left: {vr.Rhythm(6 / 16f)} solid {linkColor};
                     color: {vr.Gray(35)};
@@ -50,16 +50,16 @@ namespace BlazorTypography.Themes
                     padding-left: {vr.Rhythm(10 / 16f)};
                     margin-left: 0;
                     margin-right: 0;
-                "));
-                ret.Add(new KeyValuePair<string, string>("blockquote > :last-child", "margin-bottom: 0;"));
-                ret.Add(new KeyValuePair<string, string>("blockquote cite", $@"
+                "),
+                    new KeyValuePair<string, string>("blockquote > :last-child", "margin-bottom: 0;"),
+                    new KeyValuePair<string, string>("blockquote cite", $@"
                     {vr.AdjustFontSizeTo(options.BaseFontSize)}
                     color: {options.BodyColor};
                     font-style: normal;
                     font-weight: {options.BodyWeight};
-                "));
-                ret.Add(new KeyValuePair<string, string>("blockquote cite:before", @"content: ""-"";"));
-                ret.Add(new KeyValuePair<string, string>(vr.MOBILE_MEDIA_QUERY, $@"
+                "),
+                    new KeyValuePair<string, string>("blockquote cite:before", @"content: ""-"";"),
+                    new KeyValuePair<string, string>(vr.MOBILE_MEDIA_QUERY, $@"
                     blockquote {{
                         border-left: {vr.Rhythm(3 / 16f)} solid {linkColor};
                         padding-left: {vr.Rhythm(9 / 16f)};
@@ -67,7 +67,8 @@ namespace BlazorTypography.Themes
                         margin-left: {vr.Rhythm(-3 / 4f)};
                         margin-right: 0;
                     }}
-                "));
+                ")
+                };
                 return ret;
             });
     }

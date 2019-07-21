@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace BlazorTypography.Themes
 {
-    class WordpressTheme2013 : BaseTypographyOptions
+    internal class WordpressTheme2013 : BaseTypographyOptions
     {
         public override string Title { get; set; } = "Wordpress Theme 2013";
         public override string BaseFontSize { get; set; } = "16px";
@@ -23,53 +22,57 @@ namespace BlazorTypography.Themes
         public override Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>> OverrideStyles { get; set; } =
             new Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>>((vr, options) =>
             {
-                var ret = new List<KeyValuePair<string, string>>();
-                ret.Add(new KeyValuePair<string, string>("h1", $@"
+                List<KeyValuePair<string, string>> ret = new List<KeyValuePair<string, string>>
+                {
+                    new KeyValuePair<string, string>("h1", $@"
                     {vr.Scale(8 / 5f)}
-                "));
-                ret.Add(new KeyValuePair<string, string>("blockquote", $@"
+                "),
+                    new KeyValuePair<string, string>("blockquote", $@"
                     {vr.Scale(1 / 5f)}
                     font-weight: 300;
                     font-style: italic;
                     margin-left: {vr.Rhythm(1.5f)};
                     margin-right: {vr.Rhythm(1.5f)};
-                "));
-                ret.Add(new KeyValuePair<string, string>("blockquote cite", $@"
+                "),
+                    new KeyValuePair<string, string>("blockquote cite", $@"
                     {vr.AdjustFontSizeTo(options.BaseFontSize)}
                     font-weight: {options.BodyWeight};
                     text-transform: uppercase;
-                "));
-                ret.Add(new KeyValuePair<string, string>("a", $@"
+                "),
+                    new KeyValuePair<string, string>("a", $@"
                     color: #bc360a;
                     text-decoration: none;
-                "));
-                ret.Add(new KeyValuePair<string, string>("a:hover", $@"
+                "),
+                    new KeyValuePair<string, string>("a:hover", $@"
                     color: #ea9629;
                     text-decoration: underline;
-                "));
-                ret.Add(new KeyValuePair<string, string>("ul,ol", $@"
+                "),
+                    new KeyValuePair<string, string>("ul,ol", $@"
                     margin-left: 0;
                     padding-left: {vr.Rhythm(1.5f)};
-                "));
-                ret.Add(new KeyValuePair<string, string>("li>ul,li>ol", @"
+                "),
+                    new KeyValuePair<string, string>("li>ul,li>ol", $@"
                     margin-left: 0;
                     padding-left: {vr.Rhythm(1.5f)};
-                "));
-                ret.Add(new KeyValuePair<string, string>("h6", $@"
+                "),
+                    new KeyValuePair<string, string>("h6", $@"
                     margin-top: {vr.Rhythm(1.25f)};
                     margin-bottom: {vr.Rhythm(1.25f)};
-                "));
-                ret.Add(new KeyValuePair<string, string>("table", $@"
+                "),
+                    new KeyValuePair<string, string>("table", $@"
                     {vr.Scale(-1 / 5f)}
-                "));
-                ret.Add(new KeyValuePair<string, string>("th", $@"
+                "),
+                    new KeyValuePair<string, string>("th", $@"
                     font-weight: {options.BoldWeight};
                     text-transform: uppercase;
-                "));
-                ret.Add(new KeyValuePair<string, string>("dl", $"margin-left: {vr.Rhythm(3 / 4f)};"));
-                ret.Add(new KeyValuePair<string, string>(vr.TABLET_MEDIA_QUERY, $@"
-                    {vr.Scale(5 / 5f)}
-                "));
+                "),
+                    new KeyValuePair<string, string>("dl", $"margin-left: {vr.Rhythm(3 / 4f)};"),
+                    new KeyValuePair<string, string>(vr.TABLET_MEDIA_QUERY, $@"
+                    h1 {{
+                        {vr.Scale(5 / 5f)}
+                    }}
+                ")
+                };
                 return ret;
             });
     }

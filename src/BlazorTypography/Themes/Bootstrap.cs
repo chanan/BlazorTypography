@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace BlazorTypography.Themes
 {
-    class Bootstrap : BaseTypographyOptions
+    internal class Bootstrap : BaseTypographyOptions
     {
         public override string Title { get; set; } = "Bootstrap";
         public override string BaseFontSize { get; set; } = "16px";
@@ -30,29 +29,31 @@ namespace BlazorTypography.Themes
         public override Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>> OverrideStyles { get; set; } =
             new Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>>((vr, options) =>
             {
-                var ret = new List<KeyValuePair<string, string>>();
-                ret.Add(new KeyValuePair<string, string>("body", $"color: {vr.Gray(23, "204")};"));
-                ret.Add(new KeyValuePair<string, string>("h1", $"{vr.Scale(4 / 4f)}"));
-                ret.Add(new KeyValuePair<string, string>("h2", $"{vr.Scale(3 / 4f)}"));
-                ret.Add(new KeyValuePair<string, string>("h3", $"{vr.Scale(2 / 4f)}"));
-                ret.Add(new KeyValuePair<string, string>("h4", $"{vr.Scale(1 / 6f)}"));
-                ret.Add(new KeyValuePair<string, string>("h5", $"{vr.Scale(-1 / 6f)}"));
-                ret.Add(new KeyValuePair<string, string>("h6", $"{vr.Scale(-2 / 6f)}"));
-                ret.Add(new KeyValuePair<string, string>("blockquote", $@"
+                List<KeyValuePair<string, string>> ret = new List<KeyValuePair<string, string>>
+                {
+                    new KeyValuePair<string, string>("body", $"color: {vr.Gray(23, "204")};"),
+                    new KeyValuePair<string, string>("h1", $"{vr.Scale(4 / 4f)}"),
+                    new KeyValuePair<string, string>("h2", $"{vr.Scale(3 / 4f)}"),
+                    new KeyValuePair<string, string>("h3", $"{vr.Scale(2 / 4f)}"),
+                    new KeyValuePair<string, string>("h4", $"{vr.Scale(1 / 6f)}"),
+                    new KeyValuePair<string, string>("h5", $"{vr.Scale(-1 / 6f)}"),
+                    new KeyValuePair<string, string>("h6", $"{vr.Scale(-2 / 6f)}"),
+                    new KeyValuePair<string, string>("blockquote", $@"
                     {vr.Scale(1 / 4f)}
                     border-left: {vr.Rhythm(1 / 6f)} solid #eceeef;
                     padding-top: {vr.Rhythm(1 / 3f)};
                     padding-bottom: {vr.Rhythm(1 / 3f)};
                     padding-left: {vr.Rhythm(2 / 3f)};
                     padding-right: {vr.Rhythm(2 / 3f)};
-                "));
-                ret.Add(new KeyValuePair<string, string>("blockquote > :last-child", "margin-bottom: 0;"));
-                ret.Add(new KeyValuePair<string, string>("blockquote cite", $@"
+                "),
+                    new KeyValuePair<string, string>("blockquote > :last-child", "margin-bottom: 0;"),
+                    new KeyValuePair<string, string>("blockquote cite", $@"
                     {vr.AdjustFontSizeTo(options.BaseFontSize)}
                     color: {vr.Gray(54, "204")};
                     font-weight: {options.BodyWeight};
                     font-style: normal;
-                "));
+                ")
+                };
                 return ret;
             });
     }

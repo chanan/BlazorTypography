@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace BlazorTypography.Themes
 {
-    class Moraga : BaseTypographyOptions
+    internal class Moraga : BaseTypographyOptions
     {
         public override string Title { get; set; } = "Moraga";
         public override string BaseFontSize { get; set; } = "18px";
@@ -24,30 +23,31 @@ namespace BlazorTypography.Themes
         public override Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>> OverrideStyles { get; set; } =
             new Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>>((baseVR, options) =>
             {
-                var vr = new VerticalRhythm(new VerticalRhythmOptions
+                VerticalRhythm vr = new VerticalRhythm(new VerticalRhythmOptions
                 {
                     BaseFontSize = "16px",
                     BaseLineHeight = "24.88px"
                 });
-                var ret = new List<KeyValuePair<string, string>>();
-                ret.Add(new KeyValuePair<string, string>("h1 a,h2 a,h3 a,h4 a,h5 a,h6 a", $"font-weight: {options.HeaderWeight};"));
-                ret.Add(new KeyValuePair<string, string>("a", $@"
+                List<KeyValuePair<string, string>> ret = new List<KeyValuePair<string, string>>
+                {
+                    new KeyValuePair<string, string>("h1 a,h2 a,h3 a,h4 a,h5 a,h6 a", $"font-weight: {options.HeaderWeight};"),
+                    new KeyValuePair<string, string>("a", $@"
                     font-weight: 400;
                     color: #419eda;
                     text-decoration: none;
-                "));
-                ret.Add(new KeyValuePair<string, string>("a:hover,a:active", $@"
+                "),
+                    new KeyValuePair<string, string>("a:hover,a:active", $@"
                     color: #2a6496;
                     text-decoration: none;
-                "));
-                ret.Add(new KeyValuePair<string, string>("blockquote", $@"
+                "),
+                    new KeyValuePair<string, string>("blockquote", $@"
                     {vr.Scale(1 / 5f)}
                     border-left: {vr.Rhythm(1 / 4f)} solid {vr.Gray(87)};
                     color: {vr.Gray(40)};
                     padding-left: {vr.Rhythm(3 / 4f)};
                     margin-left: 0;
-                "));
-                ret.Add(new KeyValuePair<string, string>(vr.MOBILE_MEDIA_QUERY, $@"
+                "),
+                    new KeyValuePair<string, string>(vr.MOBILE_MEDIA_QUERY, $@"
                     html {{
                         {vr.EstablishBaseline()}
                     }}
@@ -59,7 +59,8 @@ namespace BlazorTypography.Themes
                     table {{
                         {vr.Scale(-1 / 5f)}
                     }}
-                "));
+                ")
+                };
                 return ret;
             });
     }

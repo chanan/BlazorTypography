@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace BlazorTypography.Themes
 {
-    class Legible : BaseTypographyOptions
+    internal class Legible : BaseTypographyOptions
     {
         public override string Title { get; set; } = "Legible";
         public override string BaseFontSize { get; set; } = "16px";

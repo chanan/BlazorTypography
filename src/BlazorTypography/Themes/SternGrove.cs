@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace BlazorTypography.Themes
 {
-    class SternGrove : BaseTypographyOptions
+    internal class SternGrove : BaseTypographyOptions
     {
         public override string Title { get; set; } = "Stern Grove";
         public override string BaseFontSize { get; set; } = "18px";
@@ -23,15 +22,16 @@ namespace BlazorTypography.Themes
         public override Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>> OverrideStyles { get; set; } =
             new Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>>((vr, options) =>
             {
-                var ret = new List<KeyValuePair<string, string>>();
-                ret.Add(new KeyValuePair<string, string>("a", $@"
+                List<KeyValuePair<string, string>> ret = new List<KeyValuePair<string, string>>
+                {
+                    new KeyValuePair<string, string>("a", $@"
                     color: #07e;
                     text-decoration: none;
-                "));
-                ret.Add(new KeyValuePair<string, string>("a:hover,a:active", $@"
+                "),
+                    new KeyValuePair<string, string>("a:hover,a:active", $@"
                     color: #e32;
-                "));
-                ret.Add(new KeyValuePair<string, string>("blockquote", $@"
+                "),
+                    new KeyValuePair<string, string>("blockquote", $@"
                     {vr.Scale(1 / 5f)}
                     background: {vr.Gray(97)};
                     border-left: {vr.Rhythm(2 / 16f)} solid {vr.Gray(80)};
@@ -42,16 +42,16 @@ namespace BlazorTypography.Themes
                     padding-bottom: {vr.Rhythm(1 / 2f)}
                     margin-left: 0;
                     margin-right: 0;
-                "));
-                ret.Add(new KeyValuePair<string, string>("blockquote > :last-child", "margin-bottom: 0;"));
-                ret.Add(new KeyValuePair<string, string>("blockquote cite", $@"
+                "),
+                    new KeyValuePair<string, string>("blockquote > :last-child", "margin-bottom: 0;"),
+                    new KeyValuePair<string, string>("blockquote cite", $@"
                     {vr.AdjustFontSizeTo(options.BaseFontSize)}
                     color: {options.BodyColor};
                     font-weight: {options.BodyWeight};
-                "));
-                ret.Add(new KeyValuePair<string, string>("blockquote cite:before", @"content: ""-"";"));
-                ret.Add(new KeyValuePair<string, string>("ul", "list-style: disc;"));
-                ret.Add(new KeyValuePair<string, string>(vr.MOBILE_MEDIA_QUERY, $@"
+                "),
+                    new KeyValuePair<string, string>("blockquote cite:before", @"content: ""-"";"),
+                    new KeyValuePair<string, string>("ul", "list-style: disc;"),
+                    new KeyValuePair<string, string>(vr.MOBILE_MEDIA_QUERY, $@"
                     ul,ol {{
                         margin-left: {vr.Rhythm(1)};
                     }}
@@ -67,7 +67,8 @@ namespace BlazorTypography.Themes
                     h6 {{
                         font-style: italic;
                     }}
-                "));
+                ")
+                };
                 return ret;
             });
     }

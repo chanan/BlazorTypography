@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace BlazorTypography.Themes
 {
-    class WordpressTheme2012 : BaseTypographyOptions
+    internal class WordpressTheme2012 : BaseTypographyOptions
     {
         public override string Title { get; set; } = "Wordpress Theme 2012";
         public override string BaseFontSize { get; set; } = "14px";
@@ -23,48 +22,50 @@ namespace BlazorTypography.Themes
         public override Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>> OverrideStyles { get; set; } =
             new Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>>((vr, options) =>
             {
-                var ret = new List<KeyValuePair<string, string>>();
-                ret.Add(new KeyValuePair<string, string>("blockquote", $@"
+                List<KeyValuePair<string, string>> ret = new List<KeyValuePair<string, string>>
+                {
+                    new KeyValuePair<string, string>("blockquote", $@"
                     font-style: italic;
                     padding-top: {vr.Rhythm(1)};
                     padding-bottom: {vr.Rhythm(1)};
                     padding-left: {vr.Rhythm(1)};
                     padding-right: {vr.Rhythm(1)};
-                "));
-                ret.Add(new KeyValuePair<string, string>("dl", $@"
+                "),
+                    new KeyValuePair<string, string>("dl", $@"
                     margin-left: {vr.Rhythm(1)};
                     margin-right: {vr.Rhythm(1)};
-                "));
-                ret.Add(new KeyValuePair<string, string>("a", $@"
+                "),
+                    new KeyValuePair<string, string>("a", $@"
                     color: #21759b;
-                "));
-                ret.Add(new KeyValuePair<string, string>("a:hover", $@"
+                "),
+                    new KeyValuePair<string, string>("a:hover", $@"
                     color: #0f3647;
-                "));
-                ret.Add(new KeyValuePair<string, string>("a:visited", $@"
+                "),
+                    new KeyValuePair<string, string>("a:visited", $@"
                     color: #9f9f9f;
-                "));
-                ret.Add(new KeyValuePair<string, string>("ul,ol", @"
+                "),
+                    new KeyValuePair<string, string>("ul,ol", @"
                     margin-left: 0;
-                "));
-                ret.Add(new KeyValuePair<string, string>("ol", @"
+                "),
+                    new KeyValuePair<string, string>("ol", @"
                     list-style: decimal outside;
-                "));
-                ret.Add(new KeyValuePair<string, string>("ul", @"
+                "),
+                    new KeyValuePair<string, string>("ul", @"
                     list-style: disc outside;
-                "));
-                ret.Add(new KeyValuePair<string, string>("li", $@"
+                "),
+                    new KeyValuePair<string, string>("li", $@"
                     margin-left: {vr.Rhythm(1.5f)};
-                "));
-                ret.Add(new KeyValuePair<string, string>("table", $@"
+                "),
+                    new KeyValuePair<string, string>("table", $@"
                     {vr.Scale(-1 / 5f)}
                     color: {vr.Gray(46)};
-                "));
-                ret.Add(new KeyValuePair<string, string>("th", $@"
+                "),
+                    new KeyValuePair<string, string>("th", $@"
                     font-weight: {options.BoldWeight};
                     text-transform: uppercase;
                     color: {vr.Gray(39)};
-                "));
+                ")
+                };
                 return ret;
             });
     }

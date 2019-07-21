@@ -422,14 +422,14 @@ namespace BlazorTypography
         public ITypographyOptions ThemeForName(string name)
         {
             ITypographyOptions theme = null;
-            var themes = (from type in Assembly.GetAssembly(_themeType).DefinedTypes
-                         where type.ImplementedInterfaces.Contains(_themeType)
-                         && !type.IsAbstract
-                         select type).ToList();
+            List<TypeInfo> themes = (from type in Assembly.GetAssembly(_themeType).DefinedTypes
+                                     where type.ImplementedInterfaces.Contains(_themeType)
+                                     && !type.IsAbstract
+                                     select type).ToList();
 
-            foreach(var type in themes)
+            foreach (TypeInfo type in themes)
             {
-                if(GetTitle(type).ToLower() == name.ToLower())
+                if (GetTitle(type).ToLower() == name.ToLower())
                 {
                     theme = (ITypographyOptions)Activator.CreateInstance(type, null);
                     break;

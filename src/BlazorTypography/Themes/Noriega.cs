@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace BlazorTypography.Themes
 {
-    class Noriega : BaseTypographyOptions
+    internal class Noriega : BaseTypographyOptions
     {
         public override string Title { get; set; } = "Noriega";
         public override string BaseFontSize { get; set; } = "18px";

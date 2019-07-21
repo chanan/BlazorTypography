@@ -1,3 +1,4 @@
+using BlazorStyled;
 using BlazorTypography;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -24,6 +25,7 @@ namespace ServerSideSample
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddTypography();
+            services.AddBlazorStyled(); //Note: to use BlazorTypography you do not need this line, BlazorStyled is also used by the sample site
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

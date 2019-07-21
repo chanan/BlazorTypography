@@ -1,5 +1,21 @@
 @inherits LayoutComponentBase
+@inject IStyled Styled
 
-<div>
+<div class="@main">
     @Body
 </div>
+
+@code {
+    private string main;
+
+    protected async override Task OnInitAsync()
+    {
+        main = await Styled.Css(@"
+            max-width: 42rem;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 1.5rem 1.125rem;
+            padding-top: 1.5rem;
+        ");
+    }
+}
