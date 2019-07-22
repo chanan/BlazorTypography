@@ -2,7 +2,7 @@
 
 namespace BlazorTypography.Plugins
 {
-    internal class CodePlugn : IPlugin
+    public class CodePlugn : IPlugin
     {
         public IList<KeyValuePair<string, string>> Run(ITypographyOptions options, VerticalRhythm vr)
         {

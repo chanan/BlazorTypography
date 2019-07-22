@@ -1,49 +1,64 @@
 @inject ITypography Typography
 
-    <form>
-        <div>
-            <label for="themename">Pick Theme</label>
-            <select id="themename" value="@Selected" @onchange="@onChangeSelected">
-                @foreach (string theme in Typography.Themes)
-                {
-                    <option value="@theme">@theme</option>
-                }
-            </select>
-        </div>
-        <fieldset>
-            <legend><strong>Base Sizes</strong></legend>
-            <div style="display: table;">
-                <div style="display: table-row; padding-bottom: 0.5em;">
-                    <div style="display: table-cell; padding-right:0.5em; padding-bottom: 0.5em;">
-                        <label for="fontsize">Font size (px)</label>
-                        <input id="fontsize" type="number" value="@fontsize" @onchange="@onChangeFontsize"  style="width: 6em;"/>
-                    </div>
-                    <div style="display: table-cell; padding-bottom: 0.5em;">
-                        <label for="lineheight">Line height</label>
-                        <input id="lineheight" type="number" value="@lineheight" @onchange="@onChangeLineheight" style="width: 6em;" />
-                    </div>
-                </div>
-                <div style="display: table-row; padding-bottom: 0.5em;">
-                    <div style="display: table-cell; padding-right:0.5em; padding-bottom: 0.5em;">
-                        <label for="fontsize">Scale Ratio (ratio)</label>
-                        <input id="fontsize" type="number" value="@ratio" @onchange="@onChangeRatio" style="width: 6em;" />
-                    </div>
-                    <div style="display: table-cell; padding-bottom: 0.5em;">
-                        <label for="lineheight">Paragraph Spacing (rhythm)</label>
-                        <input id="lineheight" type="number" value="@spacing" @onchange="@onChangeSpacing" style="width: 6em;" />
-                    </div>
-                </div>
+    <div style="border: 1px solid black; padding: 0.25em;">
+        <h4>Theme Switcher</h4>
+        <form>
+            <div>
+                <label for="themeName">Pick Theme</label>
+                <select id="themeName" value="@Selected" @onchange="@OnChangeSelected">
+                    @foreach (string theme in Typography.Themes)
+                    {
+                        <option value="@theme">@theme</option>
+                    }
+                </select>
             </div>
-        </fieldset>
-        <button type="button" @onclick="@onclick">Change Theme</button>
-    </form>
+            <fieldset>
+                <legend><strong>Base Sizes</strong></legend>
+                <div style="display: table;">
+                    <div style="display: table-row; padding-bottom: 0.5em;">
+                        <div style="display: table-cell; padding-right:0.5em; padding-bottom: 0.5em; padding-left: 0.5em;">
+                            <label for="fontsize">Font size (px)</label>
+                            <input id="fontsize" type="number" value="@Fontsize" @onchange="@OnChangeFontsize" style="width: 6em;" />
+                        </div>
+                        <div style="display: table-cell; padding-bottom: 0.5em;">
+                            <label for="lineheight">Line height</label>
+                            <input id="lineheight" type="number" value="@Lineheight" @onchange="@OnChangeLineheight" style="width: 6em;" />
+                        </div>
+                    </div>
+                    <div style="display: table-row; padding-bottom: 0.5em;">
+                        <div style="display: table-cell; padding-right:0.5em; padding-bottom: 0.5em; padding-left: 0.5em;">
+                            <label for="fontsize">Scale Ratio (ratio)</label>
+                            <input id="fontsize" type="number" value="@Ratio" @onchange="@OnChangeRatio" style="width: 6em;" />
+                        </div>
+                        <div style="display: table-cell; padding-bottom: 0.5em;">
+                            <label for="lineheight">Paragraph Spacing (rhythm)</label>
+                            <input id="lineheight" type="number" value="@Spacing" @onchange="@OnChangeSpacing" style="width: 6em;" />
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend><strong>Plugins</strong></legend>
+                <div style="display: table;">
+                    <div style="display: table-row; padding-bottom: 0.5em;">
+                        <div style="display: table-cell; padding-right:0.5em; padding-bottom: 0.5em; padding-left: 0.5em;">
+                            <input type="checkbox" id="codePlugin" checked="@UseCodePlugin" @onchange="@OnChangeCodePlugin" />
+                            <label for="codePlugin">Use Code Plugin</label>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <button type="button" @onclick="@OnClick">Change Theme</button>
+        </form>
+    </div>
 
 @code {
     private string Selected { set; get; } = "Default";
-    private string fontsize { get; set; } = "16.00";
-    private string lineheight { get; set; } = "1.50";
-    private string ratio { get; set; } = "2.00";
-    private string spacing { get; set; } = "1.00";
+    private string Fontsize { get; set; } = "16.00";
+    private string Lineheight { get; set; } = "1.50";
+    private string Ratio { get; set; } = "2.00";
+    private string Spacing { get; set; } = "1.00";
+    private bool UseCodePlugin { get; set; } = false;
 
     private bool isServerSide, hasBeenDone;
 
@@ -68,43 +83,52 @@
         }
     }
 
-    void onChangeSelected(UIChangeEventArgs e)
+    void OnChangeSelected(UIChangeEventArgs e)
     {
         Selected = (string)e.Value;
         ITypographyOptions theme = Typography.ThemeForName(Selected);
-        fontsize = Typography.Unitless(theme.BaseFontSize) + ".00";
-        lineheight = theme.BaseLineHeight;
-        ratio = theme.ScaleRatio.ToString();
-        spacing = theme.BlockMarginBottom;
+        Fontsize = Typography.Unitless(theme.BaseFontSize) + ".00";
+        Lineheight = theme.BaseLineHeight;
+        Ratio = theme.ScaleRatio.ToString();
+        Spacing = theme.BlockMarginBottom;
     }
 
-    void onChangeFontsize(UIChangeEventArgs e)
+    void OnChangeFontsize(UIChangeEventArgs e)
     {
-        fontsize = (string)e.Value;
+        Fontsize = (string)e.Value;
     }
 
-    void onChangeLineheight(UIChangeEventArgs e)
+    void OnChangeLineheight(UIChangeEventArgs e)
     {
-        lineheight = (string)e.Value;
+        Lineheight = (string)e.Value;
     }
 
-    void onChangeRatio(UIChangeEventArgs e)
+    void OnChangeRatio(UIChangeEventArgs e)
     {
-        ratio = (string)e.Value;
+        Ratio = (string)e.Value;
     }
 
-    void onChangeSpacing(UIChangeEventArgs e)
+    void OnChangeSpacing(UIChangeEventArgs e)
     {
-        spacing = (string)e.Value;
+        Spacing = (string)e.Value;
     }
 
-    private async void onclick()
+    void OnChangeCodePlugin(UIChangeEventArgs e)
+    {
+        UseCodePlugin = (bool)e.Value;
+    }
+
+    private async void OnClick()
     {
         ITypographyOptions theme = Typography.ThemeForName(Selected);
-        theme.BaseFontSize = fontsize + "px";
-        theme.BaseLineHeight = lineheight;
-        theme.ScaleRatio = double.Parse(ratio);
-        theme.BlockMarginBottom = spacing;
+        theme.BaseFontSize = Fontsize + "px";
+        theme.BaseLineHeight = Lineheight;
+        theme.ScaleRatio = double.Parse(Ratio);
+        theme.BlockMarginBottom = Spacing;
+        if (UseCodePlugin)
+        {
+            theme.Plugins = new List<IPlugin> { new CodePlugn() };
+        }
         await Typography.ApplyTypography(theme);
     }
 }

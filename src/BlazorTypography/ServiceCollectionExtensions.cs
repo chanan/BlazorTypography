@@ -1,4 +1,5 @@
 ﻿using BlazorStyled;
+using BlazorTypography.Internal;
 using Microsoft.Extensions.DependencyInjection;
 using Polished;
 

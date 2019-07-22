@@ -1,5 +1,4 @@
 ﻿using BlazorStyled;
-using BlazorTypography.Internal;
 using Polished;
 using System;
 using System.Collections.Generic;
@@ -7,9 +6,9 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 
-namespace BlazorTypography
+namespace BlazorTypography.Internal
 {
-    public class Typography : ITypography
+    internal class Typography : ITypography
     {
         private readonly IStyled _styled;
         private readonly IMixins _mixins;
@@ -351,20 +350,15 @@ namespace BlazorTypography
             // TODO add support for Breakpoints here. (Missing in Typography.js)
 
             // Call plugins if any.
-            // for now, plugins are all in the same project, so it seems silly to use reflection to load them
-            // However, the idea is to move them out of the main project
-
-            List<TypeInfo> plugins = (from type in Assembly.GetAssembly(_pluginType).DefinedTypes
-                                      where type.ImplementedInterfaces.Contains(_pluginType)
-                                      select type).ToList();
-
-            foreach (TypeInfo plugin in plugins)
+            if (options.Plugins != null)
             {
-                MethodInfo method = plugin.GetMethod("Run");
-                IList<KeyValuePair<string, string>> list = (IList<KeyValuePair<string, string>>)method.Invoke(Activator.CreateInstance(plugin, null), new object[] { options, vr });
-                if (list != null)
+                foreach(var plugin in options.Plugins)
                 {
-                    await AddList(list);
+                    IList<KeyValuePair<string, string>> list = plugin.Run(options, vr);
+                    if (list != null)
+                    {
+                        await AddList(list);
+                    }
                 }
             }
 

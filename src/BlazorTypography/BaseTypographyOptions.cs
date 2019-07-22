@@ -36,5 +36,6 @@ namespace BlazorTypography
             new Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>>((vr, options) => null);
         public Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>> OverrideThemeStyles { get; set; } =
             new Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>>((vr, options) => null);
+        public List<IPlugin> Plugins { get; set; } = null;
     }
 }
