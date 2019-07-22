@@ -1,10 +1,119 @@
 ﻿@page "/"
 
-<h1>BlazorTypography Test Page</h1>
+<h1>BlazorTypography</h1>
+
+<p>A powerful toolkit for building websites with beautiful design. A port of <a href="https://kyleamathews.github.io/typography.js/">Typography.js</a> to the Blazor Framework</p>
 
 <ThemeSwitcher />
 
-<p>This page tests the elements used in BlazorTypography which is a port of <a href="https://kyleamathews.github.io/typography.js/">Typography.js</a></p>
+<h2>Install</h2>
+
+<p>Nuget link here</p>
+
+<h2>Quick Start</h2>
+
+<ol>
+    <li>Add <code>services.AddTypography();</code> to your <code>Startup.cs</code></li>
+    <li>For Server Side Blazor also add <code>&lt;script src="_content/BlazorStyled/styled.js">&lt;/script></code> to your <code>_Hosts.cshtml</code></li>
+    <li>Add <code>@@using BlazorTypography</code> to your <code>_Imports.razor</code> file</li>
+    <li>Inject ITypography into your control: <code>@@inject ITypography Typography</code></li>
+    <li>Call <code>Typography.ApplyTypography()</code></li>
+    <li>Optionally, use a theme: <code>Typography.ApplyTypography(new BlazorTypography.Themes.Bootstrap())</code></li>
+    <li>You may also customize the theme</li>
+</ol>
+
+<h2>Why</h2>
+
+<p>
+    Typography is a complex system of interrelated styles. 100s of style declarations on dozens of elements must be in harmonious order.
+    Trying one design change can mean making dozens of tedious recalculations and CSS value changes. Creating new Typography themes with CSS feels hard.
+</p>
+
+<p>BlazorTypography provides a vastly simpler way to define and explore typography designs.</p>
+
+<p>You provide configuration to the Typography.js JS api and it uses its Typography engine to generate CSS for block and inline elements.</p>
+
+<p>BlazorTypography makes it easy to create designs that are unique, personal, and custom to your project.</p>
+
+<h2>Themes & Plugins</h2>
+
+<ul>
+    <li><strong>themes:</strong> BlazorTypography themes are simple C# objects. As such they’re easy to share across projects or even open source and share via Nuget.</li>
+    <li><strong>plugins:</strong> Plugins are classes that extend or modify the core Typography engine. They can change how headers are styled or add specialized styles e.g. for code or tables.</li>
+</ul>
+
+<h2>Themes</h2>
+
+<p>
+    We maintain 30 (and counting) themes (via Typography.js) that are ready to use on your next project.
+    The themes are currently included in BlazorTypography, but in the future might be published as separate Nuget packages. You can explore the themes with the Theme Switcher at the top of this page.
+</p>
+
+<h3>Using themes</h3>
+<p>Here’s an example of how to use the Funston theme.</p>
+
+<p>Pretty code goes here</p>
+
+<h3>Customizing themes</h3>
+
+<p>Themes are just C# objects so it’s easy to modify them as needed. For example, if you’re using the Funston theme but want to increase the base font size slightly:</p>
+
+<p>Pretty code goes here</p>
+
+<p>Or you can use the imperative API overrideThemeStyles to directly set/override styles on a theme:</p>
+
+<p>Pretty code here</p>
+
+<h2>Plugins</h2>
+
+<p>Plugins are classes that extend or modify the core typography engine and inherit from <code>IPlugin</code>. 
+    They can change how headers are styled or add specialized styles e.g. for code or tables. Currently there’s one plugin available, <code>CodePlugin</code>.</p>
+
+<p>To use the Code plugin, add it to your theme before calling <code>ApplyTypography</code>.</p>
+
+<p>Pretty code goes here</p>
+
+<h2>API</h2>
+
+<p>When calling <code>ApplyTypography</code>, you can pass in a class inherting from <code>ITypographyOptions</code> interface. All properties are optional. 
+    When creating new themes from scratch you can inherit from <code>BaseTypographyOptions</code> which defaults some options as mentioned below. This is equivalnt 
+    to the "Default" theme in the Theme Switcher at the top of the page.</p>
+
+<ul>
+    <li><strong>Title</strong>: The theme title.</li>
+    <li><strong>BaseFontSize</strong>: The base font size in pixels, defaults to <code>16px</code>.</li>
+    <li><strong>BaseLineHeight</strong>: The base line height using the css unitless number, defaults to <code>1.5</code>.</li>
+    <li><strong>ScaleRatio</strong>: The “scale ratio” for the theme. This value is the ratio between the <code>h1</code> font size and the <code>BaseFontSize</code>. 
+        So if the scale ratio is <code>2</code> and the <code>BaseFontSize</code> is <code>16px</code> then the <code>h1</code> font size is <code>32px</code>.</li>
+    <li><strong>GoogleFonts</strong>: An array specifying Google Fonts for this project.
+    <div>Pretty code here</div>
+    </li>
+    <li><strong>HeaderFontFamily</strong>: An array of strings specifying the font family stack for headers e.g. <code>new List&lt;string> { "Helvetica", "sans-serif" }</code>. Defaults to a system UI font stack.</li>
+    <li><strong>BodyFontFamily</strong>: An array of strings specifying the font family stack for the body, defaults to <code>new List&lt;string> { "georgia", "serif" }</code>.</li>
+    <li><strong>HeaderColor</strong>: The color for headers. Can be any valid css color value. Defaults to <code>inherit</code>.</li>
+    <li><strong>BodyColor</strong>: The color for text in the body. Can be any valid css color value. Defaults to <code>hsla(0,0%,0%,0.8)</code></li>
+    <li><strong>HeaderWeight</strong>: Specify the font weight for headers. Defaults to <code>bold</code>.</li>
+    <li><strong>BodyWeight</strong>: Specify the font weight for body text. Defaults to <code>normal</code>.</li>
+    <li><strong>BaseFontSize</strong>: The base font size in pixels, defaults to <code>16px</code>.</li>
+    <li><strong>BoldWeight</strong>: Specify the font weight for “bold” (b, strong, dt, th) elements. Defaults to <code>bold</code>.</li>
+    <li><strong>BlockMarginBottom</strong>: Specify the default margin-bottom for block elements. Defaults to one “rhythm unit” (i.e. the height of the base line height).</li>
+    <li><strong>IncludeNormalize</strong>: Include normalize.css. 
+        Normalize.css is an excellent project which works to normalize the base browser CSS across browsers and serves as an excellent foundation for BlazorTypography. 
+        We include normalize.CSS by default but if you’re already including it elsewhere in your project, you can disable including it here by passing <code>false</code>.</li>
+    <li><strong>OverrideStyles</strong>: Imperative API for directly adding to or overriding auto-generated styles. 
+        It’s called with a <code>VerticalRhythm</code> object, the <code>ITypographyOptions</code> object.
+    <div>Pretty code here</div>
+    </li>
+    <li><strong>OverrideThemeStyles</strong>: This has the same function signature as <code>OverrideStyles</code> but should be used in place of <code>OverrideStyles</code> 
+        when using a 3rd-party theme so as to not delete the theme’s own <code>OverrideStyles</code> function.
+    <div>Pretty code here</div>
+    </li>
+    <li><strong>Plugins</strong>: A list of plugins to apply to the Typography engine.</li>
+</ul>
+
+<h2>Example Elements</h2>
+
+<p>Below are various html elements so you can see how the themes affect them.</p>
 
 <blockquote>This is a very important quote! <cite>Unknown</cite></blockquote>
 

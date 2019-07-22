@@ -9,12 +9,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="BlazorStyled" Version="1.0.0-preview6-09" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Browser" Version="3.0.0-preview6.19307.2" />
     <PackageReference Include="Polished" Version="1.0.0-preview-02" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\BlazorStyled\src\BlazorStyled\BlazorStyled.csproj" />
   </ItemGroup>
 
 </Project>

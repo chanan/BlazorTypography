@@ -10,31 +10,31 @@
                 }
             </select>
         </div>
-        <div>
-            <h3>Base Sizes</h3>
-        </div>
-        <div style="display: table;">
-            <div style="display: table-row;">
-                <div style="display: table-cell;">
-                    <label for="fontsize">Font size (px)</label>
-                    <input id="fontsize" type="number" value="@fontsize"  @onchange="@onChangeFontsize" />
+        <fieldset>
+            <legend><strong>Base Sizes</strong></legend>
+            <div style="display: table;">
+                <div style="display: table-row; padding-bottom: 0.5em;">
+                    <div style="display: table-cell; padding-right:0.5em; padding-bottom: 0.5em;">
+                        <label for="fontsize">Font size (px)</label>
+                        <input id="fontsize" type="number" value="@fontsize" @onchange="@onChangeFontsize"  style="width: 6em;"/>
+                    </div>
+                    <div style="display: table-cell; padding-bottom: 0.5em;">
+                        <label for="lineheight">Line height</label>
+                        <input id="lineheight" type="number" value="@lineheight" @onchange="@onChangeLineheight" style="width: 6em;" />
+                    </div>
                 </div>
-                <div style="display: table-cell;">
-                    <label for="lineheight">Line height</label>
-                    <input id="lineheight" type="number" value="@lineheight" @onchange="@onChangeLineheight" />
+                <div style="display: table-row; padding-bottom: 0.5em;">
+                    <div style="display: table-cell; padding-right:0.5em; padding-bottom: 0.5em;">
+                        <label for="fontsize">Scale Ratio (ratio)</label>
+                        <input id="fontsize" type="number" value="@ratio" @onchange="@onChangeRatio" style="width: 6em;" />
+                    </div>
+                    <div style="display: table-cell; padding-bottom: 0.5em;">
+                        <label for="lineheight">Paragraph Spacing (rhythm)</label>
+                        <input id="lineheight" type="number" value="@spacing" @onchange="@onChangeSpacing" style="width: 6em;" />
+                    </div>
                 </div>
             </div>
-            <div style="display: table-row;">
-                <div style="display: table-cell;">
-                    <label for="fontsize">Scale Ratio (ratio)</label>
-                    <input id="fontsize" type="number" value="@ratio" @onchange="@onChangeRatio" />
-                </div>
-                <div style="display: table-cell;">
-                    <label for="lineheight">Paragraph Spacing (rhythm)</label>
-                    <input id="lineheight" type="number" value="@spacing" @onchange="@onChangeSpacing" />
-                </div>
-            </div>
-        </div>
+        </fieldset>
         <button type="button" @onclick="@onclick">Change Theme</button>
     </form>
 

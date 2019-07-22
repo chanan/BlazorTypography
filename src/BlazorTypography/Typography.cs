@@ -348,7 +348,7 @@ namespace BlazorTypography
                 line-height:{options.HeaderLineHeight};
             ");
 
-            // TODO add support for Breakpoints here.
+            // TODO add support for Breakpoints here. (Missing in Typography.js)
 
             // Call plugins if any.
             // for now, plugins are all in the same project, so it seems silly to use reflection to load them

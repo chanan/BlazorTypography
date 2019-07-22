@@ -13,7 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\BlazorStyled\src\BlazorStyled\BlazorStyled.csproj" />
     <ProjectReference Include="..\SamplePages\SamplePages.csproj" />
   </ItemGroup>
 

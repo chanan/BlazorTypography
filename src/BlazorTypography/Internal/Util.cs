@@ -6,7 +6,7 @@ namespace BlazorTypography.Internal
     {
         public static float UnitLess(string value)
         {
-            return float.Parse(Regex.Replace(value, "[^0-9.]", ""));
+            return float.Parse(Regex.Replace(value, "[^0-9.-]", ""));
         }
 
         public static string Unit(string value)
