@@ -1,18 +1,18 @@
-@inject ITypography Typography
+@inherits ThemeSwitcherBase
 
     <div style="border: 1px solid black; padding: 0.25em;">
-        <h4>Theme Switcher</h4>
+        <h4 style="margin-top: 1rem;">Theme Switcher</h4>
         <form>
             <div>
                 <label for="themeName">Pick Theme</label>
                 <select id="themeName" value="@Selected" @onchange="@OnChangeSelected">
                     @foreach (string theme in Typography.Themes)
                     {
-                        <option value="@theme">@theme</option>
+                        <option @key="@theme" value="@theme">@theme</option>
                     }
                 </select>
             </div>
-            <fieldset>
+            <fieldset style="margin-bottom:0.5rem;">
                 <legend><strong>Base Sizes</strong></legend>
                 <div style="display: table;">
                     <div style="display: table-row; padding-bottom: 0.5em;">
@@ -37,7 +37,48 @@
                     </div>
                 </div>
             </fieldset>
-            <fieldset>
+            <fieldset style="margin-bottom:0.5rem;">
+                <legend><strong>Headers</strong></legend>
+                <div>
+                    <label for="headerFont">Typeface</label>
+                    <select id="headerFont" value="@HeaderFont" @onchange="@OnChangeHeaderFont">
+                        @foreach (string name in FontNames)
+                        {
+                            <option @key="@name" value="@name">@name</option>
+                        }
+                    </select>
+                </div>
+                <div style="display: table;">
+                    <div style="display: table-row; padding-bottom: 0.5em;">
+                        <div style="display: table-cell; padding-right:0.5em; padding-bottom: 0.5em; padding-left: 0.5em;">
+                            <label for="headerWeight">Weight</label>
+                            <select id="headerWeight" value="@HeaderWeight" @onchange="@OnChangeHeaderWeight">
+                                @foreach (string weight in HeaderWeights)
+                                {
+                                    <option @key="@weight" value="@weight">@weight</option>
+                                }
+                            </select>
+                        </div>
+                        <div style="display: table-cell; padding-bottom: 0.5em;">
+                            <label for="headerColor">Gray Value (%)</label>
+                            <input id="headerColor" type="number" style="width: 6em;" />
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset style="margin-bottom:0.5rem;">
+                <legend><strong>Body</strong></legend>
+                <div>
+                    <label for="bodyFont">Typeface</label>
+                    <select id="bodyFont" value="@BodyFont" @onchange="@OnChangeBodyFont">
+                        @foreach (string name in FontNames)
+                        {
+                            <option @key="@name" value="@name">@name</option>
+                        }
+                    </select>
+                </div>
+            </fieldset>
+            <fieldset style="margin-bottom:0.5rem;">
                 <legend><strong>Plugins</strong></legend>
                 <div style="display: table;">
                     <div style="display: table-row; padding-bottom: 0.5em;">
@@ -51,84 +92,4 @@
             <button type="button" @onclick="@OnClick">Change Theme</button>
         </form>
     </div>
-
-@code {
-    private string Selected { set; get; } = "Default";
-    private string Fontsize { get; set; } = "16.00";
-    private string Lineheight { get; set; } = "1.50";
-    private string Ratio { get; set; } = "2.00";
-    private string Spacing { get; set; } = "1.00";
-    private bool UseCodePlugin { get; set; } = false;
-
-    private bool isServerSide, hasBeenDone;
-
-    protected override async Task OnInitAsync()
-    {
-        try
-        {
-            await Typography.ApplyTypography();
-        }
-        catch (Exception)
-        {
-            isServerSide = true;
-        }
-    }
-
-    protected async override Task OnAfterRenderAsync()
-    {
-        if (!hasBeenDone & isServerSide)
-        {
-            await Typography.ApplyTypography();
-            hasBeenDone = true;
-        }
-    }
-
-    void OnChangeSelected(UIChangeEventArgs e)
-    {
-        Selected = (string)e.Value;
-        ITypographyOptions theme = Typography.ThemeForName(Selected);
-        Fontsize = Typography.Unitless(theme.BaseFontSize) + ".00";
-        Lineheight = theme.BaseLineHeight;
-        Ratio = theme.ScaleRatio.ToString();
-        Spacing = theme.BlockMarginBottom;
-    }
-
-    void OnChangeFontsize(UIChangeEventArgs e)
-    {
-        Fontsize = (string)e.Value;
-    }
-
-    void OnChangeLineheight(UIChangeEventArgs e)
-    {
-        Lineheight = (string)e.Value;
-    }
-
-    void OnChangeRatio(UIChangeEventArgs e)
-    {
-        Ratio = (string)e.Value;
-    }
-
-    void OnChangeSpacing(UIChangeEventArgs e)
-    {
-        Spacing = (string)e.Value;
-    }
-
-    void OnChangeCodePlugin(UIChangeEventArgs e)
-    {
-        UseCodePlugin = (bool)e.Value;
-    }
-
-    private async void OnClick()
-    {
-        ITypographyOptions theme = Typography.ThemeForName(Selected);
-        theme.BaseFontSize = Fontsize + "px";
-        theme.BaseLineHeight = Lineheight;
-        theme.ScaleRatio = double.Parse(Ratio);
-        theme.BlockMarginBottom = Spacing;
-        if (UseCodePlugin)
-        {
-            theme.Plugins = new List<IPlugin> { new CodePlugn() };
-        }
-        await Typography.ApplyTypography(theme);
-    }
-}
+        

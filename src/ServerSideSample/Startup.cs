@@ -1,4 +1,3 @@
-using BlazorStyled;
 using BlazorTypography;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
