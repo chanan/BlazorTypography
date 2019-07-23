@@ -22,18 +22,18 @@ namespace BlazorTypography.Themes
         public override Action<Styles, VerticalRhythm, ITypographyOptions> OverrideStyles { get; set; } =
             new Action<Styles, VerticalRhythm, ITypographyOptions>((styles, vr, options) =>
             {
-                styles.AddStyle("html", "-webkit-font-smoothing: antialiased;");
-                styles.AddStyle("body", "letter-spacing: .03em;");
-                styles.AddStyle("a", "color: inherit;");
-                styles.AddStyle("a:hover", "color: #3498DB;");
-                styles.AddStyle("blockquote", $@"
+                styles.Add("html", "-webkit-font-smoothing: antialiased;");
+                styles.Add("body", "letter-spacing: .03em;");
+                styles.Add("a", "color: inherit;");
+                styles.Add("a:hover", "color: #3498DB;");
+                styles.Add("blockquote", $@"
                     {vr.Scale(1 / 5f)}
                     color: {vr.Gray(40)};
                     padding-left: {vr.Rhythm(13 / 16f)};
                     margin-left: {vr.Rhythm(-1f)};
                     border-left: {vr.Rhythm(3 / 16f)} solid {vr.Gray(13)};
                 ");
-                styles.AddStyle(vr.MOBILE_MEDIA_QUERY, $@"
+                styles.Add(vr.MOBILE_MEDIA_QUERY, $@"
                     blockquote {{
                         padding-left: {vr.Rhythm(9 / 16f)};
                         margin-left: {vr.Rhythm(-3 / 4f)};

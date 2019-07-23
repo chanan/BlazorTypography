@@ -29,15 +29,15 @@ namespace BlazorTypography.Themes
                     BaseFontSize = "15px",
                     BaseLineHeight = "27.35px"
                 });
-                styles.AddStyle("a", $@"
+                styles.Add("a", $@"
                     color: #375c85;
                     text-decoration: none;
                     box-shadow: 0 1px 0 0 currentColor;
                 ");
-                styles.AddStyle("a:hover,a:active", $@"
+                styles.Add("a:hover,a:active", $@"
                     box-shadow: none;
                 ");
-                styles.AddStyle("blockquote", $@"
+                styles.Add("blockquote", $@"
                     {vr.Scale(1 / 5f)}
                     border-color: {vr.Gray(90)};
                     color: {vr.Gray(41)};
@@ -46,15 +46,15 @@ namespace BlazorTypography.Themes
                     margin-left: 0;
                     border-left: {vr.Rhythm(6 / 16f)} solid;
                 ");
-                styles.AddStyle("blockquote > :last-child", "margin-bottom: 0;");
-                styles.AddStyle("blockquote cite", $@"
+                styles.Add("blockquote > :last-child", "margin-bottom: 0;");
+                styles.Add("blockquote cite", $@"
                     {vr.AdjustFontSizeTo(options.BaseFontSize)}
                     color: {options.BodyColor};
                     font-weight: {options.BodyWeight};
                 ");
-                styles.AddStyle("blockquote cite:before", @"content: ""-"";");
-                styles.AddStyle("ul", "list-style: disc;");
-                styles.AddStyle(vr.MOBILE_MEDIA_QUERY, $@"
+                styles.Add("blockquote cite:before", @"content: ""-"";");
+                styles.Add("ul", "list-style: disc;");
+                styles.Add(vr.MOBILE_MEDIA_QUERY, $@"
                     blockquote {{
                         padding-left: {vr.Rhythm(9 / 16f)};
                         margin-left: {vr.Rhythm(-3 / 4f)};
@@ -63,7 +63,7 @@ namespace BlazorTypography.Themes
                         border-color: {vr.Gray(90)};
                     }}
                 ");
-                styles.AddStyle(vr.TABLET_MEDIA_QUERY, $@"
+                styles.Add(vr.TABLET_MEDIA_QUERY, $@"
                     html {{
                         {vr.EstablishBaseline()}
                     }}

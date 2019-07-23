@@ -35,14 +35,14 @@ namespace BlazorTypography.Themes
                     BaseFontSize = "16px",
                     BaseLineHeight = "28.44px"
                 });
-                styles.AddStyle("a", @"
+                styles.Add("a", @"
                     color: #ff5700;
                     text-decoration: none;
                 ");
-                styles.AddStyle("a:hover,a:active", $@"
+                styles.Add("a:hover,a:active", $@"
                     color: {options.BodyColor};
                 ");
-                styles.AddStyle("blockquote", $@"
+                styles.Add("blockquote", $@"
                     {vr.Scale(1 / 5f)}
                     color: {vr.Gray(41)};
                     font-style: italic;
@@ -50,18 +50,18 @@ namespace BlazorTypography.Themes
                     margin-left: 0;
                     border-left: {vr.Rhythm(3 / 16f)} solid {vr.Gray(10)};
                 ");
-                styles.AddStyle("blockquote > :last-child", @"
+                styles.Add("blockquote > :last-child", @"
                     margin-bottom: 0;
                 ");
-                styles.AddStyle("blockquote cite", $@"
+                styles.Add("blockquote cite", $@"
                     {vr.AdjustFontSizeTo(options.BaseFontSize)}
                     color: {options.BodyColor};
                     font-weight: {options.BodyWeight};
                 ");
-                styles.AddStyle("blockquote cite:before", @"
+                styles.Add("blockquote cite:before", @"
                     content: ""— "";
                 ");
-                styles.AddStyle(vr.MOBILE_MEDIA_QUERY, $@"
+                styles.Add(vr.MOBILE_MEDIA_QUERY, $@"
                     html {{
                         {vr.EstablishBaseline()}
                     }}

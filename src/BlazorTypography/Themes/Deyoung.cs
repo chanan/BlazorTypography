@@ -27,31 +27,31 @@ namespace BlazorTypography.Themes
         public override Action<Styles, VerticalRhythm, ITypographyOptions> OverrideStyles { get; set; } =
             new Action<Styles, VerticalRhythm, ITypographyOptions>((styles, vr, options) =>
             {
-                styles.AddStyle("h1", "color: hsla(0,0%,0%,0.75);");
-                styles.AddStyle("h2", "color: hsla(0,0%,0%,0.775);");
-                styles.AddStyle("h3", "color: hsla(0,0%,0%,0.8);");
-                styles.AddStyle("h1,h2,h3,h4,h5,h6", "line-height: 1;");
-                styles.AddStyle("h1,h2,h3,h4", $@"
+                styles.Add("h1", "color: hsla(0,0%,0%,0.75);");
+                styles.Add("h2", "color: hsla(0,0%,0%,0.775);");
+                styles.Add("h3", "color: hsla(0,0%,0%,0.8);");
+                styles.Add("h1,h2,h3,h4,h5,h6", "line-height: 1;");
+                styles.Add("h1,h2,h3,h4", $@"
                     line-height: 1;
                     margin-top: {vr.Rhythm(1)};
                     margin-bottom: {vr.Rhythm(1 / 2f)};
                 ");
-                styles.AddStyle("h4,h5,h6", "text-transformation: uppercase;");
-                styles.AddStyle("ul", $"margin-top: {vr.Rhythm(1 / 2f)};");
-                styles.AddStyle("a", $@"
+                styles.Add("h4,h5,h6", "text-transformation: uppercase;");
+                styles.Add("ul", $"margin-top: {vr.Rhythm(1 / 2f)};");
+                styles.Add("a", $@"
                     color: hsl(230, 55 %, 58 %);
                     text-decoration: none;
                 ");
-                styles.AddStyle("a:hover,a:active", "box-Shadow: 0 1px 0 0 currentColor;");
-                styles.AddStyle("blockquote", $@"
+                styles.Add("a:hover,a:active", "box-Shadow: 0 1px 0 0 currentColor;");
+                styles.Add("blockquote", $@"
                     color: {vr.Gray(35)};
                     font-style: italic;
                     padding-left: {vr.Rhythm(11 / 16f)};
                     margin-left: 0;
                     border-left: {vr.Rhythm(5 / 16f)} solid {vr.Gray(50)};
                 ");
-                styles.AddStyle("blockquote > :last-child", "margin-bottom: 0;");
-                styles.AddStyle(vr.MOBILE_MEDIA_QUERY, $@"
+                styles.Add("blockquote > :last-child", "margin-bottom: 0;");
+                styles.Add(vr.MOBILE_MEDIA_QUERY, $@"
                     html {{
                         font-size: {18 / 16f * 100}%;
                     }}

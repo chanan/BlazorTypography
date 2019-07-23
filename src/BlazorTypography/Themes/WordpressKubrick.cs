@@ -17,40 +17,40 @@ namespace BlazorTypography.Themes
         public override Action<Styles, VerticalRhythm, ITypographyOptions> OverrideStyles { get; set; } =
             new Action<Styles, VerticalRhythm, ITypographyOptions>((styles, vr, options) =>
             {
-                styles.AddStyle("h2,h3", $@"
+                styles.Add("h2,h3", $@"
                     margin-top: {vr.Rhythm(2f)};
                 ");
-                styles.AddStyle("p", @"
+                styles.Add("p", @"
                     margin-bottom: 1em;
                     margin-top: 1em;
                 ");
-                styles.AddStyle("ol", $@"
+                styles.Add("ol", $@"
                     margin-bottom: 0;
                     margin-left: {vr.Rhythm(2.125f)};
                 ");
-                styles.AddStyle("ul", $@"
+                styles.Add("ul", $@"
                     list-style: none;
                     margin-left: 0;
                     padding-left: {vr.Rhythm(5 / 8f)};
                     text-indent: {vr.Rhythm(-5 / 8f)};
                 ");
-                styles.AddStyle("li", $@"
+                styles.Add("li", $@"
                     display: list-item;
                     margin-left: {vr.Rhythm(5 / 8f)};
                 ");
-                styles.AddStyle("ul li:before", @"content: ""» "";");
-                styles.AddStyle("a", @"
+                styles.Add("ul li:before", @"content: ""» "";");
+                styles.Add("a", @"
                     color: #06c;
                     text-decoration: none;
                 ");
-                styles.AddStyle("a:hover", @"
+                styles.Add("a:hover", @"
                     color: #147;
                     text-decoration: underline;
                 ");
-                styles.AddStyle("a:visited", @"
+                styles.Add("a:visited", @"
                     color: #b85b5a;
                 ");
-                styles.AddStyle("blockquote", $@"
+                styles.Add("blockquote", $@"
                     color: {vr.Gray(47)};
                     margin-top: {vr.Rhythm(1)};
                     margin-right: {vr.Rhythm(2)};

@@ -22,50 +22,50 @@ namespace BlazorTypography.Themes
         public override Action<Styles, VerticalRhythm, ITypographyOptions> OverrideStyles { get; set; } =
             new Action<Styles, VerticalRhythm, ITypographyOptions>((styles, vr, options) =>
             {
-                styles.AddStyle("h1", $@"
+                styles.Add("h1", $@"
                     {vr.Scale(8 / 5f)}
                 ");
-                styles.AddStyle("blockquote", $@"
+                styles.Add("blockquote", $@"
                     {vr.Scale(1 / 5f)}
                     font-weight: 300;
                     font-style: italic;
                     margin-left: {vr.Rhythm(1.5f)};
                     margin-right: {vr.Rhythm(1.5f)};
                 ");
-                styles.AddStyle("blockquote cite", $@"
+                styles.Add("blockquote cite", $@"
                     {vr.AdjustFontSizeTo(options.BaseFontSize)}
                     font-weight: {options.BodyWeight};
                     text-transform: uppercase;
                 ");
-                styles.AddStyle("a", $@"
+                styles.Add("a", $@"
                     color: #bc360a;
                     text-decoration: none;
                 ");
-                styles.AddStyle("a:hover", $@"
+                styles.Add("a:hover", $@"
                     color: #ea9629;
                     text-decoration: underline;
                 ");
-                styles.AddStyle("ul,ol", $@"
+                styles.Add("ul,ol", $@"
                     margin-left: 0;
                     padding-left: {vr.Rhythm(1.5f)};
                 ");
-                styles.AddStyle("li>ul,li>ol", $@"
+                styles.Add("li>ul,li>ol", $@"
                     margin-left: 0;
                     padding-left: {vr.Rhythm(1.5f)};
                 ");
-                styles.AddStyle("h6", $@"
+                styles.Add("h6", $@"
                     margin-top: {vr.Rhythm(1.25f)};
                     margin-bottom: {vr.Rhythm(1.25f)};
                 ");
-                styles.AddStyle("table", $@"
+                styles.Add("table", $@"
                     {vr.Scale(-1 / 5f)}
                 ");
-                styles.AddStyle("th", $@"
+                styles.Add("th", $@"
                     font-weight: {options.BoldWeight};
                     text-transform: uppercase;
                 ");
-                styles.AddStyle("dl", $"margin-left: {vr.Rhythm(3 / 4f)};");
-                styles.AddStyle(vr.TABLET_MEDIA_QUERY, $@"
+                styles.Add("dl", $"margin-left: {vr.Rhythm(3 / 4f)};");
+                styles.Add(vr.TABLET_MEDIA_QUERY, $@"
                     h1 {{
                         {vr.Scale(5 / 5f)}
                     }}

@@ -9,7 +9,7 @@ namespace BlazorTypography
     {
         private readonly IDictionary<string, string> _styles = new Dictionary<string, string>();
 
-        public void AddStyle(string selector, string rules)
+        public void Add(string selector, string rules)
         {
             if (_styles.ContainsKey(selector))
             {
@@ -22,11 +22,11 @@ namespace BlazorTypography
             }
         }
 
-        public void AddStyles(IList<string> selectors, string rules)
+        public void Add(IList<string> selectors, string rules)
         {
             foreach (string selector in selectors)
             {
-                AddStyle(selector, rules);
+                Add(selector, rules);
             }
         }
 

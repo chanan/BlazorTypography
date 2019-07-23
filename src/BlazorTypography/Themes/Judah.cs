@@ -23,15 +23,15 @@ namespace BlazorTypography.Themes
         public override Action<Styles, VerticalRhythm, ITypographyOptions> OverrideStyles { get; set; } =
             new Action<Styles, VerticalRhythm, ITypographyOptions>((styles, vr, options) =>
             {
-                styles.AddStyle("a", $@"
+                styles.Add("a", $@"
                     color: #e51937;
                     text-decoration: none;
                 ");
-                styles.AddStyle("a:hover,a:active", $@"
+                styles.Add("a:hover,a:active", $@"
                     color: {options.BodyColor};
                     text-decoration: none;
                 ");
-                styles.AddStyle("blockquote", $@"
+                styles.Add("blockquote", $@"
                     {vr.Scale(1 / 5f)}
                     border-left: {vr.Rhythm(3 / 16f)} solid {vr.Gray(80)};
                     color: {vr.Gray(0)};
@@ -39,15 +39,15 @@ namespace BlazorTypography.Themes
                     padding-left: {vr.Rhythm(13 / 16f)};
                     margin-left: 0;
                 ");
-                styles.AddStyle("blockquote > :last-child", "margin-bottom: 0;");
-                styles.AddStyle("blockquote cite", $@"
+                styles.Add("blockquote > :last-child", "margin-bottom: 0;");
+                styles.Add("blockquote cite", $@"
                     {vr.AdjustFontSizeTo(options.BaseFontSize)}
                     color: {options.BodyColor};
                     font-weight: {options.BodyWeight};
                 ");
-                styles.AddStyle("blockquote cite:before", @"content: ""-"";");
-                styles.AddStyle("ul", "list-style: disc;");
-                styles.AddStyle(vr.MOBILE_MEDIA_QUERY, $@"
+                styles.Add("blockquote cite:before", @"content: ""-"";");
+                styles.Add("ul", "list-style: disc;");
+                styles.Add(vr.MOBILE_MEDIA_QUERY, $@"
                     ul,ol {{
                         margin-left: {vr.Rhythm(1)};
                     }}

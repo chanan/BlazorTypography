@@ -22,13 +22,13 @@ namespace BlazorTypography.Themes
         public override Action<Styles, VerticalRhythm, ITypographyOptions> OverrideStyles { get; set; } =
             new Action<Styles, VerticalRhythm, ITypographyOptions>((styles, vr, options) =>
             {
-                styles.AddStyle("a", $@"
+                styles.Add("a", $@"
                     color: {options.BodyColor};
                 ");
-                styles.AddStyle("a:hover,a:active", $@"
+                styles.Add("a:hover,a:active", $@"
                     color: #3498DB;
                 ");
-                styles.AddStyle("blockquote", $@"
+                styles.Add("blockquote", $@"
                     {vr.Scale(1 / 5f)}
                     border-left: {vr.Rhythm(1 / 4f)} solid {vr.Gray(13)};
                     color: {vr.Gray(30)};
@@ -36,11 +36,11 @@ namespace BlazorTypography.Themes
                     margin-left: 0;
                     margin-right: 0;
                 ");
-                styles.AddStyle("h3, h4, h5, h6", $"{vr.Rhythm(1 / 2f)};");
-                styles.AddStyle("table", $@"
+                styles.Add("h3, h4, h5, h6", $"{vr.Rhythm(1 / 2f)};");
+                styles.Add("table", $@"
                     {vr.Scale(-1 / 5f)}
                 ");
-                styles.AddStyle(vr.TABLET_MEDIA_QUERY, $@"
+                styles.Add(vr.TABLET_MEDIA_QUERY, $@"
                     blockquote {{
                         padding-left: {vr.Rhythm(1 / 2)};
                         margin-left: {vr.Rhythm(-3 / 4f)};

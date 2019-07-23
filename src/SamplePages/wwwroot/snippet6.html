@@ -5,23 +5,22 @@
     {
         ITypographyOptions theme = new DefaultTypographyOptions
         {
-            OverrideStyles = new Action<Styles, VerticalRhythm, ITypographyOptions>(((styles, vr, options) =>
+            OverrideStyles = new Action<Styles, VerticalRhythm, ITypographyOptions>((styles, vr, options) =>
             {
-                    new KeyValuePair<string, string>("h1", $@"
-                        font-family: Montserrat, sans-serif; 
-                    "),
-                    new KeyValuePair<string, string>("blockquote", $@"
-                        {vr.AdjustFontSizeTo("19px")}
-                        color: {vr.Gray(41)};
-                        font-style: italic;
-                        padding-left: {vr.Rhythm(13 / 16f)};
-                        margin-left: {vr.Rhythm(-1)};
-                        border-left: {vr.Rhythm(3 / 16f)} solid {vr.Gray(10)};
-                    "),
-                    new KeyValuePair<string, string>("blockquote > :last-child", $@"
-                        margin-bottom: 0;
-                    ")
-            }
+                styles.Add("h1", $@"
+                    font-family: Montserrat, sans-serif; 
+                ");
+                styles.Add("blockquote", $@"
+                    {vr.AdjustFontSizeTo("19px")}
+                    color: {vr.Gray(41)};
+                    font-style: italic;
+                    padding-left: {vr.Rhythm(13 / 16f)};
+                    margin-left: {vr.Rhythm(-1)};
+                    border-left: {vr.Rhythm(3 / 16f)} solid {vr.Gray(10)};
+                ");
+                styles.Add("blockquote > :last-child", $@"
+                    margin-bottom: 0;
+                ");
         };
         await Typography.ApplyTypography(theme);
     }

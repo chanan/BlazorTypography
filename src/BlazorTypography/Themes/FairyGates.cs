@@ -29,21 +29,21 @@ namespace BlazorTypography.Themes
                     BaseFontSize = "17px",
                     BaseLineHeight = "24.65px"
                 });
-                styles.AddStyle("a", $@"
+                styles.Add("a", $@"
                     color: {linkColor};
                     text-decoration: none;
                     text-shadow: .03em 0 #fff,-.03em 0 #fff,0 .03em #fff,0 -.03em #fff,.06em 0 #fff,-.06em 0 #fff,.09em 0 #fff,-.09em 0 #fff,.12em 0 #fff,-.12em 0 #fff,.15em 0 #fff,-.15em 0 #fff;
                     background-image: linear-gradient(to top, rgba(0, 0, 0, 0); rgba(0, 0, 0, 0) 1px, {linkColor} 1px, {linkColor} 2px, rgba(0, 0, 0, 0) 2px);
                 ");
-                styles.AddStyle("a:hover,a:active", @"
+                styles.Add("a:hover,a:active", @"
                     text-shadow: none;
                     background-image: none;
                 ");
-                styles.AddStyle("h1,h2,h3,h4,h5,h6", $@"
+                styles.Add("h1,h2,h3,h4,h5,h6", $@"
                     margin-top: {baseVR.Rhythm(1.5f)};
                     margin-bottom: {baseVR.Rhythm(0.5f)};
                 ");
-                styles.AddStyle("blockquote", $@"
+                styles.Add("blockquote", $@"
                     {baseVR.Scale(1 / 5f)}
                     border-left: {baseVR.Rhythm(6 / 16f)} solid {linkColor};
                     color: {baseVR.Gray(35)};
@@ -52,15 +52,15 @@ namespace BlazorTypography.Themes
                     margin-left: 0;
                     margin-right: 0;
                 ");
-                styles.AddStyle("blockquote > :last-child", "margin-bottom: 0;");
-                styles.AddStyle("blockquote cite", $@"
+                styles.Add("blockquote > :last-child", "margin-bottom: 0;");
+                styles.Add("blockquote cite", $@"
                     {vr.AdjustFontSizeTo(options.BaseFontSize)}
                     color: {options.BodyColor};
                     font-style: normal;
                     font-weight: {options.BodyWeight};
                 ");
-                styles.AddStyle("blockquote cite:before", @"content: ""-"";");
-                styles.AddStyle(vr.MOBILE_MEDIA_QUERY, $@"
+                styles.Add("blockquote cite:before", @"content: ""-"";");
+                styles.Add(vr.MOBILE_MEDIA_QUERY, $@"
                     html {{
                         {vr.EstablishBaseline()}
                     }}

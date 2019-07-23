@@ -30,7 +30,7 @@ namespace BlazorTypography.Themes
                     BaseFontSize = "12.8px",
                     BaseLineHeight = "19.2px"
                 });
-                styles.AddStyle("blockquote", $@"
+                styles.Add("blockquote", $@"
                     color: {vr.Gray(26.6f)};
                     border-left: 4px solid #999;
                     padding-left: {vr.Rhythm(float.Parse(_blockMarginBottom))};
@@ -39,15 +39,15 @@ namespace BlazorTypography.Themes
                     margin-top: {vr.Rhythm(float.Parse(_blockMarginBottom))};
                     margin-bottom: {vr.Rhythm(float.Parse(_blockMarginBottom))};
                 ");
-                styles.AddStyle("a", @"
+                styles.Add("a", @"
                     font-weight: bold;
                     color: #00f;
                     text-decoration: none;
                 ");
-                styles.AddStyle("a:hover", @"
+                styles.Add("a:hover", @"
                     text-decoration: underline;
                 ");
-                styles.AddStyle(vr.MOBILE_MEDIA_QUERY, $@"
+                styles.Add(vr.MOBILE_MEDIA_QUERY, $@"
                     html {{
                         {vr.EstablishBaseline()}
                     }}

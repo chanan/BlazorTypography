@@ -263,8 +263,6 @@ namespace BlazorTypography
         public BaseLine Scale(double value)
         {
             int baseFont = int.Parse(Util.UnitLess(_options.BaseFontSize).ToString());
-
-
             string newFontSize = $"{ModularScale(value, _options.ScaleRatio.HasValue ? _options.ScaleRatio.Value.ToString() : null) * baseFont}px";
             return AdjustFontSizeTo(newFontSize, null, null);
         }

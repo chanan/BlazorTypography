@@ -55,7 +55,7 @@ namespace BlazorTypography.Internal
             string bodyFontFamily = string.Join(",", options.BodyFontFamily.Select(f => WrapFontFamily(f)));
             string headerFontFamily = string.Join(",", options.HeaderFontFamily.Select(f => WrapFontFamily(f)));
 
-            styles.AddStyle("html", $@"
+            styles.Add("html", $@"
                 font-size: {baseLine.FontSize};
                 font-family: {bodyFontFamily};
                 line-height: {baseLine.LineHeight}em;
@@ -64,7 +64,7 @@ namespace BlazorTypography.Internal
             ");
 
             // box-sizing reset.
-            styles.AddStyles(new List<string>
+            styles.Add(new List<string>
             {
                 "*",
                 "*:before",
@@ -74,7 +74,7 @@ namespace BlazorTypography.Internal
             ");
 
             // Base body styles.
-            styles.AddStyle("body", $@"
+            styles.Add("body", $@"
                 color: {options.BodyColor};
                 font-family: {bodyFontFamily};
                 font-weight: {options.BodyWeight};
@@ -87,7 +87,7 @@ namespace BlazorTypography.Internal
             ");
 
             // Make images responsive.
-            styles.AddStyle("img", "max-width: 100%;");
+            styles.Add("img", "max-width: 100%;");
 
             // All block elements get one rhythm of bottom margin by default
             // or whatever is passed in as option.
@@ -106,7 +106,7 @@ namespace BlazorTypography.Internal
             }
 
             // Reset margin/padding to 0.
-            styles.AddStyles(new List<string>
+            styles.Add(new List<string>
             {
                 "h1",
                 "h2",
@@ -143,14 +143,14 @@ namespace BlazorTypography.Internal
             ");
 
             // Basic blockquote styles
-            styles.AddStyle("blockquote", $@"
+            styles.Add("blockquote", $@"
                 margin-right: {rhythm1};
                 margin-bottom: {blockMarginBottom};
                 margin-left: {rhythm1};
             ");
 
             // b, strong.
-            styles.AddStyles(new List<string> {
+            styles.Add(new List<string> {
                 "b",
                 "strong",
                 "dt",
@@ -160,7 +160,7 @@ namespace BlazorTypography.Internal
             ");
 
             // hr.
-            styles.AddStyle("hr", $@"
+            styles.Add("hr", $@"
                 background: {vr.Gray(80)};
                 border: none;
                 height: 1px;
@@ -168,7 +168,7 @@ namespace BlazorTypography.Internal
             ");
 
             // ol, ul.
-            styles.AddStyles(new List<string>
+            styles.Add(new List<string>
             {
                 "ol",
                 "ul"
@@ -179,12 +179,12 @@ namespace BlazorTypography.Internal
             ");
 
             // li.
-            styles.AddStyle("li", $@"
+            styles.Add("li", $@"
                 margin-bottom: calc({blockMarginBottom} / 2);
             ");
 
             // Remove default padding on list items.
-            styles.AddStyles(new List<string>
+            styles.Add(new List<string>
             {
                 "ol li",
                 "ul li"
@@ -193,7 +193,7 @@ namespace BlazorTypography.Internal
             ");
 
             // children ol, ul.
-            styles.AddStyles(new List<string>
+            styles.Add(new List<string>
             {
                 "li > ol",
                 "li > ul"
@@ -206,7 +206,7 @@ namespace BlazorTypography.Internal
             // Remove margin-bottom on the last-child of a few block elements
             // The worst offender of this seems to be markdown => html compilers
             // as they put paragraphs within LIs amoung other oddities.
-            styles.AddStyles(new List<string> {
+            styles.Add(new List<string> {
                 "blockquote *:last-child",
                 "li *:last-child",
                 "p *:last-child"
@@ -215,13 +215,13 @@ namespace BlazorTypography.Internal
             ");
 
             // Ensure li > p is 1/2 margin — this is another markdown => compiler oddity.
-            styles.AddStyle("li > p", $@"
+            styles.Add("li > p", $@"
                 margin-bottom: calc({blockMarginBottom} / 2);
             ");
 
             // Make generally smaller elements, smaller.
             BaseLine smaller = vr.AdjustFontSizeTo("85%");
-            styles.AddStyles(new List<string>{
+            styles.Add(new List<string>{
                 "code",
                 "kbd",
                 "pre",
@@ -231,7 +231,7 @@ namespace BlazorTypography.Internal
             ");
 
             // Abbr, Acronym.
-            styles.AddStyles(new List<string> {
+            styles.Add(new List<string> {
                 "abbr",
                 "acronym"
             }, $@"
@@ -239,7 +239,7 @@ namespace BlazorTypography.Internal
                 cursor: help;
             ");
 
-            styles.AddStyle("abbr[title]", $@"
+            styles.Add("abbr[title]", $@"
                 border-bottom: 1px dotted {vr.Gray(50)};
                 cursor: help;
                 text-decoration: none;
@@ -247,19 +247,19 @@ namespace BlazorTypography.Internal
 
             // Table styles.
             BaseLine tableBaseLine = vr.AdjustFontSizeTo(options.BaseFontSize, null, null);
-            styles.AddStyle("table", $@"
+            styles.Add("table", $@"
                 {tableBaseLine}
                 border-collapse: collapse;
                 width: 100%;
             ");
 
-            styles.AddStyle("thead", @"
+            styles.Add("thead", @"
                 text-align: left;
             ");
 
             string rhythmTwoThirds = vr.Rhythm(2 / 3f);
             string rhythmHalf = vr.Rhythm(1 / 2f);
-            styles.AddStyles(new List<string>
+            styles.Add(new List<string>
             {
                 "td",
                 "th"
@@ -276,16 +276,16 @@ namespace BlazorTypography.Internal
                 padding-bottom: calc({rhythmHalf} - 1px);,
             ");
 
-            styles.AddStyle("th:first-child,td:first-child", @"
+            styles.Add("th:first-child,td:first-child", @"
                 padding-left: 0;
             ");
 
-            styles.AddStyle("th:last-child,td:last-child", @"
+            styles.Add("th:last-child,td:last-child", @"
                 padding-right: 0;
             ");
 
             // Create styles for headers.
-            styles.AddStyles(new List<string>
+            styles.Add(new List<string>
             {
                 "h1",
                 "h2",
@@ -308,27 +308,27 @@ namespace BlazorTypography.Internal
             BaseLine h5 = vr.Scale(-1 / 5f);
             BaseLine h6 = vr.Scale(-1.5f / 5f);
 
-            styles.AddStyle("h1", $@"
+            styles.Add("h1", $@"
                 {h1}
             ");
 
-            styles.AddStyle("h2", $@"
+            styles.Add("h2", $@"
                 {h2}
             ");
 
-            styles.AddStyle("h3", $@"
+            styles.Add("h3", $@"
                 {h3}
             ");
 
-            styles.AddStyle("h4", $@"
+            styles.Add("h4", $@"
                 {h4}
             ");
 
-            styles.AddStyle("h5", $@"
+            styles.Add("h5", $@"
                 {h5}
             ");
 
-            styles.AddStyle("h6", $@"
+            styles.Add("h6", $@"
                 {h6}
             ");
 

@@ -44,37 +44,37 @@ namespace BlazorTypography.Themes
         public override Action<Styles, VerticalRhythm, ITypographyOptions> OverrideStyles { get; set; } =
             new Action<Styles, VerticalRhythm, ITypographyOptions>((styles, vr, options) =>
             {
-                styles.AddStyle("h1", $@"
+                styles.Add("h1", $@"
                     border-bottom: 1px solid {vr.Gray(93)};
                     padding-bottom: calc({vr.Rhythm(1 / 4f)} - 1px);
                     margin-bottom: {vr.Rhythm(3 / 4f)};
                     margin-top: {vr.Rhythm(1.5f)};
                 ");
-                styles.AddStyle("h2", $@"
+                styles.Add("h2", $@"
                     border-bottom: 1px solid {vr.Gray(93)};
                     padding-bottom: calc({vr.Rhythm(1 / 4f)} - 1px);
                     margin-bottom: {vr.Rhythm(1 / 4f)};
                     margin-top: {vr.Rhythm(1f)};
                 ");
-                styles.AddStyle("h6", @"
+                styles.Add("h6", @"
                     color: {vr.Gray(47)};
                 ");
-                styles.AddStyle("h3,h4,h5,h6", $@"
+                styles.Add("h3,h4,h5,h6", $@"
                     margin-bottom: {vr.Rhythm(1 / 2f)};
                     margin-top: {vr.Rhythm(1f)};
                 ");
-                styles.AddStyle("ol,ul", $@"
+                styles.Add("ol,ul", $@"
                     margin-left: rhythm(1.25f);
                 ");
-                styles.AddStyle("li>ol,li>ul", $@"
+                styles.Add("li>ol,li>ul", $@"
                     margin-left: rhythm(1.25f);
                 ");
-                styles.AddStyle("a", @"
+                styles.Add("a", @"
                     color: #4078c0;
                     text-decoration: none;
                 ");
-                styles.AddStyle("a:hover,a:active", "text-decoration: underline;");
-                styles.AddStyle("blockquote", $@"
+                styles.Add("a:hover,a:active", "text-decoration: underline;");
+                styles.Add("blockquote", $@"
                     border-left: 4px solid {vr.Gray(87)};
                     color: {vr.Gray(47)};
                     margin-top: 0,

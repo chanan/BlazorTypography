@@ -22,24 +22,24 @@ namespace BlazorTypography.Themes
         public override Action<Styles, VerticalRhythm, ITypographyOptions> OverrideStyles { get; set; } =
             new Action<Styles, VerticalRhythm, ITypographyOptions>((styles, vr, options) =>
             {
-                styles.AddStyle("h1", $"{vr.Scale(5 / 5f)}");
-                styles.AddStyle("h2", $"{vr.Scale(3 / 5f)}");
-                styles.AddStyle("h3", $"{vr.Scale(1 / 5f)}");
-                styles.AddStyle("h4", $"{vr.Scale(0 / 5f)}");
-                styles.AddStyle("h5", $"{vr.Scale(-1 / 5f)}");
-                styles.AddStyle("h6", $@"
+                styles.Add("h1", $"{vr.Scale(5 / 5f)}");
+                styles.Add("h2", $"{vr.Scale(3 / 5f)}");
+                styles.Add("h3", $"{vr.Scale(1 / 5f)}");
+                styles.Add("h4", $"{vr.Scale(0 / 5f)}");
+                styles.Add("h5", $"{vr.Scale(-1 / 5f)}");
+                styles.Add("h6", $@"
                     {vr.Scale(-2 / 9f)}
                     font-family: ""Source Sans Pro"", ""sans-serif""; 
                     font-weight: {options.BodyWeight};
                     text-transform: uppercase;
                 ");
-                styles.AddStyle("a", $@"
+                styles.Add("a", $@"
                     color: #0071bc;
                 ");
-                styles.AddStyle("a:visited", $@"
+                styles.Add("a:visited", $@"
                     color: #4c2c92;
                 ");
-                styles.AddStyle("blockquote", $@"
+                styles.Add("blockquote", $@"
                     {vr.Scale(1 / 4f)}
                     border-left: {vr.Rhythm(1 / 6f)} solid;
                     border-color: {vr.Gray(93)};
@@ -48,8 +48,8 @@ namespace BlazorTypography.Themes
                     padding-left: {vr.Rhythm(2 / 3f)};
                     padding-right: {vr.Rhythm(2 / 3f)};
                 ");
-                styles.AddStyle("blockquote > :last-child", "margin-bottom: 0;");
-                styles.AddStyle("blockquote cite", $@"
+                styles.Add("blockquote > :last-child", "margin-bottom: 0;");
+                styles.Add("blockquote cite", $@"
                     {vr.AdjustFontSizeTo(options.BaseFontSize)}
                     color: {vr.Gray(54, "204")};
                     font-weight: {options.BodyWeight};

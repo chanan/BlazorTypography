@@ -6,16 +6,12 @@
     {
         ITypographyOptions funston = new Funston
         {
-            OverrideThemeStyles = new Action<Styles, VerticalRhythm, ITypographyOptions>(((styles, vr, options) =>
+            OverrideThemeStyles = new Action<Styles, VerticalRhythm, ITypographyOptions>((styles, vr, options) =>
             {
-                List<KeyValuePair<string, string>> ret = new List<KeyValuePair<string, string>>
-                {
-                    new KeyValuePair<string, string>("h2,h3", $@"
-                        margin-bottom: {vr.Rhythm(1 / 2f)};
-                        margin-top: {vr.Rhythm(2)};
-                    ")
-                }
-                return ret;
+                styles.Add("h2,h3", $@"
+                    margin-bottom: {vr.Rhythm(1 / 2f)};
+                    margin-top: {vr.Rhythm(2)};
+                ");
             }
         };
         await Typography.ApplyTypography(funston);

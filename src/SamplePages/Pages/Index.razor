@@ -87,16 +87,12 @@
 </code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">    {</span>
 </code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">        ITypographyOptions funston = new Funston</span>
 </code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">        {</span>
-</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">            OverrideThemeStyles = new Func</span><span class="gyyz-vx">&lt;</span><span class="lvfw-onk">VerticalRhythm,</span><span class="gyyz-vx"> ITypographyOptions,</span><span class="gyyz-vx"> IList&lt;KeyValuePair&lt;string,</span><span class="gyyz-vx"> string</span><span class="gyyz-vx">&gt;</span><span class="amkk-spc">&gt;&gt;((vr, options) =&gt;</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">            OverrideThemeStyles = new Action</span><span class="gyyz-vx">&lt;</span><span class="lvfw-onk">Styles,</span><span class="lvfw-onk"> VerticalRhythm,</span><span class="lvfw-onk"> ITypographyOptions</span><span class="gyyz-vx">&gt;</span><span class="amkk-spc">((styles, vr, options) =&gt;</span>
 </code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">            {</span>
-</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">                List</span><span class="gyyz-vx">&lt;</span><span class="lvfw-onk">KeyValuePair&lt;string,</span><span class="gyyz-vx"> string</span><span class="gyyz-vx">&gt;</span><span class="amkk-spc">&gt; ret = new List</span><span class="gyyz-vx">&lt;</span><span class="lvfw-onk">KeyValuePair&lt;string,</span><span class="gyyz-vx"> string</span><span class="gyyz-vx">&gt;</span><span class="amkk-spc">&gt;</span>
-</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">                {</span>
-</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">                    new KeyValuePair</span><span class="gyyz-vx">&lt;</span><span class="lvfw-onk">string,</span><span class="gyyz-vx"> string</span><span class="gyyz-vx">&gt;</span><span class="amkk-spc">(</span><span class="rwei-nkg">"</span><span class="rwei-nkg">h2,h3</span><span class="rwei-nkg">"</span><span class="amkk-spc">, $</span><span class="rwei-nkg">@@</span><span class="rwei-nkg">"</span><span class="rwei-nkg"></span>
-</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="rwei-nkg">                        margin-bottom: {vr.Rhythm(1 / 2f)};</span>
-</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="rwei-nkg">                        margin-top: {vr.Rhythm(2)};</span>
-</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="rwei-nkg">                    </span><span class="rwei-nkg">"</span><span class="amkk-spc">)</span>
-</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">                }</span>
-</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">                return ret;</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">                styles.Add(</span><span class="rwei-nkg">"</span><span class="rwei-nkg">h2,h3</span><span class="rwei-nkg">"</span><span class="amkk-spc">, $</span><span class="rwei-nkg">@@</span><span class="rwei-nkg">"</span><span class="rwei-nkg"></span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="rwei-nkg">                    margin-bottom: {vr.Rhythm(1 / 2f)};</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="rwei-nkg">                    margin-top: {vr.Rhythm(2)};</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="rwei-nkg">                </span><span class="rwei-nkg">"</span><span class="amkk-spc">);</span>
 </code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">            }</span>
 </code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">        };</span>
 </code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">        await Typography.ApplyTypography(funston);</span>
@@ -139,7 +135,7 @@
     <li><strong>ScaleRatio</strong>: The “scale ratio” for the theme. This value is the ratio between the <code>h1</code> font size and the <code>BaseFontSize</code>. 
         So if the scale ratio is <code>2</code> and the <code>BaseFontSize</code> is <code>16px</code> then the <code>h1</code> font size is <code>32px</code>.</li>
     <li><strong>GoogleFonts</strong>: An array specifying Google Fonts for this project.
-        <pre class="umio-qgc amkk-spc"><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="fjwd-cui">@@inject</span><span> ITypography Typography</span>
+<pre class="umio-qgc amkk-spc"><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="fjwd-cui">@@inject</span><span> ITypography Typography</span>
 </code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl">
 </code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="fjwd-cui">@@code {</span>
 </code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">    protected override async Task OnInitAsync()</span>
@@ -170,42 +166,37 @@
         We include normalize.CSS by default but if you’re already including it elsewhere in your project, you can disable including it here by passing <code>false</code>.</li>
     <li><strong>OverrideStyles</strong>: Imperative API for directly adding to or overriding auto-generated styles. 
         It’s called with a <code>VerticalRhythm</code> object, the <code>ITypographyOptions</code> object.
-        <pre class="umio-qgc amkk-spc"><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="fjwd-cui">@@inject</span><span> ITypography Typography</span>
+<pre class="umio-qgc amkk-spc"><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="fjwd-cui">@@inject</span><span> ITypography Typography</span>
 </code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl">
 </code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="fjwd-cui">@@code {</span>
 </code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">    protected override async Task OnInitAsync()</span>
 </code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">    {</span>
 </code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">        ITypographyOptions theme = new DefaultTypographyOptions</span>
 </code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">        {</span>
-</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">            OverrideStyles = new Func</span><span class="gyyz-vx">&lt;</span><span class="lvfw-onk">VerticalRhythm,</span><span class="gyyz-vx"> ITypographyOptions,</span><span class="gyyz-vx"> IList&lt;KeyValuePair&lt;string,</span><span class="gyyz-vx"> string</span><span class="gyyz-vx">&gt;</span><span class="amkk-spc">&gt;&gt;((vr, options) =&gt;</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">            OverrideStyles = new Action</span><span class="gyyz-vx">&lt;</span><span class="lvfw-onk">Styles,</span><span class="lvfw-onk"> VerticalRhythm,</span><span class="lvfw-onk"> ITypographyOptions</span><span class="gyyz-vx">&gt;</span><span class="amkk-spc">((styles, vr, options) =&gt;</span>
 </code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">            {</span>
-</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">                List</span><span class="gyyz-vx">&lt;</span><span class="lvfw-onk">KeyValuePair&lt;string,</span><span class="gyyz-vx"> string</span><span class="gyyz-vx">&gt;</span><span class="amkk-spc">&gt; ret = new List</span><span class="gyyz-vx">&lt;</span><span class="lvfw-onk">KeyValuePair&lt;string,</span><span class="gyyz-vx"> string</span><span class="gyyz-vx">&gt;</span><span class="amkk-spc">&gt;</span>
-</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">                {</span>
-</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">                    new KeyValuePair</span><span class="gyyz-vx">&lt;</span><span class="lvfw-onk">string,</span><span class="gyyz-vx"> string</span><span class="gyyz-vx">&gt;</span><span class="amkk-spc">(</span><span class="rwei-nkg">"</span><span class="rwei-nkg">h1</span><span class="rwei-nkg">"</span><span class="amkk-spc">, $</span><span class="rwei-nkg">@@</span><span class="rwei-nkg">"</span><span class="rwei-nkg"></span>
-</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="rwei-nkg">                        font-family: Montserrat, sans-serif; </span>
-</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="rwei-nkg">                    </span><span class="rwei-nkg">"</span><span class="amkk-spc">),</span>
-</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">                    new KeyValuePair</span><span class="gyyz-vx">&lt;</span><span class="lvfw-onk">string,</span><span class="gyyz-vx"> string</span><span class="gyyz-vx">&gt;</span><span class="amkk-spc">(</span><span class="rwei-nkg">"</span><span class="rwei-nkg">blockquote</span><span class="rwei-nkg">"</span><span class="amkk-spc">, $</span><span class="rwei-nkg">@@</span><span class="rwei-nkg">"</span><span class="rwei-nkg"></span>
-</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="rwei-nkg">                        {vr.AdjustFontSizeTo(</span><span class="rwei-nkg">"</span><span class="amkk-spc">19px</span><span class="rwei-nkg">"</span><span class="rwei-nkg">)}</span>
-</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="rwei-nkg">                        color: {vr.Gray(41)};</span>
-</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="rwei-nkg">                        font-style: italic;</span>
-</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="rwei-nkg">                        padding-left: {vr.Rhythm(13 / 16f)};</span>
-</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="rwei-nkg">                        margin-left: {vr.Rhythm(-1)};</span>
-</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="rwei-nkg">                        border-left: {vr.Rhythm(3 / 16f)} solid {vr.Gray(10)};</span>
-</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="rwei-nkg">                    </span><span class="rwei-nkg">"</span><span class="amkk-spc">),</span>
-</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">                    new KeyValuePair</span><span class="gyyz-vx">&lt;</span><span class="lvfw-onk">string,</span><span class="gyyz-vx"> string</span><span class="gyyz-vx">&gt;</span><span class="amkk-spc">(</span><span class="rwei-nkg">"</span><span class="rwei-nkg">blockquote &gt; :last-child</span><span class="rwei-nkg">"</span><span class="amkk-spc">, $</span><span class="rwei-nkg">@@</span><span class="rwei-nkg">"</span><span class="rwei-nkg"></span>
-</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="rwei-nkg">                        margin-bottom: 0;</span>
-</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="rwei-nkg">                    </span><span class="rwei-nkg">"</span><span class="amkk-spc">)</span>
-</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">                }</span>
-</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">                return ret;</span>
-</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">            }</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">                styles.Add(</span><span class="rwei-nkg">"</span><span class="rwei-nkg">h1</span><span class="rwei-nkg">"</span><span class="amkk-spc">, $</span><span class="rwei-nkg">@@</span><span class="rwei-nkg">"</span><span class="rwei-nkg"></span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="rwei-nkg">                    font-family: Montserrat, sans-serif; </span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="rwei-nkg">                </span><span class="rwei-nkg">"</span><span class="amkk-spc">);</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">                styles.Add(</span><span class="rwei-nkg">"</span><span class="rwei-nkg">blockquote</span><span class="rwei-nkg">"</span><span class="amkk-spc">, $</span><span class="rwei-nkg">@@</span><span class="rwei-nkg">"</span><span class="rwei-nkg"></span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="rwei-nkg">                    {vr.AdjustFontSizeTo(</span><span class="rwei-nkg">"</span><span class="amkk-spc">19px</span><span class="rwei-nkg">"</span><span class="rwei-nkg">)}</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="rwei-nkg">                    color: {vr.Gray(41)};</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="rwei-nkg">                    font-style: italic;</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="rwei-nkg">                    padding-left: {vr.Rhythm(13 / 16f)};</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="rwei-nkg">                    margin-left: {vr.Rhythm(-1)};</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="rwei-nkg">                    border-left: {vr.Rhythm(3 / 16f)} solid {vr.Gray(10)};</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="rwei-nkg">                </span><span class="rwei-nkg">"</span><span class="amkk-spc">);</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">                styles.Add(</span><span class="rwei-nkg">"</span><span class="rwei-nkg">blockquote &gt; :last-child</span><span class="rwei-nkg">"</span><span class="amkk-spc">, $</span><span class="rwei-nkg">@@</span><span class="rwei-nkg">"</span><span class="rwei-nkg"></span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="rwei-nkg">                    margin-bottom: 0;</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="rwei-nkg">                </span><span class="rwei-nkg">"</span><span class="amkk-spc">);</span>
 </code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">        };</span>
 </code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">        await Typography.ApplyTypography(theme);</span>
 </code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">    }</span>
-</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="fjwd-cui">}</span></code></span></pre>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">}</span></code></span></pre>
     </li>
     <li><strong>OverrideThemeStyles</strong>: This has the same function signature as <code>OverrideStyles</code> but should be used in place of <code>OverrideStyles</code> 
         when using a 3rd-party theme so as to not delete the theme’s own <code>OverrideStyles</code> function.
-                                                                         <pre class="umio-qgc amkk-spc"><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="fjwd-cui">@@inject</span><span> ITypography Typography</span>
+<pre class="umio-qgc amkk-spc"><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="fjwd-cui">@@inject</span><span> ITypography Typography</span>
 </code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="fjwd-cui">@@using</span><span> BlazorTypography.Themes</span>
 </code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl">
 </code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="fjwd-cui">@@code {</span>
@@ -213,16 +204,12 @@
 </code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">    {</span>
 </code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">        ITypographyOptions funston = new Funston</span>
 </code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">        {</span>
-</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">            OverrideThemeStyles = new Func</span><span class="gyyz-vx">&lt;</span><span class="lvfw-onk">VerticalRhythm,</span><span class="gyyz-vx"> ITypographyOptions,</span><span class="gyyz-vx"> IList&lt;KeyValuePair&lt;string,</span><span class="gyyz-vx"> string</span><span class="gyyz-vx">&gt;</span><span class="amkk-spc">&gt;&gt;((vr, options) =&gt;</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">            OverrideThemeStyles = new Action</span><span class="gyyz-vx">&lt;</span><span class="lvfw-onk">Styles,</span><span class="lvfw-onk"> VerticalRhythm,</span><span class="lvfw-onk"> ITypographyOptions</span><span class="gyyz-vx">&gt;</span><span class="amkk-spc">((styles, vr, options) =&gt;</span>
 </code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">            {</span>
-</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">                List</span><span class="gyyz-vx">&lt;</span><span class="lvfw-onk">KeyValuePair&lt;string,</span><span class="gyyz-vx"> string</span><span class="gyyz-vx">&gt;</span><span class="amkk-spc">&gt; ret = new List</span><span class="gyyz-vx">&lt;</span><span class="lvfw-onk">KeyValuePair&lt;string,</span><span class="gyyz-vx"> string</span><span class="gyyz-vx">&gt;</span><span class="amkk-spc">&gt;</span>
-</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">                {</span>
-</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">                    new KeyValuePair</span><span class="gyyz-vx">&lt;</span><span class="lvfw-onk">string,</span><span class="gyyz-vx"> string</span><span class="gyyz-vx">&gt;</span><span class="amkk-spc">(</span><span class="rwei-nkg">"</span><span class="rwei-nkg">h2,h3</span><span class="rwei-nkg">"</span><span class="amkk-spc">, $</span><span class="rwei-nkg">@@</span><span class="rwei-nkg">"</span><span class="rwei-nkg"></span>
-</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="rwei-nkg">                        margin-bottom: {vr.Rhythm(1 / 2f)};</span>
-</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="rwei-nkg">                        margin-top: {vr.Rhythm(2)};</span>
-</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="rwei-nkg">                    </span><span class="rwei-nkg">"</span><span class="amkk-spc">)</span>
-</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">                }</span>
-</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">                return ret;</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">                styles.Add(</span><span class="rwei-nkg">"</span><span class="rwei-nkg">h2,h3</span><span class="rwei-nkg">"</span><span class="amkk-spc">, $</span><span class="rwei-nkg">@@</span><span class="rwei-nkg">"</span><span class="rwei-nkg"></span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="rwei-nkg">                    margin-bottom: {vr.Rhythm(1 / 2f)};</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="rwei-nkg">                    margin-top: {vr.Rhythm(2)};</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="rwei-nkg">                </span><span class="rwei-nkg">"</span><span class="amkk-spc">);</span>
 </code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">            }</span>
 </code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">        };</span>
 </code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">        await Typography.ApplyTypography(funston);</span>
@@ -234,7 +221,27 @@
 
 <h3>VerticalRhythmOptions</h3>
 
-<p>Coming soon...</p>
+<p><code>VerticalRhythmOptions</code> extends <code>ITypographyOptions</code> as well as has some properties that aren't currently used. Below are listed the commonly used properties.</p>
+
+<ul>
+    <li><strong>BaseFontSize</strong>: Inherited from <code>ITypographyOptions</code>.</li>
+    <li><strong>BaseLineHeight</strong>: Inherited from <code>ITypographyOptions</code>.</li>
+    <li><strong>MinLinePadding</strong>: Defaults to <code>2px</code>.</li>
+    <li><strong>RhythmUnit</strong>: Defaults to <code>rem</code>.</li>
+    <li><strong>RoundToNearestHalfLine</strong>: Defaults to <code>true</code>.</li>
+    <li><strong>ScaleRatio</strong>: Inherited from <code>ITypographyOptions</code>.</li>
+</ul>
+
+<h3>VerticalRhythm</h3>
+
+<ul>
+    <li><strong>AdjustFontSizeTo</strong>: Returns a <code>BaseLine</code> object with a new <code>FontSize</code> and <code>LineHeight</code> scaled to a new font size.</li>
+    <li><strong>EstablishBaseline</strong>: Returns a <code>BaseLine</code> object with a new <code>FontSize</code> and <code>LineHeight</code> based on the default font size and line height.</li>
+    <li><strong>Gray</strong>: Returns an hsla color string</li>
+    <li><strong>LinesForFontSize</strong>: Used by <code>AdjustFontSizeTo</code> when lines are set to <code>auto</code>.</li>
+    <li><strong>Rhythm</strong>: Returns a "rhythm" used to define margins between elements.</li>
+    <li><strong>Scale</strong>: Returns a <code>BaseLine</code> object with a new <code>FontSize</code> and <code>LineHeight</code> scaled by a multiplier.</li>
+</ul>
 
 <h2>Example Elements</h2>
 

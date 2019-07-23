@@ -28,24 +28,24 @@ namespace BlazorTypography.Themes
                     BaseFontSize = "16px",
                     BaseLineHeight = "24.88px"
                 });
-                styles.AddStyle("h1 a,h2 a,h3 a,h4 a,h5 a,h6 a", $"font-weight: {options.HeaderWeight};");
-                styles.AddStyle("a", $@"
+                styles.Add("h1 a,h2 a,h3 a,h4 a,h5 a,h6 a", $"font-weight: {options.HeaderWeight};");
+                styles.Add("a", $@"
                     font-weight: 400;
                     color: #419eda;
                     text-decoration: none;
                 ");
-                styles.AddStyle("a:hover,a:active", $@"
+                styles.Add("a:hover,a:active", $@"
                     color: #2a6496;
                     text-decoration: none;
                 ");
-                styles.AddStyle("blockquote", $@"
+                styles.Add("blockquote", $@"
                     {vr.Scale(1 / 5f)}
                     border-left: {vr.Rhythm(1 / 4f)} solid {vr.Gray(87)};
                     color: {vr.Gray(40)};
                     padding-left: {vr.Rhythm(3 / 4f)};
                     margin-left: 0;
                 ");
-                styles.AddStyle(vr.MOBILE_MEDIA_QUERY, $@"
+                styles.Add(vr.MOBILE_MEDIA_QUERY, $@"
                     html {{
                         {vr.EstablishBaseline()}
                     }}

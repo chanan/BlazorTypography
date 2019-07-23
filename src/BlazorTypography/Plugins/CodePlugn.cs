@@ -20,7 +20,7 @@
                 blockMarginBottom = rhythm1;
             }
 
-            styles.AddStyle("tt,code", $@"
+            styles.Add("tt,code", $@"
                     background-color: {vr.Gray(96)};
                     border-radius: 3px;
                     font-family: ""SFMono - Regular"", Consolas, ""Roboto Mono"" ,""Droid Sans Mono"", ""Liberation Mono"", Menlo, Courier, monospace;
@@ -28,7 +28,7 @@
                     padding-top: 0.2em;
                     padding-bottom: 0.2em;
                 ");
-            styles.AddStyle("pre", $@"
+            styles.Add("pre", $@"
                     background: {vr.Gray(96)};
                     border-radius: 3px;
                     line-height: 1.42;
@@ -36,15 +36,15 @@
                     word-wrap: normal;
                     padding: {blockMarginBottom};
                 ");
-            styles.AddStyle("pre code", @"
+            styles.Add("pre code", @"
                     background: none;
                     line-height: 1.42;
                 ");
-            styles.AddStyle("code:before,code:after,tt:before,tt:after", @"
+            styles.Add("code:before,code:after,tt:before,tt:after", @"
                     letter-spacing: -0.2em;
                     content: "" "";
                 ");
-            styles.AddStyle("pre code:before,pre code:after,pre tt:before,pre tt:after", @"
+            styles.Add("pre code:before,pre code:after,pre tt:before,pre tt:after", @"
                     content: none;
                 ");
         }

@@ -22,14 +22,14 @@ namespace BlazorTypography.Themes
         public override Action<Styles, VerticalRhythm, ITypographyOptions> OverrideStyles { get; set; } =
             new Action<Styles, VerticalRhythm, ITypographyOptions>((styles, vr, options) =>
             {
-                styles.AddStyle("a", $@"
+                styles.Add("a", $@"
                     color: #f92300;
                     text-decoration: none;
                 ");
-                styles.AddStyle("a:hover,a:active", $@"
+                styles.Add("a:hover,a:active", $@"
                     text-decoration: underline;
                 ");
-                styles.AddStyle("blockquote", $@"
+                styles.Add("blockquote", $@"
                     {vr.Scale(1 / 5f)}
                     border-left: {vr.Rhythm(3 / 16f)} solid {vr.Gray(80)};
                     color: {vr.Gray(41)};
@@ -37,22 +37,22 @@ namespace BlazorTypography.Themes
                     padding-left: {vr.Rhythm(13 / 16f)};
                     margin-left: 0;
                 ");
-                styles.AddStyle("blockquote > :last-child", "margin-bottom: 0;");
-                styles.AddStyle("blockquote cite", $@"
+                styles.Add("blockquote > :last-child", "margin-bottom: 0;");
+                styles.Add("blockquote cite", $@"
                     {vr.AdjustFontSizeTo(options.BaseFontSize)}
                     color: {options.BodyColor};
                     font-weight: {options.BodyWeight};
                 ");
-                styles.AddStyle("blockquote cite:before", @"content: ""-"";");
-                styles.AddStyle("ul", "list-style: disc;");
-                styles.AddStyle("ul,ol", "margin-left: 0;");
-                styles.AddStyle("h1,h2,h3,h4,h5,h6", $"margin-top: {vr.Rhythm(2)};");
-                styles.AddStyle("h1", $@"
+                styles.Add("blockquote cite:before", @"content: ""-"";");
+                styles.Add("ul", "list-style: disc;");
+                styles.Add("ul,ol", "margin-left: 0;");
+                styles.Add("h1,h2,h3,h4,h5,h6", $"margin-top: {vr.Rhythm(2)};");
+                styles.Add("h1", $@"
                     {vr.Scale(6 / 5f)}
                     letter-spacing: -2px;
                 ");
-                styles.AddStyle("h6", "font-style: italic;");
-                styles.AddStyle(vr.MOBILE_MEDIA_QUERY, $@"
+                styles.Add("h6", "font-style: italic;");
+                styles.Add(vr.MOBILE_MEDIA_QUERY, $@"
                     ul,ol {{
                         margin-left: {vr.Rhythm(1)};
                     }}
@@ -66,7 +66,7 @@ namespace BlazorTypography.Themes
                         font-style: italic;
                     }}
                 ");
-                styles.AddStyle(vr.TABLET_MEDIA_QUERY, $@"
+                styles.Add(vr.TABLET_MEDIA_QUERY, $@"
                     h1 {{
                         {vr.Scale(5 / 5f)}
                     }}

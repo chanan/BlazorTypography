@@ -23,13 +23,13 @@ namespace BlazorTypography.Themes
         public override Action<Styles, VerticalRhythm, ITypographyOptions> OverrideStyles { get; set; } =
             new Action<Styles, VerticalRhythm, ITypographyOptions>((styles, vr, options) =>
             {
-                styles.AddStyle("h1", $@"
+                styles.Add("h1", $@"
                     font-family: Montserrat, sans-serif;
                 ");
-                styles.AddStyle("h1,h2,h3,h4,h5,h6", $@"
+                styles.Add("h1,h2,h3,h4,h5,h6", $@"
                     margin-top: {vr.Rhythm(2f)};
                 ");
-                styles.AddStyle("blockquote", $@"
+                styles.Add("blockquote", $@"
                     {vr.Scale(1 / 5f)}
                     font-style: italic;
                     color: {vr.Gray(41)};
@@ -37,35 +37,35 @@ namespace BlazorTypography.Themes
                     padding-left: {vr.Rhythm(13 / 16f)};
                     border-left: {vr.Rhythm(3 / 16f)} solid {vr.Gray(10)};
                 ");
-                styles.AddStyle("blockquote > :last-child", "margin-bottom: 0;");
-                styles.AddStyle("blockquote cite", $@"
+                styles.Add("blockquote > :last-child", "margin-bottom: 0;");
+                styles.Add("blockquote cite", $@"
                     {vr.AdjustFontSizeTo(options.BaseFontSize)}
                     color: {options.BodyColor};
                     font-weight: {options.BodyWeight};
                 ");
-                styles.AddStyle("blockquote cite:before", @"content: ""-"";");
-                styles.AddStyle("ul", "list-style: disc;");
-                styles.AddStyle("ul,ol", $@"
+                styles.Add("blockquote cite:before", @"content: ""-"";");
+                styles.Add("ul", "list-style: disc;");
+                styles.Add("ul,ol", $@"
                     margin-left: 0;
                 ");
-                styles.AddStyle("h4", $@"
+                styles.Add("h4", $@"
                     letter-spacing: 0.140625em;
                     text-transform: uppercase;
                 ");
-                styles.AddStyle("h6", "font-style: italic;");
-                styles.AddStyle("a", @"
+                styles.Add("h6", "font-style: italic;");
+                styles.Add("a", @"
                     box-shadow: 0 1px 0 0 currentColor;
                     color: #007acc;
                     text-decoration: none;
                 ");
-                styles.AddStyle("a:hover,a:active", "box-shadow: none;");
-                styles.AddStyle("mark,ins", $@"
+                styles.Add("a:hover,a:active", "box-shadow: none;");
+                styles.Add("mark,ins", $@"
                     background: #007acc;
                     color: white;
                     padding: {vr.Rhythm(1 / 16f)} {vr.Rhythm(1 / 8f)};
                     text-decoration: none;
                 ");
-                styles.AddStyle(vr.MOBILE_MEDIA_QUERY, $@"
+                styles.Add(vr.MOBILE_MEDIA_QUERY, $@"
                     ul,ol {{
                         margin-left: {vr.Rhythm(1)};
                     }}

@@ -41,49 +41,49 @@ namespace BlazorTypography.Themes
         public override Action<Styles, VerticalRhythm, ITypographyOptions> OverrideStyles { get; set; } =
             new Action<Styles, VerticalRhythm, ITypographyOptions>((styles, vr, options) =>
             {
-                styles.AddStyle("h2", $@"
+                styles.Add("h2", $@"
                     {vr.AdjustFontSizeTo("15px")}
                     margin-bottom: 0;
                 ");
-                styles.AddStyle("h3", $@"
+                styles.Add("h3", $@"
                     {vr.AdjustFontSizeTo("10px")}
                     margin-bottom: 0;
                     text-transform: uppercase;
                 ");
-                styles.AddStyle("h4", $@"
+                styles.Add("h4", $@"
                     {vr.AdjustFontSizeTo("15px")}
                     font-weight: normal;
                     margin-bottom: 0;
                 ");
-                styles.AddStyle("h5", $@"
+                styles.Add("h5", $@"
                     {vr.AdjustFontSizeTo("15px")}
                     font-weight: normal;
                     margin-bottom: 0;
                 ");
-                styles.AddStyle("h6", $@"
+                styles.Add("h6", $@"
                     {vr.AdjustFontSizeTo("15px")}
                     font-weight: normal;
                     margin-bottom: 0;
                 ");
-                styles.AddStyle("a", $@"
+                styles.Add("a", $@"
                     color: #1bafe0;
                     text-decoration: none;
                 ");
-                styles.AddStyle("a:focus, a:active, a:hover", $@"
+                styles.Add("a:focus, a:active, a:hover", $@"
                     text-decoration: underline;
                 ");
-                styles.AddStyle("ul,ol", @"
+                styles.Add("ul,ol", @"
                     margin-bottom: 1.625em;
                     margin-left: 2.5em;
                 ");
-                styles.AddStyle("li", "margin-bottom: 0;");
-                styles.AddStyle("li > ul", "margin-top: 0;");
-                styles.AddStyle("ins", "background: #fff9c0;");
-                styles.AddStyle("li>ol,li>ul", @"
+                styles.Add("li", "margin-bottom: 0;");
+                styles.Add("li > ul", "margin-top: 0;");
+                styles.Add("ins", "background: #fff9c0;");
+                styles.Add("li>ol,li>ul", @"
                     margin-left: 2.5em;
                     margin-bottom: 0;
                 ");
-                styles.AddStyle("blockquote", $@"
+                styles.Add("blockquote", $@"
                     font-family: Georgia, ""Bitstream Charter"", serif;
                     font-style: italic;
                     margin-bottom: 0;

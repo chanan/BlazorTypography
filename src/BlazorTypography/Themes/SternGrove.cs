@@ -22,14 +22,14 @@ namespace BlazorTypography.Themes
         public override Action<Styles, VerticalRhythm, ITypographyOptions> OverrideStyles { get; set; } =
             new Action<Styles, VerticalRhythm, ITypographyOptions>((styles, vr, options) =>
             {
-                styles.AddStyle("a", $@"
+                styles.Add("a", $@"
                     color: #07e;
                     text-decoration: none;
                 ");
-                styles.AddStyle("a:hover,a:active", $@"
+                styles.Add("a:hover,a:active", $@"
                     color: #e32;
                 ");
-                styles.AddStyle("blockquote", $@"
+                styles.Add("blockquote", $@"
                     {vr.Scale(1 / 5f)}
                     background: {vr.Gray(97)};
                     border-left: {vr.Rhythm(2 / 16f)} solid {vr.Gray(80)};
@@ -41,15 +41,15 @@ namespace BlazorTypography.Themes
                     margin-left: 0;
                     margin-right: 0;
                 ");
-                styles.AddStyle("blockquote > :last-child", "margin-bottom: 0;");
-                styles.AddStyle("blockquote cite", $@"
+                styles.Add("blockquote > :last-child", "margin-bottom: 0;");
+                styles.Add("blockquote cite", $@"
                     {vr.AdjustFontSizeTo(options.BaseFontSize)}
                     color: {options.BodyColor};
                     font-weight: {options.BodyWeight};
                 ");
-                styles.AddStyle("blockquote cite:before", @"content: ""-"";");
-                styles.AddStyle("ul", "list-style: disc;");
-                styles.AddStyle(vr.MOBILE_MEDIA_QUERY, $@"
+                styles.Add("blockquote cite:before", @"content: ""-"";");
+                styles.Add("ul", "list-style: disc;");
+                styles.Add(vr.MOBILE_MEDIA_QUERY, $@"
                     ul,ol {{
                         margin-left: {vr.Rhythm(1)};
                     }}

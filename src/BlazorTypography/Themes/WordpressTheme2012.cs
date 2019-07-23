@@ -22,43 +22,43 @@ namespace BlazorTypography.Themes
         public override Action<Styles, VerticalRhythm, ITypographyOptions> OverrideStyles { get; set; } =
             new Action<Styles, VerticalRhythm, ITypographyOptions>((styles, vr, options) =>
             {
-                styles.AddStyle("blockquote", $@"
+                styles.Add("blockquote", $@"
                     font-style: italic;
                     padding-top: {vr.Rhythm(1)};
                     padding-bottom: {vr.Rhythm(1)};
                     padding-left: {vr.Rhythm(1)};
                     padding-right: {vr.Rhythm(1)};
                 ");
-                styles.AddStyle("dl", $@"
+                styles.Add("dl", $@"
                     margin-left: {vr.Rhythm(1)};
                     margin-right: {vr.Rhythm(1)};
                 ");
-                styles.AddStyle("a", $@"
+                styles.Add("a", $@"
                     color: #21759b;
                 ");
-                styles.AddStyle("a:hover", $@"
+                styles.Add("a:hover", $@"
                     color: #0f3647;
                 ");
-                styles.AddStyle("a:visited", $@"
+                styles.Add("a:visited", $@"
                     color: #9f9f9f;
                 ");
-                styles.AddStyle("ul,ol", @"
+                styles.Add("ul,ol", @"
                     margin-left: 0;
                 ");
-                styles.AddStyle("ol", @"
+                styles.Add("ol", @"
                     list-style: decimal outside;
                 ");
-                styles.AddStyle("ul", @"
+                styles.Add("ul", @"
                     list-style: disc outside;
                 ");
-                styles.AddStyle("li", $@"
+                styles.Add("li", $@"
                     margin-left: {vr.Rhythm(1.5f)};
                 ");
-                styles.AddStyle("table", $@"
+                styles.Add("table", $@"
                     {vr.Scale(-1 / 5f)}
                     color: {vr.Gray(46)};
                 ");
-                styles.AddStyle("th", $@"
+                styles.Add("th", $@"
                     font-weight: {options.BoldWeight};
                     text-transform: uppercase;
                     color: {vr.Gray(39)};
