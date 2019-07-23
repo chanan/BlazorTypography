@@ -13,21 +13,21 @@ namespace BlazorTypography
 
         private readonly Dictionary<string, double> ratios = new Dictionary<string, double>
         {
-            { "minor second", 16 / 15 },
-            { "major second", 9 / 8 },
-            { "minor third", 6 / 5 },
-            { "major third", 4 / 3 },
+            { "minor second", 16 / 15d },
+            { "major second", 9 / 8d },
+            { "minor third", 6 / 5d },
+            { "major third", 4 / 3d },
             { "augmented fourth", Math.Sqrt(2)},
-            { "perfect fifth", 3 / 2 },
-            { "minor sixth", 8 / 5 },
+            { "perfect fifth", 3 / 2d },
+            { "minor sixth", 8 / 5d },
             { "golden", 1.61803398875 },
             { "phi", 1.61803398875 },
-            { "major sixth", 5 / 3 },
-            { "minor seventh", 16 / 9 },
-            { "major seventh", 15 / 8 },
+            { "major sixth", 5 / 3d },
+            { "minor seventh", 16 / 9d },
+            { "major seventh", 15 / 8d },
             { "octave", 2 },
-            { "major tenth", 5 / 2 },
-            { "major eleventh", 8 / 3 },
+            { "major tenth", 5 / 2d },
+            { "major eleventh", 8 / 3d },
             { "major twelfth", 3 },
             { "double octave", 4 }
         };
@@ -260,10 +260,12 @@ namespace BlazorTypography
             return _rhythm(lines, fontSize, offset);
         }
 
-        public BaseLine Scale(float value)
+        public BaseLine Scale(double value)
         {
             int baseFont = int.Parse(Util.UnitLess(_options.BaseFontSize).ToString());
-            string newFontSize = $"{ModularScale(value, null) * baseFont}px";
+            
+
+            string newFontSize = $"{ModularScale(value, _options.ScaleRatio.HasValue ? _options.ScaleRatio.Value.ToString() : null) * baseFont}px";
             return AdjustFontSizeTo(newFontSize, null, null);
         }
 
@@ -370,7 +372,7 @@ namespace BlazorTypography
             });
         }
 
-        private float ModularScale(float value, string ratio = "golden")
+        public double ModularScale(double value, string ratio = "golden")
         {
             if (ratio == null)
             {
@@ -378,7 +380,7 @@ namespace BlazorTypography
             }
 
             double r;
-            if (float.TryParse(ratio, out float f))
+            if (double.TryParse(ratio, out double f))
             {
                 r = f;
             }
@@ -390,7 +392,7 @@ namespace BlazorTypography
             {
                 r = ratios["golden"];
             }
-            return (float)Math.Round(Math.Pow(r, value), 2);
+            return Math.Round(Math.Pow(r, value), 3);
         }
     }
 }

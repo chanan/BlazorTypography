@@ -6,7 +6,7 @@ namespace BlazorTypography.Themes
     public class Alton : BaseTypographyOptions
     {
         public override string BaseFontSize { get; set; } = "18px";
-        public override string BaseLineHeight { get; set; } = "1.45";
+        public override string BaseLineHeight { get; set; } = "1.78";
         public override string BlockMarginBottom { get; set; } = "0.8";
         public override string BodyColor { get; set; } = "black";
         public override List<string> BodyFontFamily { get; set; } = new List<string> { "Open Sans", "sans-serif" };
@@ -28,13 +28,16 @@ namespace BlazorTypography.Themes
         };
 
         public override Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>> OverrideStyles { get; set; } =
-            new Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>>((vr, options) =>
+            new Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>>((baseVR, options) =>
             {
-                IList<KeyValuePair<string, string>> list = new List<KeyValuePair<string, string>>
+                var vr = new VerticalRhythm(new VerticalRhythmOptions
                 {
-                    new KeyValuePair<string, string>("h1,h2,h3,h4,h5,h6", @"
-                        line-height: 1.1;
-                    "),
+                    BaseFontSize = "16px",
+                    BaseLineHeight = "28.44px"
+                });
+                IList<KeyValuePair<string, string>> list = new List<KeyValuePair<string, string>>
+            {
+                    
                     new KeyValuePair<string, string>("a", @"
                         color: #ff5700;
                         text-decoration: none;
@@ -63,7 +66,7 @@ namespace BlazorTypography.Themes
                     "),
                     new KeyValuePair<string, string>(vr.MOBILE_MEDIA_QUERY, $@"
                         html {{
-                            font-size: 100%;
+                            {vr.EstablishBaseline()}
                         }}
                          blockquote {{
                             margin-left: {vr.Rhythm(-3 / 4f)};

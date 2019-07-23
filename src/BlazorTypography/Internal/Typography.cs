@@ -35,6 +35,7 @@ namespace BlazorTypography.Internal
         public List<string> Themes => (from type in Assembly.GetAssembly(_themeType).DefinedTypes
                                        where type.ImplementedInterfaces.Contains(_themeType)
                                        && !type.IsAbstract
+                                       && type.Name != "VerticalRhythmOptions"
                                        select GetTitle(type)).ToList();
 
         public Task ApplyTypography()
@@ -318,33 +319,27 @@ namespace BlazorTypography.Internal
             BaseLine h6 = vr.Scale(-1.5f / 5f);
 
             await _styled.Css("h1", $@"
-                font-size:{h1.FontSize}; 
-                line-height:{options.HeaderLineHeight};
+                {h1}
             ");
 
             await _styled.Css("h2", $@"
-                font-size:{h2.FontSize}; 
-                line-height:{options.HeaderLineHeight};
+                {h2}
             ");
 
             await _styled.Css("h3", $@"
-                font-size:{h3.FontSize}; 
-                line-height:{options.HeaderLineHeight};
+                {h3}
             ");
 
             await _styled.Css("h4", $@"
-                font-size:{h4.FontSize}; 
-                line-height:{options.HeaderLineHeight};
+                {h4}
             ");
 
             await _styled.Css("h5", $@"
-                font-size:{h5.FontSize}; 
-                line-height:{options.HeaderLineHeight};
+                {h5}
             ");
 
             await _styled.Css("h6", $@"
-                font-size:{h6.FontSize}; 
-                line-height:{options.HeaderLineHeight};
+                {h6}
             ");
 
             // TODO add support for Breakpoints here. (Missing in Typography.js)
@@ -419,6 +414,7 @@ namespace BlazorTypography.Internal
             List<TypeInfo> themes = (from type in Assembly.GetAssembly(_themeType).DefinedTypes
                                      where type.ImplementedInterfaces.Contains(_themeType)
                                      && !type.IsAbstract
+                                     && type.Name != "VerticalRhythmOptions"
                                      select type).ToList();
 
             foreach (TypeInfo type in themes)
