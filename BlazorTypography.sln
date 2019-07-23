@@ -11,7 +11,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SamplePages", "src\SamplePa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServerSideSample", "src\ServerSideSample\ServerSideSample.csproj", "{D39B1AD4-D82E-423C-8994-B33FCD85B055}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorTypography.Tests", "src\BlazorTypography.Tests\BlazorTypography.Tests.csproj", "{2210C48C-F8D7-446D-9AAB-836B473D4FE7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorTypography.Tests", "src\BlazorTypography.Tests\BlazorTypography.Tests.csproj", "{2210C48C-F8D7-446D-9AAB-836B473D4FE7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{273BE776-6E56-47BB-961E-A6CA5E6CBA51}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

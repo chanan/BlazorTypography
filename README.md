@@ -1,4 +1,4 @@
 # BlazorTypography
 A powerful toolkit for building websites with beautiful design
 
-This is a work in progress and not published to nuget yet
+To see blazorTypography and for documenation check out: https://chanan.github.io/BlazorTypography/
