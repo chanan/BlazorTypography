@@ -24,7 +24,7 @@ namespace BlazorTypography.Themes
             new Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>>((baseVR, options) =>
             {
                 string linkColor = "#950451";
-                VerticalRhythm vr = new VerticalRhythm(new VerticalRhythmOptions
+                VerticalRhythm vr = new VerticalRhythm(new VerticalRhythmOptions(options)
                 {
                     BaseFontSize = "17px",
                     BaseLineHeight = "28px"

@@ -5,7 +5,6 @@ using SamplePages.Fonts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace SamplePages.Pages
@@ -31,11 +30,11 @@ namespace SamplePages.Pages
         protected string BodyFont { get; set; } = "georgia";
         protected bool UseCodePlugin { get; set; } = false;
         protected string HeaderWeight { get; set; } = string.Empty;
-        protected List<String> HeaderWeights { get; set; } = new List<string>();
+        protected List<string> HeaderWeights { get; set; } = new List<string>();
         protected string BodyWeight { get; set; } = string.Empty;
-        protected List<String> BodyWeights { get; set; } = new List<string>();
+        protected List<string> BodyWeights { get; set; } = new List<string>();
         protected string BoldWeight { get; set; } = string.Empty;
-        protected List<String> BoldWeights { get; set; } = new List<string>();
+        protected List<string> BoldWeights { get; set; } = new List<string>();
 
         private bool isServerSide, hasBeenDone;
 
@@ -51,7 +50,7 @@ namespace SamplePages.Pages
             }
         }
 
-        protected async override Task OnAfterRenderAsync()
+        protected override async Task OnAfterRenderAsync()
         {
             if (!hasBeenDone & isServerSide)
             {
@@ -145,14 +144,18 @@ namespace SamplePages.Pages
             {
                 theme.Plugins = new List<IPlugin> { new CodePlugn() };
             }
-            if(theme.HeaderFontFamily[0] != HeaderFont)
+            if (theme.HeaderFontFamily[0] != HeaderFont)
             {
                 Font headerFont = GetFont(HeaderFont);
-                if(headerFont != null)
+                if (headerFont != null)
                 {
                     theme.HeaderFontFamily = new List<string> { HeaderFont, headerFont.Category };
                     theme.HeaderWeight = HeaderWeight != "regular" ? HeaderWeight : "400";
-                    if (theme.GoogleFonts == null) theme.GoogleFonts = new List<GoogleFont>();
+                    if (theme.GoogleFonts == null)
+                    {
+                        theme.GoogleFonts = new List<GoogleFont>();
+                    }
+
                     theme.GoogleFonts.Add(new GoogleFont { Name = HeaderFont, Styles = new List<string> { theme.HeaderWeight } });
                     //TODO: Remove old font here
                 }
@@ -166,7 +169,11 @@ namespace SamplePages.Pages
                     theme.BodyFontFamily = new List<string> { BodyFont, bodyFont.Category };
                     theme.BodyWeight = BodyWeight != "regular" ? BodyWeight : "400";
                     theme.BoldWeight = BoldWeight != "regular" ? BoldWeight : "400";
-                    if (theme.GoogleFonts == null) theme.GoogleFonts = new List<GoogleFont>();
+                    if (theme.GoogleFonts == null)
+                    {
+                        theme.GoogleFonts = new List<GoogleFont>();
+                    }
+
                     theme.GoogleFonts.Add(new GoogleFont { Name = BodyFont, Styles = new List<string> { "400", "400i", theme.BoldWeight, theme.BoldWeight + "i" } });
                     //TODO: Remove old font here
                 }
@@ -181,14 +188,15 @@ namespace SamplePages.Pages
 
         private List<string> GetWeights(string fontName)
         {
-            var Font = GetFont(fontName);
-            return Font != null ? Font.Weights : new List<String>();
+            Font Font = GetFont(fontName);
+            return Font != null ? Font.Weights : new List<string>();
         }
 
         private string GetBoldStyle(string font)
         {
             List<string> weights = GetWeights(font);
-            List<int> ints = weights.Select(w => {
+            List<int> ints = weights.Select(w =>
+            {
                 int num = int.TryParse(w, out int result) ? result : 0;
                 return w == "regular" ? 400 : num;
             }).ToList();

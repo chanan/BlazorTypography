@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
 namespace SamplePages.Fonts
@@ -9,7 +7,7 @@ namespace SamplePages.Fonts
     {
         public FontManager()
         {
-            var temp = JsonSerializer.Parse<List<Font>>(_fonts);
+            List<Font> temp = JsonSerializer.Parse<List<Font>>(_fonts);
             Fonts = temp;
         }
         public List<Font> Fonts { get; private set; }

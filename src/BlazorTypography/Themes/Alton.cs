@@ -30,14 +30,14 @@ namespace BlazorTypography.Themes
         public override Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>> OverrideStyles { get; set; } =
             new Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>>((baseVR, options) =>
             {
-                var vr = new VerticalRhythm(new VerticalRhythmOptions
+                VerticalRhythm vr = new VerticalRhythm(new VerticalRhythmOptions(options)
                 {
                     BaseFontSize = "16px",
                     BaseLineHeight = "28.44px"
                 });
                 IList<KeyValuePair<string, string>> list = new List<KeyValuePair<string, string>>
             {
-                    
+
                     new KeyValuePair<string, string>("a", @"
                         color: #ff5700;
                         text-decoration: none;

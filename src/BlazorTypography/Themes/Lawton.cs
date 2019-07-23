@@ -25,7 +25,8 @@ namespace BlazorTypography.Themes
         public override Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>> OverrideStyles { get; set; } =
             new Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>>((baseVR, options) =>
             {
-                VerticalRhythm vr = new VerticalRhythm(new VerticalRhythmOptions {
+                VerticalRhythm vr = new VerticalRhythm(new VerticalRhythmOptions(options)
+                {
                     BaseFontSize = "12.8px",
                     BaseLineHeight = "19.2px"
                 });

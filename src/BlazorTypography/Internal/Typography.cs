@@ -46,11 +46,7 @@ namespace BlazorTypography.Internal
         public async Task ApplyTypography(ITypographyOptions options)
         {
             await _styled.ClearStyles();
-            VerticalRhythm vr = new VerticalRhythm(new VerticalRhythmOptions
-            {
-                BaseFontSize = options.BaseFontSize,
-                BaseLineHeight = options.BaseLineHeight
-            });
+            VerticalRhythm vr = new VerticalRhythm(new VerticalRhythmOptions(options));
 
             if (options.IncludeNormalize.HasValue && options.IncludeNormalize.Value)
             {
@@ -347,7 +343,7 @@ namespace BlazorTypography.Internal
             // Call plugins if any.
             if (options.Plugins != null)
             {
-                foreach(var plugin in options.Plugins)
+                foreach (IPlugin plugin in options.Plugins)
                 {
                     IList<KeyValuePair<string, string>> list = plugin.Run(options, vr);
                     if (list != null)
