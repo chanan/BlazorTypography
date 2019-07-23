@@ -1,6 +1,6 @@
 @inherits ThemeSwitcherBase
 
-    <div style="border: 1px solid black; padding: 0.25em;">
+    <div style="border: 1px solid black; padding: 0.25em; margin-bottom: 1em;">
         <h4 style="margin-top: 1rem;">Theme Switcher</h4>
         <form>
             <div>
@@ -61,7 +61,7 @@
                         </div>
                         <div style="display: table-cell; padding-bottom: 0.5em;">
                             <label for="headerColor">Gray Value (%)</label>
-                            <input id="headerColor" type="number" style="width: 6em;" />
+                            <input id="headerColor" type="text" style="width: 8em;" placeholder="Coming soon" />
                         </div>
                     </div>
                 </div>
@@ -76,6 +76,28 @@
                             <option @key="@name" value="@name">@name</option>
                         }
                     </select>
+                </div>
+                <div style="display: table;">
+                    <div style="display: table-row; padding-bottom: 0.5em;">
+                        <div style="display: table-cell; padding-right:0.5em; padding-bottom: 0.5em; padding-left: 0.5em;">
+                            <label for="bodyWeight">Body Weight</label>
+                            <select id="bodyWeight" value="@BodyWeight" @onchange="@OnChangeBodyWeight">
+                                @foreach (string weight in BodyWeights)
+                                {
+                                    <option @key="@weight" value="@weight">@weight</option>
+                                }
+                            </select>
+                        </div>
+                        <div style="display: table-cell; padding-bottom: 0.5em;">
+                            <label for="boldWeight">Bold Weight</label>
+                            <select id="boldWeight" value="@BoldWeight" @onchange="@OnChangeBoldWeight">
+                                @foreach (string weight in BoldWeights)
+                                {
+                                    <option @key="@weight" value="@weight">@weight</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
                 </div>
             </fieldset>
             <fieldset style="margin-bottom:0.5rem;">

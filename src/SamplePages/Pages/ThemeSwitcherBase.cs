@@ -32,6 +32,10 @@ namespace SamplePages.Pages
         protected bool UseCodePlugin { get; set; } = false;
         protected string HeaderWeight { get; set; } = string.Empty;
         protected List<String> HeaderWeights { get; set; } = new List<string>();
+        protected string BodyWeight { get; set; } = string.Empty;
+        protected List<String> BodyWeights { get; set; } = new List<string>();
+        protected string BoldWeight { get; set; } = string.Empty;
+        protected List<String> BoldWeights { get; set; } = new List<string>();
 
         private bool isServerSide, hasBeenDone;
 
@@ -66,8 +70,12 @@ namespace SamplePages.Pages
             Spacing = theme.BlockMarginBottom;
             HeaderFont = theme.HeaderFontFamily[0];
             BodyFont = theme.BodyFontFamily[0];
-            HeaderWeights = GetWeights(HeaderFont);
+            HeaderWeights = GetWeightForDropdown(HeaderFont);
             HeaderWeight = theme.HeaderWeight;
+            BodyWeights = GetWeightForDropdown(BodyFont);
+            BodyWeight = theme.BodyWeight;
+            BoldWeights = GetWeightForDropdown(BodyFont);
+            BoldWeight = theme.BoldWeight;
         }
 
         protected void OnChangeFontsize(UIChangeEventArgs e)
@@ -98,18 +106,32 @@ namespace SamplePages.Pages
         protected void OnChangeHeaderFont(UIChangeEventArgs e)
         {
             HeaderFont = (string)e.Value;
-            HeaderWeights = GetWeights(HeaderFont);
+            HeaderWeights = GetWeightForDropdown(HeaderFont);
             HeaderWeight = GetBoldStyle(HeaderFont);
         }
 
         protected void OnChangeBodyFont(UIChangeEventArgs e)
         {
             BodyFont = (string)e.Value;
+            BoldWeights = GetWeightForDropdown(BodyFont);
+            BoldWeight = GetBoldStyle(BodyFont);
+            BodyWeights = GetWeightForDropdown(BodyFont);
+            BodyWeight = "400";
         }
 
         protected void OnChangeHeaderWeight(UIChangeEventArgs e)
         {
             HeaderWeight = (string)e.Value;
+        }
+
+        protected void OnChangeBodyWeight(UIChangeEventArgs e)
+        {
+            BodyWeight = (string)e.Value;
+        }
+
+        protected void OnChangeBoldWeight(UIChangeEventArgs e)
+        {
+            BoldWeight = (string)e.Value;
         }
 
         protected async void OnClick()
@@ -129,9 +151,23 @@ namespace SamplePages.Pages
                 if(headerFont != null)
                 {
                     theme.HeaderFontFamily = new List<string> { HeaderFont, headerFont.Category };
-                    theme.HeaderWeight = HeaderWeight;
+                    theme.HeaderWeight = HeaderWeight != "regular" ? HeaderWeight : "400";
                     if (theme.GoogleFonts == null) theme.GoogleFonts = new List<GoogleFont>();
-                    theme.GoogleFonts.Add(new GoogleFont { Name = HeaderFont, Styles = new List<string> { HeaderWeight } });
+                    theme.GoogleFonts.Add(new GoogleFont { Name = HeaderFont, Styles = new List<string> { theme.HeaderWeight } });
+                    //TODO: Remove old font here
+                }
+            }
+
+            if (theme.BodyFontFamily[0] != BodyFont)
+            {
+                Font bodyFont = GetFont(BodyFont);
+                if (bodyFont != null)
+                {
+                    theme.BodyFontFamily = new List<string> { BodyFont, bodyFont.Category };
+                    theme.BodyWeight = BodyWeight != "regular" ? BodyWeight : "400";
+                    theme.BoldWeight = BoldWeight != "regular" ? BoldWeight : "400";
+                    if (theme.GoogleFonts == null) theme.GoogleFonts = new List<GoogleFont>();
+                    theme.GoogleFonts.Add(new GoogleFont { Name = BodyFont, Styles = new List<string> { "400", "400i", theme.BoldWeight, theme.BoldWeight + "i" } });
                     //TODO: Remove old font here
                 }
             }
@@ -158,6 +194,13 @@ namespace SamplePages.Pages
             }).ToList();
             ints = ints.OrderBy(i => i).ToList();
             return ints.Contains(700) ? "700" : ints.Last().ToString();
+        }
+
+        private List<string> GetWeightForDropdown(string font)
+        {
+            List<string> list = GetWeights(font);
+            list = list.Select(w => w == "regular" ? "400" : w).Where(w => int.TryParse(w, out int result)).OrderBy(w => int.Parse(w)).ToList();
+            return list;
         }
     }
 }

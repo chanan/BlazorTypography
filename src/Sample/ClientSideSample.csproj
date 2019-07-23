@@ -7,6 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="BlazorPrettyCode" Version="1.0.0-preview6-12" />
+    <PackageReference Include="BlazorStyled" Version="1.0.0-preview6-09" />
     <PackageReference Include="Microsoft.AspNetCore.Blazor" Version="3.0.0-preview6.19307.2" />
     <PackageReference Include="Microsoft.AspNetCore.Blazor.Build" Version="3.0.0-preview6.19307.2" PrivateAssets="all" />
     <PackageReference Include="Microsoft.AspNetCore.Blazor.DevServer" Version="3.0.0-preview6.19307.2" PrivateAssets="all" />

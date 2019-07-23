@@ -1,0 +1,23 @@
+﻿@inject ITypography Typography
+@using BlazorTypography.Themes
+
+@code {
+    protected override async Task OnInitAsync()
+    {
+        ITypographyOptions funston = new Funston
+        {
+            OverrideThemeStyles = new Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>>((vr, options) =>
+            {
+                List<KeyValuePair<string, string>> ret = new List<KeyValuePair<string, string>>
+                {
+                    new KeyValuePair<string, string>("h2,h3", $@"
+                        margin-bottom: {vr.Rhythm(1 / 2f)};
+                        margin-top: {vr.Rhythm(2)};
+                    ")
+                }
+                return ret;
+            }
+        };
+        await Typography.ApplyTypography(funston);
+    }
+}

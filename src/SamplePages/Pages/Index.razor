@@ -52,17 +52,56 @@
 <h3>Using themes</h3>
 <p>Here’s an example of how to use the Funston theme.</p>
 
-<p>Pretty code goes here</p>
+<pre class="umio-qgc amkk-spc"><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="fjwd-cui">@@inject</span><span> ITypography Typography</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="fjwd-cui">@@using</span><span> BlazorTypography.Themes</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl">
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="fjwd-cui">@@code {</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">    protected override async Task OnInitAsync()</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">    {</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">        await Typography.ApplyTypography(new Funston());</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">    }</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="fjwd-cui">}</span></code></span></pre>
 
 <h3>Customizing themes</h3>
 
 <p>Themes are just C# objects so it’s easy to modify them as needed. For example, if you’re using the Funston theme but want to increase the base font size slightly:</p>
 
-<p>Pretty code goes here</p>
+<pre class="umio-qgc amkk-spc"><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="fjwd-cui">@@inject</span><span> ITypography Typography</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="fjwd-cui">@@using</span><span> BlazorTypography.Themes</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl">
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="fjwd-cui">@@code {</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">    protected override async Task OnInitAsync()</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">    {</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">        ITypographyOptions funston = new Funston { BaseFontSize = </span><span class="rwei-nkg">"</span><span class="rwei-nkg">22px</span><span class="rwei-nkg">"</span><span class="amkk-spc"> };</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">        await Typography.ApplyTypography(funston);</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">    }</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="fjwd-cui">}</span></code></span></pre>
 
-<p>Or you can use the imperative API overrideThemeStyles to directly set/override styles on a theme:</p>
+<p>Or you can use the imperative API <code>OverrideThemeStyles</code> to directly set/override styles on a theme:</p>
 
-<p>Pretty code here</p>
+<pre class="umio-qgc amkk-spc"><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="fjwd-cui">@@inject</span><span> ITypography Typography</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="fjwd-cui">@@using</span><span> BlazorTypography.Themes</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl">
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="fjwd-cui">@@code {</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">    protected override async Task OnInitAsync()</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">    {</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">        ITypographyOptions funston = new Funston</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">        {</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">            OverrideThemeStyles = new Func</span><span class="gyyz-vx">&lt;</span><span class="lvfw-onk">VerticalRhythm,</span><span class="gyyz-vx"> ITypographyOptions,</span><span class="gyyz-vx"> IList&lt;KeyValuePair&lt;string,</span><span class="gyyz-vx"> string</span><span class="gyyz-vx">&gt;</span><span class="amkk-spc">&gt;&gt;((vr, options) =&gt;</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">            {</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">                List</span><span class="gyyz-vx">&lt;</span><span class="lvfw-onk">KeyValuePair&lt;string,</span><span class="gyyz-vx"> string</span><span class="gyyz-vx">&gt;</span><span class="amkk-spc">&gt; ret = new List</span><span class="gyyz-vx">&lt;</span><span class="lvfw-onk">KeyValuePair&lt;string,</span><span class="gyyz-vx"> string</span><span class="gyyz-vx">&gt;</span><span class="amkk-spc">&gt;</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">                {</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">                    new KeyValuePair</span><span class="gyyz-vx">&lt;</span><span class="lvfw-onk">string,</span><span class="gyyz-vx"> string</span><span class="gyyz-vx">&gt;</span><span class="amkk-spc">(</span><span class="rwei-nkg">"</span><span class="rwei-nkg">h2,h3</span><span class="rwei-nkg">"</span><span class="amkk-spc">, $</span><span class="rwei-nkg">@@</span><span class="rwei-nkg">"</span><span class="rwei-nkg"></span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="rwei-nkg">                        margin-bottom: {vr.Rhythm(1 / 2f)};</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="rwei-nkg">                        margin-top: {vr.Rhythm(2)};</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="rwei-nkg">                    </span><span class="rwei-nkg">"</span><span class="amkk-spc">)</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">                }</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">                return ret;</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">            }</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">        };</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">        await Typography.ApplyTypography(funston);</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">    }</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="fjwd-cui">}</span></code></span></pre>
 
 <h2>Plugins</h2>
 
@@ -71,7 +110,20 @@
 
 <p>To use the Code plugin, add it to your theme before calling <code>ApplyTypography</code>.</p>
 
-<p>Pretty code goes here</p>
+<pre class="umio-qgc amkk-spc"><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="fjwd-cui">@@inject</span><span> ITypography Typography</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="fjwd-cui">@@using</span><span> BlazorTypography.Themes</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="fjwd-cui">@@using</span><span> BlazorTypography.Plugins</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl">
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="fjwd-cui">@@code {</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">    protected override async Task OnInitAsync()</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">    {</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">        ITypographyOptions sternGrove = new SternGrove</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">        {</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">            Plugins = new List</span><span class="gyyz-vx">&lt;</span><span class="lvfw-onk">IPlugin</span><span class="gyyz-vx">&gt;</span><span class="amkk-spc"> { new CodePlugin() };</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">        };</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">        await Typography.ApplyTypography(sternGrove);</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">    }</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="fjwd-cui">}</span></code></span></pre>
 
 <h2>API</h2>
 
@@ -86,7 +138,22 @@
     <li><strong>ScaleRatio</strong>: The “scale ratio” for the theme. This value is the ratio between the <code>h1</code> font size and the <code>BaseFontSize</code>. 
         So if the scale ratio is <code>2</code> and the <code>BaseFontSize</code> is <code>16px</code> then the <code>h1</code> font size is <code>32px</code>.</li>
     <li><strong>GoogleFonts</strong>: An array specifying Google Fonts for this project.
-    <div>Pretty code here</div>
+        <pre class="umio-qgc amkk-spc"><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="fjwd-cui">@@inject</span><span> ITypography Typography</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl">
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="fjwd-cui">@@code {</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">    protected override async Task OnInitAsync()</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">    {</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">        ITypographyOptions theme = new DefaultTypographyOptions</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">        {</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">            GoogleFonts = new List</span><span class="gyyz-vx">&lt;</span><span class="lvfw-onk">GoogleFont</span><span class="gyyz-vx">&gt;</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">            {</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">                { new GoogleFont{ Name =</span><span class="rwei-nkg">"</span><span class="rwei-nkg">Montserrat</span><span class="rwei-nkg">"</span><span class="amkk-spc">, Styles = new List</span><span class="gyyz-vx">&lt;</span><span class="lvfw-onk">string</span><span class="gyyz-vx">&gt;</span><span class="amkk-spc">{ </span><span class="rwei-nkg">"</span><span class="rwei-nkg">700</span><span class="rwei-nkg">"</span><span class="amkk-spc"> } } },</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">                { new GoogleFont{ Name = </span><span class="rwei-nkg">"</span><span class="rwei-nkg">Merriweather</span><span class="rwei-nkg">"</span><span class="amkk-spc">, Styles = new List</span><span class="gyyz-vx">&lt;</span><span class="lvfw-onk">string</span><span class="gyyz-vx">&gt;</span><span class="amkk-spc">{ </span><span class="rwei-nkg">"</span><span class="rwei-nkg">400</span><span class="rwei-nkg">"</span><span class="amkk-spc">, </span><span class="rwei-nkg">"</span><span class="rwei-nkg">400i</span><span class="rwei-nkg">"</span><span class="amkk-spc">, </span><span class="rwei-nkg">"</span><span class="rwei-nkg">700</span><span class="rwei-nkg">"</span><span class="amkk-spc">, </span><span class="rwei-nkg">"</span><span class="rwei-nkg">700i</span><span class="rwei-nkg">"</span><span class="amkk-spc"> } } }</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">            };</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">        };</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">        await Typography.ApplyTypography(theme);</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">    }</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="fjwd-cui">}</span></code></span></pre>
     </li>
     <li><strong>HeaderFontFamily</strong>: An array of strings specifying the font family stack for headers e.g. <code>new List&lt;string> { "Helvetica", "sans-serif" }</code>. Defaults to a system UI font stack.</li>
     <li><strong>BodyFontFamily</strong>: An array of strings specifying the font family stack for the body, defaults to <code>new List&lt;string> { "georgia", "serif" }</code>.</li>
@@ -102,11 +169,64 @@
         We include normalize.CSS by default but if you’re already including it elsewhere in your project, you can disable including it here by passing <code>false</code>.</li>
     <li><strong>OverrideStyles</strong>: Imperative API for directly adding to or overriding auto-generated styles. 
         It’s called with a <code>VerticalRhythm</code> object, the <code>ITypographyOptions</code> object.
-    <div>Pretty code here</div>
+        <pre class="umio-qgc amkk-spc"><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="fjwd-cui">@@inject</span><span> ITypography Typography</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl">
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="fjwd-cui">@@code {</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">    protected override async Task OnInitAsync()</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">    {</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">        ITypographyOptions theme = new DefaultTypographyOptions</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">        {</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">            OverrideStyles = new Func</span><span class="gyyz-vx">&lt;</span><span class="lvfw-onk">VerticalRhythm,</span><span class="gyyz-vx"> ITypographyOptions,</span><span class="gyyz-vx"> IList&lt;KeyValuePair&lt;string,</span><span class="gyyz-vx"> string</span><span class="gyyz-vx">&gt;</span><span class="amkk-spc">&gt;&gt;((vr, options) =&gt;</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">            {</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">                List</span><span class="gyyz-vx">&lt;</span><span class="lvfw-onk">KeyValuePair&lt;string,</span><span class="gyyz-vx"> string</span><span class="gyyz-vx">&gt;</span><span class="amkk-spc">&gt; ret = new List</span><span class="gyyz-vx">&lt;</span><span class="lvfw-onk">KeyValuePair&lt;string,</span><span class="gyyz-vx"> string</span><span class="gyyz-vx">&gt;</span><span class="amkk-spc">&gt;</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">                {</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">                    new KeyValuePair</span><span class="gyyz-vx">&lt;</span><span class="lvfw-onk">string,</span><span class="gyyz-vx"> string</span><span class="gyyz-vx">&gt;</span><span class="amkk-spc">(</span><span class="rwei-nkg">"</span><span class="rwei-nkg">h1</span><span class="rwei-nkg">"</span><span class="amkk-spc">, $</span><span class="rwei-nkg">@@</span><span class="rwei-nkg">"</span><span class="rwei-nkg"></span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="rwei-nkg">                        font-family: Montserrat, sans-serif; </span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="rwei-nkg">                    </span><span class="rwei-nkg">"</span><span class="amkk-spc">),</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">                    new KeyValuePair</span><span class="gyyz-vx">&lt;</span><span class="lvfw-onk">string,</span><span class="gyyz-vx"> string</span><span class="gyyz-vx">&gt;</span><span class="amkk-spc">(</span><span class="rwei-nkg">"</span><span class="rwei-nkg">blockquote</span><span class="rwei-nkg">"</span><span class="amkk-spc">, $</span><span class="rwei-nkg">@@</span><span class="rwei-nkg">"</span><span class="rwei-nkg"></span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="rwei-nkg">                        {vr.AdjustFontSizeTo(</span><span class="rwei-nkg">"</span><span class="amkk-spc">19px</span><span class="rwei-nkg">"</span><span class="rwei-nkg">)}</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="rwei-nkg">                        color: {vr.Gray(41)};</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="rwei-nkg">                        font-style: italic;</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="rwei-nkg">                        padding-left: {vr.Rhythm(13 / 16f)};</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="rwei-nkg">                        margin-left: {vr.Rhythm(-1)};</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="rwei-nkg">                        border-left: {vr.Rhythm(3 / 16f)} solid {vr.Gray(10)};</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="rwei-nkg">                    </span><span class="rwei-nkg">"</span><span class="amkk-spc">),</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">                    new KeyValuePair</span><span class="gyyz-vx">&lt;</span><span class="lvfw-onk">string,</span><span class="gyyz-vx"> string</span><span class="gyyz-vx">&gt;</span><span class="amkk-spc">(</span><span class="rwei-nkg">"</span><span class="rwei-nkg">blockquote &gt; :last-child</span><span class="rwei-nkg">"</span><span class="amkk-spc">, $</span><span class="rwei-nkg">@@</span><span class="rwei-nkg">"</span><span class="rwei-nkg"></span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="rwei-nkg">                        margin-bottom: 0;</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="rwei-nkg">                    </span><span class="rwei-nkg">"</span><span class="amkk-spc">)</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">                }</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">                return ret;</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">            }</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">        };</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">        await Typography.ApplyTypography(theme);</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">    }</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="fjwd-cui">}</span></code></span></pre>
     </li>
     <li><strong>OverrideThemeStyles</strong>: This has the same function signature as <code>OverrideStyles</code> but should be used in place of <code>OverrideStyles</code> 
         when using a 3rd-party theme so as to not delete the theme’s own <code>OverrideStyles</code> function.
-    <div>Pretty code here</div>
+                                                                         <pre class="umio-qgc amkk-spc"><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="fjwd-cui">@@inject</span><span> ITypography Typography</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="fjwd-cui">@@using</span><span> BlazorTypography.Themes</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl">
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="fjwd-cui">@@code {</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">    protected override async Task OnInitAsync()</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">    {</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">        ITypographyOptions funston = new Funston</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">        {</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">            OverrideThemeStyles = new Func</span><span class="gyyz-vx">&lt;</span><span class="lvfw-onk">VerticalRhythm,</span><span class="gyyz-vx"> ITypographyOptions,</span><span class="gyyz-vx"> IList&lt;KeyValuePair&lt;string,</span><span class="gyyz-vx"> string</span><span class="gyyz-vx">&gt;</span><span class="amkk-spc">&gt;&gt;((vr, options) =&gt;</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">            {</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">                List</span><span class="gyyz-vx">&lt;</span><span class="lvfw-onk">KeyValuePair&lt;string,</span><span class="gyyz-vx"> string</span><span class="gyyz-vx">&gt;</span><span class="amkk-spc">&gt; ret = new List</span><span class="gyyz-vx">&lt;</span><span class="lvfw-onk">KeyValuePair&lt;string,</span><span class="gyyz-vx"> string</span><span class="gyyz-vx">&gt;</span><span class="amkk-spc">&gt;</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">                {</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">                    new KeyValuePair</span><span class="gyyz-vx">&lt;</span><span class="lvfw-onk">string,</span><span class="gyyz-vx"> string</span><span class="gyyz-vx">&gt;</span><span class="amkk-spc">(</span><span class="rwei-nkg">"</span><span class="rwei-nkg">h2,h3</span><span class="rwei-nkg">"</span><span class="amkk-spc">, $</span><span class="rwei-nkg">@@</span><span class="rwei-nkg">"</span><span class="rwei-nkg"></span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="rwei-nkg">                        margin-bottom: {vr.Rhythm(1 / 2f)};</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="rwei-nkg">                        margin-top: {vr.Rhythm(2)};</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="rwei-nkg">                    </span><span class="rwei-nkg">"</span><span class="amkk-spc">)</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">                }</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">                return ret;</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">            }</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">        };</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">        await Typography.ApplyTypography(funston);</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="amkk-spc">    }</span>
+</code></span><span class="arxq-tpk"><span class="tmfi-lp"></span><code class="rbrs-itl"><span class="fjwd-cui">}</span></code></span></pre>
     </li>
     <li><strong>Plugins</strong>: A list of plugins to apply to the Typography engine.</li>
 </ul>

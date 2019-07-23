@@ -1,0 +1,9 @@
+@inject ITypography Typography
+@using BlazorTypography.Themes
+
+@code {
+    protected override async Task OnInitAsync()
+    {
+        await Typography.ApplyTypography(new Funston());
+    }
+}

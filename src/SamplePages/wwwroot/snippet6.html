@@ -1,0 +1,32 @@
+﻿@inject ITypography Typography
+
+@code {
+    protected override async Task OnInitAsync()
+    {
+        ITypographyOptions theme = new DefaultTypographyOptions
+        {
+            OverrideStyles = new Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>>((vr, options) =>
+            {
+                List<KeyValuePair<string, string>> ret = new List<KeyValuePair<string, string>>
+                {
+                    new KeyValuePair<string, string>("h1", $@"
+                        font-family: Montserrat, sans-serif; 
+                    "),
+                    new KeyValuePair<string, string>("blockquote", $@"
+                        {vr.AdjustFontSizeTo("19px")}
+                        color: {vr.Gray(41)};
+                        font-style: italic;
+                        padding-left: {vr.Rhythm(13 / 16f)};
+                        margin-left: {vr.Rhythm(-1)};
+                        border-left: {vr.Rhythm(3 / 16f)} solid {vr.Gray(10)};
+                    "),
+                    new KeyValuePair<string, string>("blockquote > :last-child", $@"
+                        margin-bottom: 0;
+                    ")
+                }
+                return ret;
+            }
+        };
+        await Typography.ApplyTypography(theme);
+    }
+}
