@@ -18,40 +18,36 @@ namespace BlazorTypography.Themes
         public override List<string> HeaderFontFamily { get; set; } = new List<string> { "Lato", "serif" };
         public override string HeaderWeight { get; set; } = "600";
         public override string BoldWeight { get; set; } = "600";
-        public override Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>> OverrideStyles { get; set; } =
-            new Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>>((vr, options) =>
+        public override Action<Styles, VerticalRhythm, ITypographyOptions> OverrideStyles { get; set; } =
+            new Action<Styles, VerticalRhythm, ITypographyOptions>((styles, vr, options) =>
             {
-                List<KeyValuePair<string, string>> ret = new List<KeyValuePair<string, string>>
-                {
-                    new KeyValuePair<string, string>("h1,h2,h3,h4,h5,h6", $@"
+                styles.AddStyle("h1,h2,h3,h4,h5,h6", $@"
                     margin-top: {vr.Rhythm(1.5f)};
                     margin-bottom: {vr.Rhythm(0.5f)};
-                "),
-                    new KeyValuePair<string, string>("blockquote", $@"
+                ");
+                styles.AddStyle("blockquote", $@"
                     {vr.Scale(1 / 5f)}
                     font-weight: 300;
                     font-style: italic;
                     color: {vr.Gray(46)};
                     margin-left: 0;
                     margin-right: 0;
-                "),
-                    new KeyValuePair<string, string>("blockquote > :last-child", "margin-bottom: 0;"),
-                    new KeyValuePair<string, string>("blockquote cite", $@"
+                ");
+                styles.AddStyle("blockquote > :last-child", "margin-bottom: 0;");
+                styles.AddStyle("blockquote cite", $@"
                     {vr.AdjustFontSizeTo(options.BaseFontSize)}
                     color: {options.BodyColor};
                     font-weight: {options.BodyWeight};
                     font-style: normal;
-                "),
-                    new KeyValuePair<string, string>("blockquote cite:before", @"content: ""-"";"),
-                    new KeyValuePair<string, string>("ul,ol", $@"
+                ");
+                styles.AddStyle("blockquote cite:before", @"content: ""-"";");
+                styles.AddStyle("ul,ol", $@"
                     margin-left: {vr.Rhythm(5 / 6f)};
-                "),
-                    new KeyValuePair<string, string>("li>ul,li>ol", $@"
+                ");
+                styles.AddStyle("li>ul,li>ol", $@"
                     margin-left: vr.Rhythm(5 / 6f);
                     margin-bottom: 0;
-                ")
-                };
-                return ret;
+                ");
             });
     }
 }

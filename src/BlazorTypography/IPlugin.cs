@@ -1,9 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace BlazorTypography
+﻿namespace BlazorTypography
 {
     public interface IPlugin
     {
-        IList<KeyValuePair<string, string>> Run(ITypographyOptions options, VerticalRhythm vr);
+        void Run(Styles styles, ITypographyOptions options, VerticalRhythm vr);
     }
 }

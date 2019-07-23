@@ -19,61 +19,57 @@ namespace BlazorTypography.Themes
         public override List<string> HeaderFontFamily { get; set; } = new List<string> { "Bitter", "serif" };
         public override string HeaderWeight { get; set; } = "700";
         public override string BoldWeight { get; set; } = "700";
-        public override Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>> OverrideStyles { get; set; } =
-            new Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>>((vr, options) =>
+        public override Action<Styles, VerticalRhythm, ITypographyOptions> OverrideStyles { get; set; } =
+            new Action<Styles, VerticalRhythm, ITypographyOptions>((styles, vr, options) =>
             {
-                List<KeyValuePair<string, string>> ret = new List<KeyValuePair<string, string>>
-                {
-                    new KeyValuePair<string, string>("h1", $@"
+                styles.AddStyle("h1", $@"
                     {vr.Scale(8 / 5f)}
-                "),
-                    new KeyValuePair<string, string>("blockquote", $@"
+                ");
+                styles.AddStyle("blockquote", $@"
                     {vr.Scale(1 / 5f)}
                     font-weight: 300;
                     font-style: italic;
                     margin-left: {vr.Rhythm(1.5f)};
                     margin-right: {vr.Rhythm(1.5f)};
-                "),
-                    new KeyValuePair<string, string>("blockquote cite", $@"
+                ");
+                styles.AddStyle("blockquote cite", $@"
                     {vr.AdjustFontSizeTo(options.BaseFontSize)}
                     font-weight: {options.BodyWeight};
                     text-transform: uppercase;
-                "),
-                    new KeyValuePair<string, string>("a", $@"
+                ");
+                styles.AddStyle("a", $@"
                     color: #bc360a;
                     text-decoration: none;
-                "),
-                    new KeyValuePair<string, string>("a:hover", $@"
+                ");
+                styles.AddStyle("a:hover", $@"
                     color: #ea9629;
                     text-decoration: underline;
-                "),
-                    new KeyValuePair<string, string>("ul,ol", $@"
+                ");
+                styles.AddStyle("ul,ol", $@"
                     margin-left: 0;
                     padding-left: {vr.Rhythm(1.5f)};
-                "),
-                    new KeyValuePair<string, string>("li>ul,li>ol", $@"
+                ");
+                styles.AddStyle("li>ul,li>ol", $@"
                     margin-left: 0;
                     padding-left: {vr.Rhythm(1.5f)};
-                "),
-                    new KeyValuePair<string, string>("h6", $@"
+                ");
+                styles.AddStyle("h6", $@"
                     margin-top: {vr.Rhythm(1.25f)};
                     margin-bottom: {vr.Rhythm(1.25f)};
-                "),
-                    new KeyValuePair<string, string>("table", $@"
+                ");
+                styles.AddStyle("table", $@"
                     {vr.Scale(-1 / 5f)}
-                "),
-                    new KeyValuePair<string, string>("th", $@"
+                ");
+                styles.AddStyle("th", $@"
                     font-weight: {options.BoldWeight};
                     text-transform: uppercase;
-                "),
-                    new KeyValuePair<string, string>("dl", $"margin-left: {vr.Rhythm(3 / 4f)};"),
-                    new KeyValuePair<string, string>(vr.TABLET_MEDIA_QUERY, $@"
+                ");
+                styles.AddStyle("dl", $"margin-left: {vr.Rhythm(3 / 4f)};");
+                styles.AddStyle(vr.TABLET_MEDIA_QUERY, $@"
                     h1 {{
                         {vr.Scale(5 / 5f)}
                     }}
-                ")
-                };
-                return ret;
+                ");
             });
     }
 }

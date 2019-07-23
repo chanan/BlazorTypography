@@ -45,23 +45,17 @@ namespace BlazorTypography.Internal
 
         public async Task ApplyTypography(ITypographyOptions options)
         {
-            await _styled.ClearStyles();
+            Styles styles = new Styles();
             VerticalRhythm vr = new VerticalRhythm(new VerticalRhythmOptions(options));
-
-            if (options.IncludeNormalize.HasValue && options.IncludeNormalize.Value)
-            {
-                await _styled.Css(_mixins.Normalize());
-            }
-
-            //Not sure if html section is correct see:
-            //https://github.com/KyleAMathews/typography.js/blob/master/packages/typography/src/utils/createStyles.js#L55-L61
-
-            string bodyFontFamily = string.Join(",", options.BodyFontFamily.Select(f => WrapFontFamily(f)));
-            string headerFontFamily = string.Join(",", options.HeaderFontFamily.Select(f => WrapFontFamily(f)));
             BaseLine baseLine = vr.EstablishBaseline();
             string rhythm1 = vr.Rhythm(1);
 
-            await _styled.Css("html", $@"
+            //Not sure if html section is correct see:
+            //https://github.com/KyleAMathews/typography.js/blob/master/packages/typography/src/utils/createStyles.js#L55-L61
+            string bodyFontFamily = string.Join(",", options.BodyFontFamily.Select(f => WrapFontFamily(f)));
+            string headerFontFamily = string.Join(",", options.HeaderFontFamily.Select(f => WrapFontFamily(f)));
+
+            styles.AddStyle("html", $@"
                 font-size: {baseLine.FontSize};
                 font-family: {bodyFontFamily};
                 line-height: {baseLine.LineHeight}em;
@@ -70,7 +64,7 @@ namespace BlazorTypography.Internal
             ");
 
             // box-sizing reset.
-            await _styled.Css(new List<string>
+            styles.AddStyles(new List<string>
             {
                 "*",
                 "*:before",
@@ -80,7 +74,7 @@ namespace BlazorTypography.Internal
             ");
 
             // Base body styles.
-            await _styled.Css("body", $@"
+            styles.AddStyle("body", $@"
                 color: {options.BodyColor};
                 font-family: {bodyFontFamily};
                 font-weight: {options.BodyWeight};
@@ -93,7 +87,7 @@ namespace BlazorTypography.Internal
             ");
 
             // Make images responsive.
-            await _styled.Css("img", "max-width: 100%;");
+            styles.AddStyle("img", "max-width: 100%;");
 
             // All block elements get one rhythm of bottom margin by default
             // or whatever is passed in as option.
@@ -112,7 +106,7 @@ namespace BlazorTypography.Internal
             }
 
             // Reset margin/padding to 0.
-            await _styled.Css(new List<string>
+            styles.AddStyles(new List<string>
             {
                 "h1",
                 "h2",
@@ -149,14 +143,14 @@ namespace BlazorTypography.Internal
             ");
 
             // Basic blockquote styles
-            await _styled.Css("blockquote", $@"
+            styles.AddStyle("blockquote", $@"
                 margin-right: {rhythm1};
                 margin-bottom: {blockMarginBottom};
                 margin-left: {rhythm1};
             ");
 
             // b, strong.
-            await _styled.Css(new List<string> {
+            styles.AddStyles(new List<string> {
                 "b",
                 "strong",
                 "dt",
@@ -166,7 +160,7 @@ namespace BlazorTypography.Internal
             ");
 
             // hr.
-            await _styled.Css("hr", $@"
+            styles.AddStyle("hr", $@"
                 background: {vr.Gray(80)};
                 border: none;
                 height: 1px;
@@ -174,7 +168,7 @@ namespace BlazorTypography.Internal
             ");
 
             // ol, ul.
-            await _styled.Css(new List<string>
+            styles.AddStyles(new List<string>
             {
                 "ol",
                 "ul"
@@ -185,12 +179,12 @@ namespace BlazorTypography.Internal
             ");
 
             // li.
-            await _styled.Css("li", $@"
+            styles.AddStyle("li", $@"
                 margin-bottom: calc({blockMarginBottom} / 2);
             ");
 
             // Remove default padding on list items.
-            await _styled.Css(new List<string>
+            styles.AddStyles(new List<string>
             {
                 "ol li",
                 "ul li"
@@ -199,7 +193,7 @@ namespace BlazorTypography.Internal
             ");
 
             // children ol, ul.
-            await _styled.Css(new List<string>
+            styles.AddStyles(new List<string>
             {
                 "li > ol",
                 "li > ul"
@@ -212,7 +206,7 @@ namespace BlazorTypography.Internal
             // Remove margin-bottom on the last-child of a few block elements
             // The worst offender of this seems to be markdown => html compilers
             // as they put paragraphs within LIs amoung other oddities.
-            await _styled.Css(new List<string> {
+            styles.AddStyles(new List<string> {
                 "blockquote *:last-child",
                 "li *:last-child",
                 "p *:last-child"
@@ -221,13 +215,13 @@ namespace BlazorTypography.Internal
             ");
 
             // Ensure li > p is 1/2 margin — this is another markdown => compiler oddity.
-            await _styled.Css("li > p", $@"
+            styles.AddStyle("li > p", $@"
                 margin-bottom: calc({blockMarginBottom} / 2);
             ");
 
             // Make generally smaller elements, smaller.
             BaseLine smaller = vr.AdjustFontSizeTo("85%");
-            await _styled.Css(new List<string>{
+            styles.AddStyles(new List<string>{
                 "code",
                 "kbd",
                 "pre",
@@ -237,7 +231,7 @@ namespace BlazorTypography.Internal
             ");
 
             // Abbr, Acronym.
-            await _styled.Css(new List<string> {
+            styles.AddStyles(new List<string> {
                 "abbr",
                 "acronym"
             }, $@"
@@ -245,7 +239,7 @@ namespace BlazorTypography.Internal
                 cursor: help;
             ");
 
-            await _styled.Css("abbr[title]", $@"
+            styles.AddStyle("abbr[title]", $@"
                 border-bottom: 1px dotted {vr.Gray(50)};
                 cursor: help;
                 text-decoration: none;
@@ -253,19 +247,19 @@ namespace BlazorTypography.Internal
 
             // Table styles.
             BaseLine tableBaseLine = vr.AdjustFontSizeTo(options.BaseFontSize, null, null);
-            await _styled.Css("table", $@"
+            styles.AddStyle("table", $@"
                 {tableBaseLine}
                 border-collapse: collapse;
                 width: 100%;
             ");
 
-            await _styled.Css("thead", @"
+            styles.AddStyle("thead", @"
                 text-align: left;
             ");
 
             string rhythmTwoThirds = vr.Rhythm(2 / 3f);
             string rhythmHalf = vr.Rhythm(1 / 2f);
-            await _styled.Css(new List<string>
+            styles.AddStyles(new List<string>
             {
                 "td",
                 "th"
@@ -282,16 +276,16 @@ namespace BlazorTypography.Internal
                 padding-bottom: calc({rhythmHalf} - 1px);,
             ");
 
-            await _styled.Css("th:first-child,td:first-child", @"
+            styles.AddStyle("th:first-child,td:first-child", @"
                 padding-left: 0;
             ");
 
-            await _styled.Css("", @"
+            styles.AddStyle("th:last-child,td:last-child", @"
                 padding-right: 0;
             ");
 
             // Create styles for headers.
-            await _styled.Css(new List<string>
+            styles.AddStyles(new List<string>
             {
                 "h1",
                 "h2",
@@ -314,27 +308,27 @@ namespace BlazorTypography.Internal
             BaseLine h5 = vr.Scale(-1 / 5f);
             BaseLine h6 = vr.Scale(-1.5f / 5f);
 
-            await _styled.Css("h1", $@"
+            styles.AddStyle("h1", $@"
                 {h1}
             ");
 
-            await _styled.Css("h2", $@"
+            styles.AddStyle("h2", $@"
                 {h2}
             ");
 
-            await _styled.Css("h3", $@"
+            styles.AddStyle("h3", $@"
                 {h3}
             ");
 
-            await _styled.Css("h4", $@"
+            styles.AddStyle("h4", $@"
                 {h4}
             ");
 
-            await _styled.Css("h5", $@"
+            styles.AddStyle("h5", $@"
                 {h5}
             ");
 
-            await _styled.Css("h6", $@"
+            styles.AddStyle("h6", $@"
                 {h6}
             ");
 
@@ -345,33 +339,15 @@ namespace BlazorTypography.Internal
             {
                 foreach (IPlugin plugin in options.Plugins)
                 {
-                    IList<KeyValuePair<string, string>> list = plugin.Run(options, vr);
-                    if (list != null)
-                    {
-                        await AddList(list);
-                    }
+                    plugin.Run(styles, options, vr);
                 }
             }
 
             // Call OverrideStyles function on options (if set).
-            if (options.OverrideStyles != null)
-            {
-                IList<KeyValuePair<string, string>> list = options.OverrideStyles(vr, options);
-                if (list != null)
-                {
-                    await AddList(list);
-                }
-            }
+            options.OverrideStyles?.Invoke(styles, vr, options);
 
             // Call overrideThemeStyles function on options (if set).
-            if (options.OverrideThemeStyles != null)
-            {
-                IList<KeyValuePair<string, string>> list = options.OverrideThemeStyles(vr, options);
-                if (list != null)
-                {
-                    await AddList(list);
-                }
-            }
+            options.OverrideThemeStyles?.Invoke(styles, vr, options);
 
             // Set google fonts
             if (options.GoogleFonts != null)
@@ -379,17 +355,18 @@ namespace BlazorTypography.Internal
                 List<BlazorStyled.GoogleFont> list = options.GoogleFonts.Select(font => new BlazorStyled.GoogleFont { Name = font.Name, Styles = font.Styles }).ToList();
                 await _styled.AddGoogleFonts(list);
             }
-        }
 
-        private async Task AddList(IList<KeyValuePair<string, string>> list)
-        {
-            foreach ((KeyValuePair<string, string> item, string key) in from KeyValuePair<string, string> item in list
-                                                                        let keys = item.Key.Split(',')
-                                                                        from string key in keys
-                                                                        where !string.IsNullOrWhiteSpace(key.Trim())
-                                                                        select (item, key))
+            //Write styles
+            await _styled.ClearStyles();
+
+            if (options.IncludeNormalize.HasValue && options.IncludeNormalize.Value)
             {
-                await _styled.Css(key.Trim(), item.Value.Trim());
+                await _styled.Css(_mixins.Normalize());
+            }
+
+            foreach (KeyValuePair<string, string> item in styles)
+            {
+                await _styled.Css(item.Key, item.Value);
             }
         }
 

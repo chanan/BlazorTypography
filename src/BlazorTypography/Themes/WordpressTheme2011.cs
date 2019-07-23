@@ -38,63 +38,59 @@ namespace BlazorTypography.Themes
         };
         public override string HeaderWeight { get; set; } = "bold";
         public override string BoldWeight { get; set; } = "bold";
-        public override Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>> OverrideStyles { get; set; } =
-            new Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>>((vr, options) =>
+        public override Action<Styles, VerticalRhythm, ITypographyOptions> OverrideStyles { get; set; } =
+            new Action<Styles, VerticalRhythm, ITypographyOptions>((styles, vr, options) =>
             {
-                List<KeyValuePair<string, string>> ret = new List<KeyValuePair<string, string>>
-                {
-                    new KeyValuePair<string, string>("h2", $@"
+                styles.AddStyle("h2", $@"
                     {vr.AdjustFontSizeTo("15px")}
                     margin-bottom: 0;
-                "),
-                    new KeyValuePair<string, string>("h3", $@"
+                ");
+                styles.AddStyle("h3", $@"
                     {vr.AdjustFontSizeTo("10px")}
                     margin-bottom: 0;
                     text-transform: uppercase;
-                "),
-                    new KeyValuePair<string, string>("h4", $@"
+                ");
+                styles.AddStyle("h4", $@"
                     {vr.AdjustFontSizeTo("15px")}
                     font-weight: normal;
                     margin-bottom: 0;
-                "),
-                    new KeyValuePair<string, string>("h5", $@"
+                ");
+                styles.AddStyle("h5", $@"
                     {vr.AdjustFontSizeTo("15px")}
                     font-weight: normal;
                     margin-bottom: 0;
-                "),
-                    new KeyValuePair<string, string>("h6", $@"
+                ");
+                styles.AddStyle("h6", $@"
                     {vr.AdjustFontSizeTo("15px")}
                     font-weight: normal;
                     margin-bottom: 0;
-                "),
-                    new KeyValuePair<string, string>("a", $@"
+                ");
+                styles.AddStyle("a", $@"
                     color: #1bafe0;
                     text-decoration: none;
-                "),
-                    new KeyValuePair<string, string>("a:focus, a:active, a:hover", $@"
+                ");
+                styles.AddStyle("a:focus, a:active, a:hover", $@"
                     text-decoration: underline;
-                "),
-                    new KeyValuePair<string, string>("ul,ol", @"
+                ");
+                styles.AddStyle("ul,ol", @"
                     margin-bottom: 1.625em;
                     margin-left: 2.5em;
-                "),
-                    new KeyValuePair<string, string>("li", "margin-bottom: 0;"),
-                    new KeyValuePair<string, string>("li > ul", "margin-top: 0;"),
-                    new KeyValuePair<string, string>("ins", "background: #fff9c0;"),
-                    new KeyValuePair<string, string>("li>ol,li>ul", @"
+                ");
+                styles.AddStyle("li", "margin-bottom: 0;");
+                styles.AddStyle("li > ul", "margin-top: 0;");
+                styles.AddStyle("ins", "background: #fff9c0;");
+                styles.AddStyle("li>ol,li>ul", @"
                     margin-left: 2.5em;
                     margin-bottom: 0;
-                "),
-                    new KeyValuePair<string, string>("blockquote", $@"
+                ");
+                styles.AddStyle("blockquote", $@"
                     font-family: Georgia, ""Bitstream Charter"", serif;
                     font-style: italic;
                     margin-bottom: 0;
                     margin-top: 0;
                     margin-left: 3em;
                     margin-right: 3em;
-                ")
-                };
-                return ret;
+                ");
             });
     }
 }

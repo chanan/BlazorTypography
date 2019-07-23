@@ -22,17 +22,15 @@ namespace BlazorTypography.Themes
         public override string HeaderWeight { get; set; } = "800";
         public override string BoldWeight { get; set; } = "700";
         public override string BlockMarginBottom { get; set; } = _blockMarginBottom;
-        public override Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>> OverrideStyles { get; set; } =
-            new Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>>((baseVR, options) =>
+        public override Action<Styles, VerticalRhythm, ITypographyOptions> OverrideStyles { get; set; } =
+            new Action<Styles, VerticalRhythm, ITypographyOptions>((styles, baseVR, options) =>
             {
                 VerticalRhythm vr = new VerticalRhythm(new VerticalRhythmOptions(options)
                 {
                     BaseFontSize = "12.8px",
                     BaseLineHeight = "19.2px"
                 });
-                List<KeyValuePair<string, string>> ret = new List<KeyValuePair<string, string>>
-                {
-                    new KeyValuePair<string, string>("blockquote", $@"
+                styles.AddStyle("blockquote", $@"
                     color: {vr.Gray(26.6f)};
                     border-left: 4px solid #999;
                     padding-left: {vr.Rhythm(float.Parse(_blockMarginBottom))};
@@ -40,22 +38,20 @@ namespace BlazorTypography.Themes
                     margin-right: {vr.Rhythm(float.Parse(_blockMarginBottom))};
                     margin-top: {vr.Rhythm(float.Parse(_blockMarginBottom))};
                     margin-bottom: {vr.Rhythm(float.Parse(_blockMarginBottom))};
-                "),
-                    new KeyValuePair<string, string>("a", @"
+                ");
+                styles.AddStyle("a", @"
                     font-weight: bold;
                     color: #00f;
                     text-decoration: none;
-                "),
-                    new KeyValuePair<string, string>("a:hover", @"
+                ");
+                styles.AddStyle("a:hover", @"
                     text-decoration: underline;
-                "),
-                    new KeyValuePair<string, string>(vr.MOBILE_MEDIA_QUERY, $@"
+                ");
+                styles.AddStyle(vr.MOBILE_MEDIA_QUERY, $@"
                     html {{
                         {vr.EstablishBaseline()}
                     }}
-                ")
-                };
-                return ret;
+                ");
             });
     }
 }

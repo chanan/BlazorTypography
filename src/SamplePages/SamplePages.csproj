@@ -22,12 +22,4 @@
     <EmbeddedResource Include="wwwroot\**" Exclude="**\*.js;**\*.css" LogicalName="blazor:file:%(RecursiveDir)%(Filename)%(Extension)" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Content Remove="wwwroot\snippet2.html" />
-    <Content Remove="wwwroot\snippet3.html" />
-    <Content Remove="wwwroot\snippet4.html" />
-    <Content Remove="wwwroot\snippet5.html" />
-    <Content Remove="wwwroot\snippet6.html" />
-  </ItemGroup>
-
 </Project>

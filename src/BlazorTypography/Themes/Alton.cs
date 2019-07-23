@@ -27,55 +27,50 @@ namespace BlazorTypography.Themes
             }
         };
 
-        public override Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>> OverrideStyles { get; set; } =
-            new Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>>((baseVR, options) =>
+        public override Action<Styles, VerticalRhythm, ITypographyOptions> OverrideStyles { get; set; } =
+            new Action<Styles, VerticalRhythm, ITypographyOptions>((styles, baseVR, options) =>
             {
                 VerticalRhythm vr = new VerticalRhythm(new VerticalRhythmOptions(options)
                 {
                     BaseFontSize = "16px",
                     BaseLineHeight = "28.44px"
                 });
-                IList<KeyValuePair<string, string>> list = new List<KeyValuePair<string, string>>
-            {
-
-                    new KeyValuePair<string, string>("a", @"
-                        color: #ff5700;
-                        text-decoration: none;
-                    "),
-                    new KeyValuePair<string, string>("a:hover,a:active", $@"
-                        color: {options.BodyColor};
-                    "),
-                    new KeyValuePair<string, string>("blockquote", $@"
-                        {vr.Scale(1 / 5f)}
-                        color: {vr.Gray(41)};
-                        font-style: italic;
-                        padding-left: {vr.Rhythm(13 / 16f)};
-                        margin-left: 0;
-                        border-left: {vr.Rhythm(3 / 16f)} solid {vr.Gray(10)};
-                    "),
-                    new KeyValuePair<string, string>("blockquote > :last-child", @"
-                        margin-bottom: 0;
-                    "),
-                    new KeyValuePair<string, string>("blockquote cite", $@"
-                        {vr.AdjustFontSizeTo(options.BaseFontSize)}
-                        color: {options.BodyColor};
-                        font-weight: {options.BodyWeight};
-                    "),
-                    new KeyValuePair<string, string>("blockquote cite:before", @"
-                        content: ""— "";
-                    "),
-                    new KeyValuePair<string, string>(vr.MOBILE_MEDIA_QUERY, $@"
-                        html {{
-                            {vr.EstablishBaseline()}
-                        }}
-                         blockquote {{
-                            margin-left: {vr.Rhythm(-3 / 4f)};
-                            margin-right: 0;
-                            padding-left: {vr.Rhythm(9 / 16f)};
-                        }}
-                    ")
-                };
-                return list;
+                styles.AddStyle("a", @"
+                    color: #ff5700;
+                    text-decoration: none;
+                ");
+                styles.AddStyle("a:hover,a:active", $@"
+                    color: {options.BodyColor};
+                ");
+                styles.AddStyle("blockquote", $@"
+                    {vr.Scale(1 / 5f)}
+                    color: {vr.Gray(41)};
+                    font-style: italic;
+                    padding-left: {vr.Rhythm(13 / 16f)};
+                    margin-left: 0;
+                    border-left: {vr.Rhythm(3 / 16f)} solid {vr.Gray(10)};
+                ");
+                styles.AddStyle("blockquote > :last-child", @"
+                    margin-bottom: 0;
+                ");
+                styles.AddStyle("blockquote cite", $@"
+                    {vr.AdjustFontSizeTo(options.BaseFontSize)}
+                    color: {options.BodyColor};
+                    font-weight: {options.BodyWeight};
+                ");
+                styles.AddStyle("blockquote cite:before", @"
+                    content: ""— "";
+                ");
+                styles.AddStyle(vr.MOBILE_MEDIA_QUERY, $@"
+                    html {{
+                        {vr.EstablishBaseline()}
+                    }}
+                        blockquote {{
+                        margin-left: {vr.Rhythm(-3 / 4f)};
+                        margin-right: 0;
+                        padding-left: {vr.Rhythm(9 / 16f)};
+                    }}
+                ");
             });
     }
 }

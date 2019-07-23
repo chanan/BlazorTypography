@@ -20,34 +20,32 @@ namespace BlazorTypography.Themes
         public override List<string> HeaderFontFamily { get; set; } = new List<string> { "Source Sans Pro", "sans-serif" };
         public override string HeaderWeight { get; set; } = "200";
         public override string BoldWeight { get; set; } = "700";
-        public override Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>> OverrideStyles { get; set; } =
-            new Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>>((baseVR, options) =>
+        public override Action<Styles, VerticalRhythm, ITypographyOptions> OverrideStyles { get; set; } =
+            new Action<Styles, VerticalRhythm, ITypographyOptions>((styles, baseVR, options) =>
             {
                 VerticalRhythm vr = new VerticalRhythm(new VerticalRhythmOptions(options)
                 {
                     BaseFontSize = "16px",
                     BaseLineHeight = "24.88px"
                 });
-                List<KeyValuePair<string, string>> ret = new List<KeyValuePair<string, string>>
-                {
-                    new KeyValuePair<string, string>("h1 a,h2 a,h3 a,h4 a,h5 a,h6 a", $"font-weight: {options.HeaderWeight};"),
-                    new KeyValuePair<string, string>("a", $@"
+                styles.AddStyle("h1 a,h2 a,h3 a,h4 a,h5 a,h6 a", $"font-weight: {options.HeaderWeight};");
+                styles.AddStyle("a", $@"
                     font-weight: 400;
                     color: #419eda;
                     text-decoration: none;
-                "),
-                    new KeyValuePair<string, string>("a:hover,a:active", $@"
+                ");
+                styles.AddStyle("a:hover,a:active", $@"
                     color: #2a6496;
                     text-decoration: none;
-                "),
-                    new KeyValuePair<string, string>("blockquote", $@"
+                ");
+                styles.AddStyle("blockquote", $@"
                     {vr.Scale(1 / 5f)}
                     border-left: {vr.Rhythm(1 / 4f)} solid {vr.Gray(87)};
                     color: {vr.Gray(40)};
                     padding-left: {vr.Rhythm(3 / 4f)};
                     margin-left: 0;
-                "),
-                    new KeyValuePair<string, string>(vr.MOBILE_MEDIA_QUERY, $@"
+                ");
+                styles.AddStyle(vr.MOBILE_MEDIA_QUERY, $@"
                     html {{
                         {vr.EstablishBaseline()}
                     }}
@@ -59,9 +57,7 @@ namespace BlazorTypography.Themes
                     table {{
                         {vr.Scale(-1 / 5f)}
                     }}
-                ")
-                };
-                return ret;
+                ");
             });
     }
 }

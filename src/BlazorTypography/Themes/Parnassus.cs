@@ -21,25 +21,23 @@ namespace BlazorTypography.Themes
         public override List<string> HeaderFontFamily { get; set; } = new List<string> { "Merriweather Sans", "sans-serif" };
         public override string HeaderWeight { get; set; } = "800";
         public override string BoldWeight { get; set; } = "700";
-        public override Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>> OverrideStyles { get; set; } =
-            new Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>>((baseVR, options) =>
+        public override Action<Styles, VerticalRhythm, ITypographyOptions> OverrideStyles { get; set; } =
+            new Action<Styles, VerticalRhythm, ITypographyOptions>((styles, baseVR, options) =>
             {
                 VerticalRhythm vr = new VerticalRhythm(new VerticalRhythmOptions(options)
                 {
                     BaseFontSize = "15px",
                     BaseLineHeight = "27.35px"
                 });
-                List<KeyValuePair<string, string>> ret = new List<KeyValuePair<string, string>>
-                {
-                    new KeyValuePair<string, string>("a", $@"
+                styles.AddStyle("a", $@"
                     color: #375c85;
                     text-decoration: none;
                     box-shadow: 0 1px 0 0 currentColor;
-                "),
-                    new KeyValuePair<string, string>("a:hover,a:active", $@"
+                ");
+                styles.AddStyle("a:hover,a:active", $@"
                     box-shadow: none;
-                "),
-                    new KeyValuePair<string, string>("blockquote", $@"
+                ");
+                styles.AddStyle("blockquote", $@"
                     {vr.Scale(1 / 5f)}
                     border-color: {vr.Gray(90)};
                     color: {vr.Gray(41)};
@@ -47,16 +45,16 @@ namespace BlazorTypography.Themes
                     padding-left: {vr.Rhythm(18 / 16f)};
                     margin-left: 0;
                     border-left: {vr.Rhythm(6 / 16f)} solid;
-                "),
-                    new KeyValuePair<string, string>("blockquote > :last-child", "margin-bottom: 0;"),
-                    new KeyValuePair<string, string>("blockquote cite", $@"
+                ");
+                styles.AddStyle("blockquote > :last-child", "margin-bottom: 0;");
+                styles.AddStyle("blockquote cite", $@"
                     {vr.AdjustFontSizeTo(options.BaseFontSize)}
                     color: {options.BodyColor};
                     font-weight: {options.BodyWeight};
-                "),
-                    new KeyValuePair<string, string>("blockquote cite:before", @"content: ""-"";"),
-                    new KeyValuePair<string, string>("ul", "list-style: disc;"),
-                    new KeyValuePair<string, string>(vr.MOBILE_MEDIA_QUERY, $@"
+                ");
+                styles.AddStyle("blockquote cite:before", @"content: ""-"";");
+                styles.AddStyle("ul", "list-style: disc;");
+                styles.AddStyle(vr.MOBILE_MEDIA_QUERY, $@"
                     blockquote {{
                         padding-left: {vr.Rhythm(9 / 16f)};
                         margin-left: {vr.Rhythm(-3 / 4f)};
@@ -64,14 +62,12 @@ namespace BlazorTypography.Themes
                         border-left: {vr.Rhythm(3 / 16f)} solid;
                         border-color: {vr.Gray(90)};
                     }}
-                "),
-                    new KeyValuePair<string, string>(vr.TABLET_MEDIA_QUERY, $@"
+                ");
+                styles.AddStyle(vr.TABLET_MEDIA_QUERY, $@"
                     html {{
                         {vr.EstablishBaseline()}
                     }}
-                ")
-                };
-                return ret;
+                ");
             });
     }
 }

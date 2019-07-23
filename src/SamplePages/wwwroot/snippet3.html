@@ -6,7 +6,7 @@
     {
         ITypographyOptions funston = new Funston
         {
-            OverrideThemeStyles = new Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>>((vr, options) =>
+            OverrideThemeStyles = new Action<Styles, VerticalRhythm, ITypographyOptions>(((styles, vr, options) =>
             {
                 List<KeyValuePair<string, string>> ret = new List<KeyValuePair<string, string>>
                 {

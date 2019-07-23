@@ -15,58 +15,54 @@ namespace BlazorTypography.Themes
         public override List<string> HeaderFontFamily { get; set; } = new List<string> { "Linux Libertine", "Georgia", "serif" };
         public override string HeaderWeight { get; set; } = "normal";
         public override string BoldWeight { get; set; } = "bold";
-        public override Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>> OverrideStyles { get; set; } =
-            new Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>>((vr, options) =>
+        public override Action<Styles, VerticalRhythm, ITypographyOptions> OverrideStyles { get; set; } =
+            new Action<Styles, VerticalRhythm, ITypographyOptions>((styles, vr, options) =>
             {
-                List<KeyValuePair<string, string>> ret = new List<KeyValuePair<string, string>>
-                {
-                    new KeyValuePair<string, string>("h1,h2,h3,h4,h5,h6", $@"
+                styles.AddStyle("h1,h2,h3,h4,h5,h6", $@"
                     border-bottom: 1px solid rgb(170, 170, 170);
                     margin-bottom: calc({vr.Rhythm(1 / 4f)} - 1px);
                     margin-top: {vr.Rhythm(1f)};
-                "),
-                    new KeyValuePair<string, string>("p,ol,ul", @"
+                ");
+                styles.AddStyle("p,ol,ul", @"
                     margin-bottom: 0.5em;
                     margin-top: 0.5em;
-                "),
-                    new KeyValuePair<string, string>("dt", "margin-bottom: 0.1em;"),
-                    new KeyValuePair<string, string>("dd", @"
+                ");
+                styles.AddStyle("dt", "margin-bottom: 0.1em;");
+                styles.AddStyle("dd", @"
                     margin-left: 1.6em;
                     margin-bottom: 0.1em;
-                "),
-                    new KeyValuePair<string, string>("blockquote", $@"
+                ");
+                styles.AddStyle("blockquote", $@"
                     margin-top: 1em;
                     margin-bottom: 1em;
                     margin-left: 0;
                     margin-right: 0;
                     padding-left: 40px;
                     padding-right: 40px;
-                "),
-                    new KeyValuePair<string, string>("ol,ul", @"
+                ");
+                styles.AddStyle("ol,ul", @"
                     list-style-image: url(data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%0A%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20version%3D%221.1%22%20width%3D%225%22%20height%3D%2213%22%3E%0A%3Ccircle%20cx%3D%222.5%22%20cy%3D%229.5%22%20r%3D%222.5%22%20fill%3D%22%2300528c%22%2F%3E%0A%3C%2Fsvg%3E%0A);
                     margin-left: 1.6em;
                     margin-top: 0.3em;
-                "),
-                    new KeyValuePair<string, string>("li > ul,li > ol", @"
+                ");
+                styles.AddStyle("li > ul,li > ol", @"
                     margin-top: 0;
                     margin-left: 1.6em;
-                "),
-                    new KeyValuePair<string, string>("a", @"
+                ");
+                styles.AddStyle("a", @"
                     color: rgb(6, 69, 173);
                     text-decoration: none;
-                "),
-                    new KeyValuePair<string, string>("a:hover", @"
+                ");
+                styles.AddStyle("a:hover", @"
                     text-decoration: underline;
-                "),
-                    new KeyValuePair<string, string>("a:visited", @"
+                ");
+                styles.AddStyle("a:visited", @"
                     color: rgb(11, 0, 128);
-                "),
-                    new KeyValuePair<string, string>("dl", @"
+                ");
+                styles.AddStyle("dl", @"
                     margin-top: 0.2em;
                     margin-bottom: 0.5em;
-                ")
-                };
-                return ret;
+                ");
             });
     }
 }

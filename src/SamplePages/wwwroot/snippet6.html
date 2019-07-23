@@ -5,10 +5,8 @@
     {
         ITypographyOptions theme = new DefaultTypographyOptions
         {
-            OverrideStyles = new Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>>((vr, options) =>
+            OverrideStyles = new Action<Styles, VerticalRhythm, ITypographyOptions>(((styles, vr, options) =>
             {
-                List<KeyValuePair<string, string>> ret = new List<KeyValuePair<string, string>>
-                {
                     new KeyValuePair<string, string>("h1", $@"
                         font-family: Montserrat, sans-serif; 
                     "),
@@ -23,8 +21,6 @@
                     new KeyValuePair<string, string>("blockquote > :last-child", $@"
                         margin-bottom: 0;
                     ")
-                }
-                return ret;
             }
         };
         await Typography.ApplyTypography(theme);

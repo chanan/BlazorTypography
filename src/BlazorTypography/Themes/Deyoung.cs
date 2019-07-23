@@ -24,36 +24,34 @@ namespace BlazorTypography.Themes
         public override List<string> HeaderFontFamily { get; set; } = new List<string> { "Alegreya Sans", "sans-serif" };
         public override string HeaderWeight { get; set; } = "500";
         public override string BoldWeight { get; set; } = "700";
-        public override Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>> OverrideStyles { get; set; } =
-            new Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>>((vr, options) =>
+        public override Action<Styles, VerticalRhythm, ITypographyOptions> OverrideStyles { get; set; } =
+            new Action<Styles, VerticalRhythm, ITypographyOptions>((styles, vr, options) =>
             {
-                List<KeyValuePair<string, string>> ret = new List<KeyValuePair<string, string>>
-                {
-                    new KeyValuePair<string, string>("h1", "color: hsla(0,0%,0%,0.75);"),
-                    new KeyValuePair<string, string>("h2", "color: hsla(0,0%,0%,0.775);"),
-                    new KeyValuePair<string, string>("h3", "color: hsla(0,0%,0%,0.8);"),
-                    new KeyValuePair<string, string>("h1,h2,h3,h4,h5,h6", "line-height: 1;"),
-                    new KeyValuePair<string, string>("h1,h2,h3,h4", $@"
+                styles.AddStyle("h1", "color: hsla(0,0%,0%,0.75);");
+                styles.AddStyle("h2", "color: hsla(0,0%,0%,0.775);");
+                styles.AddStyle("h3", "color: hsla(0,0%,0%,0.8);");
+                styles.AddStyle("h1,h2,h3,h4,h5,h6", "line-height: 1;");
+                styles.AddStyle("h1,h2,h3,h4", $@"
                     line-height: 1;
                     margin-top: {vr.Rhythm(1)};
                     margin-bottom: {vr.Rhythm(1 / 2f)};
-                "),
-                    new KeyValuePair<string, string>("h4,h5,h6", "text-transformation: uppercase;"),
-                    new KeyValuePair<string, string>("ul", $"margin-top: {vr.Rhythm(1 / 2f)};"),
-                    new KeyValuePair<string, string>("a", $@"
+                ");
+                styles.AddStyle("h4,h5,h6", "text-transformation: uppercase;");
+                styles.AddStyle("ul", $"margin-top: {vr.Rhythm(1 / 2f)};");
+                styles.AddStyle("a", $@"
                     color: hsl(230, 55 %, 58 %);
                     text-decoration: none;
-                "),
-                    new KeyValuePair<string, string>("a:hover,a:active", "box-Shadow: 0 1px 0 0 currentColor;"),
-                    new KeyValuePair<string, string>("blockquote", $@"
+                ");
+                styles.AddStyle("a:hover,a:active", "box-Shadow: 0 1px 0 0 currentColor;");
+                styles.AddStyle("blockquote", $@"
                     color: {vr.Gray(35)};
                     font-style: italic;
                     padding-left: {vr.Rhythm(11 / 16f)};
                     margin-left: 0;
                     border-left: {vr.Rhythm(5 / 16f)} solid {vr.Gray(50)};
-                "),
-                    new KeyValuePair<string, string>("blockquote > :last-child", "margin-bottom: 0;"),
-                    new KeyValuePair<string, string>(vr.MOBILE_MEDIA_QUERY, $@"
+                ");
+                styles.AddStyle("blockquote > :last-child", "margin-bottom: 0;");
+                styles.AddStyle(vr.MOBILE_MEDIA_QUERY, $@"
                     html {{
                         font-size: {18 / 16f * 100}%;
                     }}
@@ -63,9 +61,7 @@ namespace BlazorTypography.Themes
                         margin-right: 0;
                         padding-left: {vr.Rhythm(9 / 16f)};
                     }}
-                ")
-                };
-                return ret;
+                ");
             });
     }
 }

@@ -35,8 +35,8 @@ namespace BlazorTypography
         public double? ScaleRatio { get => _typographyOptions.ScaleRatio; set => _typographyOptions.ScaleRatio = value; }
         public string Title { get => _typographyOptions.Title; set => _typographyOptions.Title = value; }
         public List<GoogleFont> GoogleFonts { get => _typographyOptions.GoogleFonts; set => _typographyOptions.GoogleFonts = value; }
-        public Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>> OverrideStyles { get => _typographyOptions.OverrideStyles; set => _typographyOptions.OverrideStyles = value; }
-        public Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>> OverrideThemeStyles { get => _typographyOptions.OverrideThemeStyles; set => _typographyOptions.OverrideThemeStyles = value; }
+        public Action<Styles, VerticalRhythm, ITypographyOptions> OverrideStyles { get => _typographyOptions.OverrideStyles; set => _typographyOptions.OverrideStyles = value; }
+        public Action<Styles, VerticalRhythm, ITypographyOptions> OverrideThemeStyles { get => _typographyOptions.OverrideThemeStyles; set => _typographyOptions.OverrideThemeStyles = value; }
         public List<IPlugin> Plugins { get => _typographyOptions.Plugins; set => _typographyOptions.Plugins = value; }
     }
 }

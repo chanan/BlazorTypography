@@ -32,10 +32,8 @@ namespace BlazorTypography
         public virtual string BlockMarginBottom { get; set; } = "1";
         public virtual bool? IncludeNormalize { get; set; } = true;
         public virtual List<GoogleFont> GoogleFonts { get; set; }
-        public virtual Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>> OverrideStyles { get; set; } =
-            new Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>>((vr, options) => null);
-        public Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>> OverrideThemeStyles { get; set; } =
-            new Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>>((vr, options) => null);
+        public virtual Action<Styles, VerticalRhythm, ITypographyOptions> OverrideStyles { get; set; } = null;
+        public Action<Styles, VerticalRhythm, ITypographyOptions> OverrideThemeStyles { get; set; } = null;
         public List<IPlugin> Plugins { get; set; } = null;
     }
 }

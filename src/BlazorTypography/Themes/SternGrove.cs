@@ -19,19 +19,17 @@ namespace BlazorTypography.Themes
         public override List<string> HeaderFontFamily { get; set; } = new List<string> { "Montserrat", "sans-serif" };
         public override string HeaderWeight { get; set; } = "400";
         public override string BoldWeight { get; set; } = "700";
-        public override Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>> OverrideStyles { get; set; } =
-            new Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>>((vr, options) =>
+        public override Action<Styles, VerticalRhythm, ITypographyOptions> OverrideStyles { get; set; } =
+            new Action<Styles, VerticalRhythm, ITypographyOptions>((styles, vr, options) =>
             {
-                List<KeyValuePair<string, string>> ret = new List<KeyValuePair<string, string>>
-                {
-                    new KeyValuePair<string, string>("a", $@"
+                styles.AddStyle("a", $@"
                     color: #07e;
                     text-decoration: none;
-                "),
-                    new KeyValuePair<string, string>("a:hover,a:active", $@"
+                ");
+                styles.AddStyle("a:hover,a:active", $@"
                     color: #e32;
-                "),
-                    new KeyValuePair<string, string>("blockquote", $@"
+                ");
+                styles.AddStyle("blockquote", $@"
                     {vr.Scale(1 / 5f)}
                     background: {vr.Gray(97)};
                     border-left: {vr.Rhythm(2 / 16f)} solid {vr.Gray(80)};
@@ -42,16 +40,16 @@ namespace BlazorTypography.Themes
                     padding-bottom: {vr.Rhythm(1 / 2f)}
                     margin-left: 0;
                     margin-right: 0;
-                "),
-                    new KeyValuePair<string, string>("blockquote > :last-child", "margin-bottom: 0;"),
-                    new KeyValuePair<string, string>("blockquote cite", $@"
+                ");
+                styles.AddStyle("blockquote > :last-child", "margin-bottom: 0;");
+                styles.AddStyle("blockquote cite", $@"
                     {vr.AdjustFontSizeTo(options.BaseFontSize)}
                     color: {options.BodyColor};
                     font-weight: {options.BodyWeight};
-                "),
-                    new KeyValuePair<string, string>("blockquote cite:before", @"content: ""-"";"),
-                    new KeyValuePair<string, string>("ul", "list-style: disc;"),
-                    new KeyValuePair<string, string>(vr.MOBILE_MEDIA_QUERY, $@"
+                ");
+                styles.AddStyle("blockquote cite:before", @"content: ""-"";");
+                styles.AddStyle("ul", "list-style: disc;");
+                styles.AddStyle(vr.MOBILE_MEDIA_QUERY, $@"
                     ul,ol {{
                         margin-left: {vr.Rhythm(1)};
                     }}
@@ -67,9 +65,7 @@ namespace BlazorTypography.Themes
                     h6 {{
                         font-style: italic;
                     }}
-                ")
-                };
-                return ret;
+                ");
             });
     }
 }

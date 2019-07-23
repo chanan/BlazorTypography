@@ -20,8 +20,8 @@ namespace BlazorTypography
         double? ScaleRatio { get; set; }
         string Title { get; set; }
         List<GoogleFont> GoogleFonts { get; set; }
-        Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>> OverrideStyles { get; set; }
-        Func<VerticalRhythm, ITypographyOptions, IList<KeyValuePair<string, string>>> OverrideThemeStyles { get; set; }
+        Action<Styles, VerticalRhythm, ITypographyOptions> OverrideStyles { get; set; }
+        Action<Styles, VerticalRhythm, ITypographyOptions> OverrideThemeStyles { get; set; }
         List<IPlugin> Plugins { get; set; }
     }
 }

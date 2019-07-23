@@ -6,6 +6,14 @@
     <LangVersion>8.0</LangVersion>
     <RazorLangVersion>3.0</RazorLangVersion>
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+    <PackageId>BlazorTypography</PackageId>
+    <Version>1.0.0-preview6-01</Version>
+    <Authors>Chanan Braunstein</Authors>
+    <Title>BlazorTypography</Title>
+    <Description>A powerful toolkit for building websites with beautiful design</Description>
+    <PackageProjectUrl>https://github.com/chanan/BlazorTypography</PackageProjectUrl>
+    <PackageTags>blazor;css;typography</PackageTags>
+    <RepositoryUrl>https://github.com/chanan/BlazorTypography</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>

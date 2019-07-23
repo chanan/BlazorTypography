@@ -28,7 +28,7 @@ namespace SamplePages.Pages
         protected string Spacing { get; set; } = "1.00";
         protected string HeaderFont { get; set; } = "-apple-system";
         protected string BodyFont { get; set; } = "georgia";
-        protected bool UseCodePlugin { get; set; } = false;
+        protected bool UseCodePlugin { get; set; } = true;
         protected string HeaderWeight { get; set; } = string.Empty;
         protected List<string> HeaderWeights { get; set; } = new List<string>();
         protected string BodyWeight { get; set; } = string.Empty;
@@ -42,7 +42,11 @@ namespace SamplePages.Pages
         {
             try
             {
-                await Typography.ApplyTypography();
+                DefaultTypographyOptions defaultTheme = new DefaultTypographyOptions
+                {
+                    Plugins = new List<IPlugin> { new CodePlugn() }
+                };
+                await Typography.ApplyTypography(defaultTheme);
             }
             catch (Exception)
             {
@@ -54,7 +58,11 @@ namespace SamplePages.Pages
         {
             if (!hasBeenDone & isServerSide)
             {
-                await Typography.ApplyTypography();
+                DefaultTypographyOptions defaultTheme = new DefaultTypographyOptions
+                {
+                    Plugins = new List<IPlugin> { new CodePlugn() }
+                };
+                await Typography.ApplyTypography(defaultTheme);
                 hasBeenDone = true;
             }
         }
