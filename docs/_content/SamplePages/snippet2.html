@@ -1,0 +1,10 @@
+﻿@inject ITypography Typography
+@using BlazorTypography.Themes
+
+@code {
+    protected override async Task OnInitAsync()
+    {
+        ITypographyOptions funston = new Funston { BaseFontSize = "22px" };
+        await Typography.ApplyTypography(funston);
+    }
+}
