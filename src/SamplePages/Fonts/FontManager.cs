@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Text.Json.Serialization;
+using System.Text.Json;
 
 namespace SamplePages.Fonts
 {
@@ -7,7 +7,7 @@ namespace SamplePages.Fonts
     {
         public FontManager()
         {
-            List<Font> temp = JsonSerializer.Parse<List<Font>>(_fonts);
+            List<Font> temp = JsonSerializer.Deserialize<List<Font>>(_fonts);
             Fonts = temp;
         }
         public List<Font> Fonts { get; private set; }

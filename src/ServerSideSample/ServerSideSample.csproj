@@ -6,11 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="BlazorPrettyCode" Version="1.0.0-preview6-12" />
-    <PackageReference Include="BlazorStyled" Version="1.0.0-preview6-09" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <ProjectReference Include="..\..\..\BlazorPrettyCode\src\BlazorPrettyCode\BlazorPrettyCode.csproj" />
+    <ProjectReference Include="..\..\..\BlazorStyled\src\BlazorStyled\BlazorStyled.csproj" />
     <ProjectReference Include="..\SamplePages\SamplePages.csproj" />
   </ItemGroup>
 

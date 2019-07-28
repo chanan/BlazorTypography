@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using SamplePages;
 
 namespace ServerSideSample
 {
@@ -47,7 +46,7 @@ namespace ServerSideSample
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapBlazorHub().AddComponent(typeof(App), "app");
+                endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/_Host");
             });
         }

@@ -38,23 +38,24 @@ namespace SamplePages.Pages
 
         private bool isServerSide, hasBeenDone;
 
-        protected override async Task OnInitAsync()
+        protected override void OnInit()
         {
-            try
-            {
+            //try
+            //{
                 DefaultTypographyOptions defaultTheme = new DefaultTypographyOptions
                 {
                     Plugins = new List<IPlugin> { new CodePlugn() }
                 };
-                await Typography.ApplyTypography(defaultTheme);
-            }
+                Typography.ApplyTypography(defaultTheme);
+            /*}
             catch (Exception)
             {
                 isServerSide = true;
-            }
+            }*/
         }
 
-        protected override async Task OnAfterRenderAsync()
+        //TODO: Remove if not needed
+        /*protected override async Task OnAfterRenderAsync()
         {
             if (!hasBeenDone & isServerSide)
             {
@@ -65,7 +66,7 @@ namespace SamplePages.Pages
                 await Typography.ApplyTypography(defaultTheme);
                 hasBeenDone = true;
             }
-        }
+        }*/
 
         protected void OnChangeSelected(UIChangeEventArgs e)
         {
@@ -141,7 +142,7 @@ namespace SamplePages.Pages
             BoldWeight = (string)e.Value;
         }
 
-        protected async void OnClick()
+        protected void OnClick()
         {
             ITypographyOptions theme = Typography.ThemeForName(Selected);
             theme.BaseFontSize = Fontsize + "px";
@@ -186,7 +187,7 @@ namespace SamplePages.Pages
                     //TODO: Remove old font here
                 }
             }
-            await Typography.ApplyTypography(theme);
+            Typography.ApplyTypography(theme);
         }
 
         private Font GetFont(string font)

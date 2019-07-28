@@ -65,7 +65,7 @@ namespace BlazorTypography.Themes
                     html {{
                         {vr.EstablishBaseline()}
                     }}
-                        blockquote {{
+                    blockquote {{
                         margin-left: {vr.Rhythm(-3 / 4f)};
                         margin-right: 0;
                         padding-left: {vr.Rhythm(9 / 16f)};

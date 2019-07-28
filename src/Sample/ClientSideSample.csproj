@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -7,14 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="BlazorPrettyCode" Version="1.0.0-preview6-12" />
-    <PackageReference Include="BlazorStyled" Version="1.0.0-preview6-09" />
-    <PackageReference Include="Microsoft.AspNetCore.Blazor" Version="3.0.0-preview6.19307.2" />
-    <PackageReference Include="Microsoft.AspNetCore.Blazor.Build" Version="3.0.0-preview6.19307.2" PrivateAssets="all" />
-    <PackageReference Include="Microsoft.AspNetCore.Blazor.DevServer" Version="3.0.0-preview6.19307.2" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.AspNetCore.Blazor" Version="3.0.0-preview7.19365.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Blazor.Build" Version="3.0.0-preview7.19365.7" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.AspNetCore.Blazor.DevServer" Version="3.0.0-preview7.19365.7" PrivateAssets="all" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\BlazorPrettyCode\src\BlazorPrettyCode\BlazorPrettyCode.csproj" />
+    <ProjectReference Include="..\..\..\BlazorStyled\src\BlazorStyled\BlazorStyled.csproj" />
     <ProjectReference Include="..\SamplePages\SamplePages.csproj" />
   </ItemGroup>
 

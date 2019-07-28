@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 
 namespace BlazorTypography.Internal
 {
@@ -38,12 +37,12 @@ namespace BlazorTypography.Internal
                                        && type.Name != "VerticalRhythmOptions"
                                        select GetTitle(type)).ToList();
 
-        public Task ApplyTypography()
+        public void ApplyTypography()
         {
-            return ApplyTypography(new DefaultTypographyOptions());
+            ApplyTypography(new DefaultTypographyOptions());
         }
 
-        public async Task ApplyTypography(ITypographyOptions options)
+        public void ApplyTypography(ITypographyOptions options)
         {
             Styles styles = new Styles();
             VerticalRhythm vr = new VerticalRhythm(new VerticalRhythmOptions(options));
@@ -349,24 +348,26 @@ namespace BlazorTypography.Internal
             // Call overrideThemeStyles function on options (if set).
             options.OverrideThemeStyles?.Invoke(styles, vr, options);
 
+            //Write styles
+            _styled.ClearStyles();
+
             // Set google fonts
             if (options.GoogleFonts != null)
             {
                 List<BlazorStyled.GoogleFont> list = options.GoogleFonts.Select(font => new BlazorStyled.GoogleFont { Name = font.Name, Styles = font.Styles }).ToList();
-                await _styled.AddGoogleFonts(list);
+                _styled.AddGoogleFonts(list);
             }
 
-            //Write styles
-            await _styled.ClearStyles();
+            //TODO: Write styles in one string so that we don't call StateHasChanged() so many times
 
             if (options.IncludeNormalize.HasValue && options.IncludeNormalize.Value)
             {
-                await _styled.Css(_mixins.Normalize());
+                _styled.Css(_mixins.Normalize());
             }
 
             foreach (KeyValuePair<string, string> item in styles)
             {
-                await _styled.Css(item.Key, item.Value);
+                _styled.Css(item.Key, item.Value);
             }
         }
 
