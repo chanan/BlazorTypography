@@ -272,7 +272,7 @@ namespace BlazorTypography.Internal
                 padding-left: {rhythmTwoThirds};
                 padding-right:{rhythmTwoThirds};
                 padding-top: {rhythmHalf};
-                padding-bottom: calc({rhythmHalf} - 1px);,
+                padding-bottom: calc({rhythmHalf} - 1px);
             ");
 
             styles.Add("th:first-child,td:first-child", @"
@@ -349,6 +349,8 @@ namespace BlazorTypography.Internal
             options.OverrideThemeStyles?.Invoke(styles, vr, options);
 
             //Write styles
+
+            //First clear old styles
             _styled.ClearStyles();
 
             // Set google fonts

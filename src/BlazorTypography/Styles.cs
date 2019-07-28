@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 
 namespace BlazorTypography
 {
@@ -38,6 +39,16 @@ namespace BlazorTypography
         IEnumerator IEnumerable.GetEnumerator()
         {
             return _styles.GetEnumerator();
+        }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach(KeyValuePair<string, string> keyValuePair in _styles)
+            {
+                sb.Append(keyValuePair.Key).Append(":{").Append(keyValuePair.Value).Append("}");
+            }
+            return sb.ToString();
         }
     }
 }
