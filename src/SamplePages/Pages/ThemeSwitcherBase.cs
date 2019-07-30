@@ -36,37 +36,14 @@ namespace SamplePages.Pages
         protected string BoldWeight { get; set; } = string.Empty;
         protected List<string> BoldWeights { get; set; } = new List<string>();
 
-        private bool isServerSide, hasBeenDone;
-
         protected override void OnInit()
         {
-            //try
-            //{
-                DefaultTypographyOptions defaultTheme = new DefaultTypographyOptions
-                {
-                    Plugins = new List<IPlugin> { new CodePlugn() }
-                };
-                Typography.ApplyTypography(defaultTheme);
-            /*}
-            catch (Exception)
+            DefaultTypographyOptions defaultTheme = new DefaultTypographyOptions
             {
-                isServerSide = true;
-            }*/
+                Plugins = new List<IPlugin> { new CodePlugn() }
+            };
+            Typography.ApplyTypography(defaultTheme);
         }
-
-        //TODO: Remove if not needed
-        /*protected override async Task OnAfterRenderAsync()
-        {
-            if (!hasBeenDone & isServerSide)
-            {
-                DefaultTypographyOptions defaultTheme = new DefaultTypographyOptions
-                {
-                    Plugins = new List<IPlugin> { new CodePlugn() }
-                };
-                await Typography.ApplyTypography(defaultTheme);
-                hasBeenDone = true;
-            }
-        }*/
 
         protected void OnChangeSelected(UIChangeEventArgs e)
         {

@@ -11,7 +11,6 @@ namespace BlazorTypography.Internal
     {
         private readonly IStyled _styled;
         private readonly IMixins _mixins;
-        private readonly Type _pluginType = typeof(IPlugin);
         private readonly Type _themeType = typeof(ITypographyOptions);
 
         private readonly List<string> _genericFontFamilies = new List<string> {
@@ -27,7 +26,7 @@ namespace BlazorTypography.Internal
 
         public Typography(IStyled styled, IMixins mixins)
         {
-            _styled = styled;
+            _styled = styled.WithId("BlazorTypography");
             _mixins = mixins;
         }
 
