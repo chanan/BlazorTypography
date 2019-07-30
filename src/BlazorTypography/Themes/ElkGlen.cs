@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BlazorTypography.Themes
 {
-    internal class ElkGlen : BaseTypographyOptions
+    public class ElkGlen : BaseTypographyOptions
     {
         public override string Title { get; set; } = "Elk Glen";
         public override string BaseFontSize { get; set; } = "20px";

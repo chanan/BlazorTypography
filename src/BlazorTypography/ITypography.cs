@@ -10,5 +10,6 @@ namespace BlazorTypography
         List<string> Themes { get; }
         ITypographyOptions ThemeForName(string name);
         float Unitless(string value);
+        VerticalRhythm VerticalRhythm { get; set; }
     }
 }

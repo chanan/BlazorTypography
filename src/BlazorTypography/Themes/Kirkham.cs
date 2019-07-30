@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BlazorTypography.Themes
 {
-    internal class Kirkham : BaseTypographyOptions
+    public class Kirkham : BaseTypographyOptions
     {
         public override string Title { get; set; } = "Kirkham";
         public override string BaseFontSize { get; set; } = "18px";

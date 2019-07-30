@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BlazorTypography.Themes
 {
-    internal class GrandView : BaseTypographyOptions
+    public class GrandView : BaseTypographyOptions
     {
         public override string Title { get; set; } = "Grand View";
         public override string BaseFontSize { get; set; } = "16px";

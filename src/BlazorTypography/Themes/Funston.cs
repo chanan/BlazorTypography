@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BlazorTypography.Themes
 {
-    internal class Funston : BaseTypographyOptions
+    public class Funston : BaseTypographyOptions
     {
         public override string Title { get; set; } = "Funston";
         public override string BaseFontSize { get; set; } = "20px";

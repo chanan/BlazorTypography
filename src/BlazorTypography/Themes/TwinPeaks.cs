@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BlazorTypography.Themes
 {
-    internal class TwinPeaks : BaseTypographyOptions
+    public class TwinPeaks : BaseTypographyOptions
     {
         public override string Title { get; set; } = "Twin Peaks";
         public override string BaseFontSize { get; set; } = "21px";

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BlazorTypography.Themes
 {
-    internal class StowLake : BaseTypographyOptions
+    public class StowLake : BaseTypographyOptions
     {
         public override string Title { get; set; } = "Stow Lake";
         public override string BaseFontSize { get; set; } = "18px";

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BlazorTypography.Themes
 {
-    internal class Lawton : BaseTypographyOptions
+    public class Lawton : BaseTypographyOptions
     {
         private static readonly string _blockMarginBottom = (2 / 3f).ToString("F3");
         public override string Title { get; set; } = "Lawton";

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BlazorTypography.Themes
 {
-    internal class FairyGates : BaseTypographyOptions
+    public class FairyGates : BaseTypographyOptions
     {
         public override string Title { get; set; } = "Fairy Gates";
         public override string BaseFontSize { get; set; } = "20px";

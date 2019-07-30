@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BlazorTypography.Themes
 {
-    internal class StAnnes : BaseTypographyOptions
+    public class StAnnes : BaseTypographyOptions
     {
         public override string Title { get; set; } = "St. Annes";
         public override string BaseFontSize { get; set; } = "16px";

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BlazorTypography.Themes
 {
-    internal class Moraga : BaseTypographyOptions
+    public class Moraga : BaseTypographyOptions
     {
         public override string Title { get; set; } = "Moraga";
         public override string BaseFontSize { get; set; } = "18px";

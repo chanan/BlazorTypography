@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BlazorTypography.Themes
 {
-    internal class Judah : BaseTypographyOptions
+    public class Judah : BaseTypographyOptions
     {
         public override string Title { get; set; } = "Judah";
         public override string BaseFontSize { get; set; } = "18px";

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BlazorTypography.Themes
 {
-    internal class Lincoln : BaseTypographyOptions
+    public class Lincoln : BaseTypographyOptions
     {
         public override string Title { get; set; } = "Lincoln";
         public override string BaseFontSize { get; set; } = "19px";

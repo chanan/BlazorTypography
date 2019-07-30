@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BlazorTypography.Themes
 {
-    internal class Deyoung : BaseTypographyOptions
+    public class Deyoung : BaseTypographyOptions
     {
         public override string Title { get; set; } = "de Young";
         public override string BaseFontSize { get; set; } = "20px";

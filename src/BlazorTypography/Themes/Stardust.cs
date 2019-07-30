@@ -2,7 +2,7 @@
 
 namespace BlazorTypography.Themes
 {
-    internal class Stardust : BaseTypographyOptions
+    public class Stardust : BaseTypographyOptions
     {
         public override string Title { get; set; } = "Stardust";
         public override string BaseFontSize { get; set; } = "20px";

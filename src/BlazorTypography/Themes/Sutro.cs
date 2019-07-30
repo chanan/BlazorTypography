@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BlazorTypography.Themes
 {
-    internal class Sutro : BaseTypographyOptions
+    public class Sutro : BaseTypographyOptions
     {
         public override string Title { get; set; } = "Sutro";
         public override string BaseFontSize { get; set; } = "18px";

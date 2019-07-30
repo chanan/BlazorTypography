@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BlazorTypography.Themes
 {
-    internal class SternGrove : BaseTypographyOptions
+    public class SternGrove : BaseTypographyOptions
     {
         public override string Title { get; set; } = "Stern Grove";
         public override string BaseFontSize { get; set; } = "18px";

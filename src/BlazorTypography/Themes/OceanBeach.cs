@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BlazorTypography.Themes
 {
-    internal class OceanBeach : BaseTypographyOptions
+    public class OceanBeach : BaseTypographyOptions
     {
         public override string Title { get; set; } = "Ocean Beach";
         public override string BaseFontSize { get; set; } = "18px";

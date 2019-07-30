@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BlazorTypography.Themes
 {
-    internal class Doelger : BaseTypographyOptions
+    public class Doelger : BaseTypographyOptions
     {
         public override string Title { get; set; } = "Doelger";
         public override string BaseFontSize { get; set; } = "17px";

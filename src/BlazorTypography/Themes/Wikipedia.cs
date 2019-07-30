@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BlazorTypography.Themes
 {
-    internal class Wikipedia : BaseTypographyOptions
+    public class Wikipedia : BaseTypographyOptions
     {
         public override string Title { get; set; } = "Wikipedia";
         public override string BaseFontSize { get; set; } = "14px";

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BlazorTypography.Themes
 {
-    internal class Irving : BaseTypographyOptions
+    public class Irving : BaseTypographyOptions
     {
         public override string Title { get; set; } = "Irving";
         public override string BaseFontSize { get; set; } = "21px";

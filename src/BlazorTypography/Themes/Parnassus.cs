@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BlazorTypography.Themes
 {
-    internal class Parnassus : BaseTypographyOptions
+    public class Parnassus : BaseTypographyOptions
     {
         public override string Title { get; set; } = "Parnassus";
         public override string BaseFontSize { get; set; } = "17px";

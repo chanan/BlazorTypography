@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BlazorTypography.Themes
 {
-    internal class GitHub : BaseTypographyOptions
+    public class GitHub : BaseTypographyOptions
     {
         public override string Title { get; set; } = "GitHub";
         public override string BaseFontSize { get; set; } = "16px";

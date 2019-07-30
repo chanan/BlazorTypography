@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BlazorTypography.Themes
 {
-    internal class USWebDesignStandards : BaseTypographyOptions
+    public class USWebDesignStandards : BaseTypographyOptions
     {
         public override string Title { get; set; } = "US Web Design Standards";
         public override string BaseFontSize { get; set; } = "17px";

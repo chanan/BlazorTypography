@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BlazorTypography.Themes
 {
-    internal class WordpressTheme2015 : BaseTypographyOptions
+    public class WordpressTheme2015 : BaseTypographyOptions
     {
         public override string Title { get; set; } = "Wordpress Theme 2015";
         public override string BaseFontSize { get; set; } = "19px";

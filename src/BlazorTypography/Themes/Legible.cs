@@ -2,7 +2,7 @@
 
 namespace BlazorTypography.Themes
 {
-    internal class Legible : BaseTypographyOptions
+    public class Legible : BaseTypographyOptions
     {
         public override string Title { get; set; } = "Legible";
         public override string BaseFontSize { get; set; } = "16px";

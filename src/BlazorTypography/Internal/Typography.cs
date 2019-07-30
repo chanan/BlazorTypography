@@ -36,6 +36,8 @@ namespace BlazorTypography.Internal
                                        && type.Name != "VerticalRhythmOptions"
                                        select GetTitle(type)).ToList();
 
+        public VerticalRhythm VerticalRhythm { get; set; } = new VerticalRhythm();
+
         public void ApplyTypography()
         {
             ApplyTypography(new DefaultTypographyOptions());
@@ -45,6 +47,7 @@ namespace BlazorTypography.Internal
         {
             Styles styles = new Styles();
             VerticalRhythm vr = new VerticalRhythm(new VerticalRhythmOptions(options));
+            VerticalRhythm = vr;
             BaseLine baseLine = vr.EstablishBaseline();
             string rhythm1 = vr.Rhythm(1);
 

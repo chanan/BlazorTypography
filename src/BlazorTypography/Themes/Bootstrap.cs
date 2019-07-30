@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BlazorTypography.Themes
 {
-    internal class Bootstrap : BaseTypographyOptions
+    public class Bootstrap : BaseTypographyOptions
     {
         public override string Title { get; set; } = "Bootstrap";
         public override string BaseFontSize { get; set; } = "16px";

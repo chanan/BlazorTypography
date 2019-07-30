@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BlazorTypography.Themes
 {
-    internal class WordpressKubrick : BaseTypographyOptions
+    public class WordpressKubrick : BaseTypographyOptions
     {
         public override string Title { get; set; } = "Wordpress Kubrick";
         public override string BaseFontSize { get; set; } = "12px";
