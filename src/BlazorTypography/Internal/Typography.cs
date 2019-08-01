@@ -362,16 +362,13 @@ namespace BlazorTypography.Internal
                 _styled.AddGoogleFonts(list);
             }
 
-            //TODO: Write styles in one string so that we don't call StateHasChanged() so many times
-
             if (options.IncludeNormalize.HasValue && options.IncludeNormalize.Value)
             {
-                _styled.Css(_mixins.Normalize());
+                _styled.Css(_mixins.Normalize() + styles.ToString());
             }
-
-            foreach (KeyValuePair<string, string> item in styles)
+            else
             {
-                _styled.Css(item.Key, item.Value);
+                _styled.Css(styles.ToString());
             }
         }
 

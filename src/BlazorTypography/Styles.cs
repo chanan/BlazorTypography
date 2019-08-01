@@ -46,7 +46,7 @@ namespace BlazorTypography
             StringBuilder sb = new StringBuilder();
             foreach(KeyValuePair<string, string> keyValuePair in _styles)
             {
-                sb.Append(keyValuePair.Key).Append(":{").Append(keyValuePair.Value).Append("}");
+                sb.Append(keyValuePair.Key).Append("{").Append(keyValuePair.Value).Append("}");
             }
             return sb.ToString();
         }
