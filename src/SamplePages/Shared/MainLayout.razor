@@ -1,5 +1,12 @@
 @inherits LayoutComponentBase
-@inject IStyled Styled
+
+<Styled @bind-Classname="@body">
+    max-width:42rem;
+    margin-left:auto;
+    margin-right:auto;
+    padding:1.5rem 1.125rem;
+    padding-top:1.5rem;
+</Styled>
 
 <div class="@body">
     @Body
@@ -7,15 +14,4 @@
 
 @code { 
     private string body;
-
-    protected override void OnInit()
-    {
-        body = Styled.Css(@"
-            max-width:42rem;
-            margin-left:auto;
-            margin-right:auto;
-            padding:1.5rem 1.125rem;
-            padding-top:1.5rem;
-        ");
-    }
 }
