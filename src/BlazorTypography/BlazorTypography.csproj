@@ -7,7 +7,7 @@
     <RazorLangVersion>3.0</RazorLangVersion>
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
     <PackageId>BlazorTypography</PackageId>
-    <Version>1.0.0-preview7-04</Version>
+    <Version>1.0.0-preview7-05</Version>
     <Authors>Chanan Braunstein</Authors>
     <Title>BlazorTypography</Title>
     <Description>A powerful toolkit for building websites with beautiful design</Description>

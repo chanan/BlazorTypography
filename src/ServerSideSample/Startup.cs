@@ -1,9 +1,14 @@
+using BlazorPrettyCode;
 using BlazorTypography;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
+using System.Linq;
+using System.Net.Http;
 
 namespace ServerSideSample
 {
@@ -20,8 +25,29 @@ namespace ServerSideSample
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            // Server Side Blazor doesn't register HttpClient by default
+            if (!services.Any(x => x.ServiceType == typeof(HttpClient)))
+            {
+                // Setup HttpClient for server side in a client side compatible fashion
+                services.AddScoped<HttpClient>(s =>
+                {
+                    // Creating the URI helper needs to wait until the JS Runtime is initialized, so defer it.
+                    IUriHelper uriHelper = s.GetRequiredService<IUriHelper>();
+                    return new HttpClient
+                    {
+                        BaseAddress = new Uri(uriHelper.GetBaseUri())
+                    };
+                });
+            }
+
             services.AddRazorPages();
             services.AddServerSideBlazor();
+            services.AddBlazorPrettyCode(config =>
+            {
+                config.IsDevelopmentMode = true;
+                config.ShowLineNumbers = true;
+                config.DefaultTheme = "SolarizedLight";
+            });
             services.AddTypography();
         }
 
