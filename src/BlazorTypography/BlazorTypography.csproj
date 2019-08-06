@@ -7,7 +7,7 @@
     <RazorLangVersion>3.0</RazorLangVersion>
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
     <PackageId>BlazorTypography</PackageId>
-    <Version>1.0.0-preview7-05</Version>
+    <Version>1.0.0-preview7-06</Version>
     <Authors>Chanan Braunstein</Authors>
     <Title>BlazorTypography</Title>
     <Description>A powerful toolkit for building websites with beautiful design</Description>
@@ -17,7 +17,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="BlazorStyled" Version="1.0.0-preview7-04" />
+    <PackageReference Include="BlazorStyled" Version="1.0.0-preview7-05" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Browser" Version="3.0.0-preview7.19365.7" />
     <PackageReference Include="Polished" Version="1.0.0-preview-02" />
   </ItemGroup>

@@ -1,8 +1,5 @@
 ﻿using BlazorStyled;
 using Microsoft.AspNetCore.Components.Builder;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BlazorTypography
 {

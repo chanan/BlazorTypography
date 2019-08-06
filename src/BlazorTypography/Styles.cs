@@ -44,7 +44,7 @@ namespace BlazorTypography
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            foreach(KeyValuePair<string, string> keyValuePair in _styles)
+            foreach (KeyValuePair<string, string> keyValuePair in _styles)
             {
                 sb.Append(keyValuePair.Key).Append("{").Append(keyValuePair.Value).Append("}");
             }

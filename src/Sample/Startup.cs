@@ -1,5 +1,4 @@
 using BlazorPrettyCode;
-using BlazorStyled;
 using BlazorTypography;
 using Microsoft.AspNetCore.Components.Builder;
 using Microsoft.Extensions.DependencyInjection;

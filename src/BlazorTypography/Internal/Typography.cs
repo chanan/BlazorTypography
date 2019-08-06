@@ -268,7 +268,7 @@ namespace BlazorTypography.Internal
                 text-align: left;
                 border-bottom: 1px solid {vr.Gray(88)};
                 font-feature-settings: ""tnum"";
-                - moz-font-feature-settings: ""tnum"";
+                -moz-font-feature-settings: ""tnum"";
                 -ms-font-feature-settings: ""tnum"";
                 -webkit-font-feature-settings: ""tnum"";
                 padding-left: {rhythmTwoThirds};
