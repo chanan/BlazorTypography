@@ -13,7 +13,6 @@ namespace Sample
             services.AddTypography();
             services.AddBlazorPrettyCode(config =>
             {
-                config.IsDevelopmentMode = true;
                 config.ShowLineNumbers = true;
                 config.DefaultTheme = "SolarizedLight";
             });
