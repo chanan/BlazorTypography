@@ -7,7 +7,7 @@ using System.Reflection;
 
 namespace BlazorTypography.Internal
 {
-    internal class Typography : ITypography
+    internal class TypographyImpl : ITypography
     {
         private readonly IStyled _styled;
         private readonly IMixins _mixins;
@@ -24,7 +24,7 @@ namespace BlazorTypography.Internal
           "-apple-system",
         };
 
-        public Typography(IStyled styled, IMixins mixins)
+        public TypographyImpl(IStyled styled, IMixins mixins)
         {
             _styled = styled.WithId("BlazorTypography");
             _mixins = mixins;

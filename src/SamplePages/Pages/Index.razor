@@ -1,5 +1,9 @@
 ﻿@page "/"
 
+<Styled @bind-Classname="@topCodeSection">
+    margin-bottom: 1em;
+</Styled>
+
 <h1>BlazorTypography</h1>
 
 <p>A powerful toolkit for building websites with beautiful design. A port of <a href="https://kyleamathews.github.io/typography.js/">Typography.js</a> to the Blazor Framework</p>
@@ -14,15 +18,39 @@
 
 <ol>
     <li>Add <code>services.AddTypography();</code> to your <code>Startup.cs</code></li>
-    <li>For <strong>Client Side Blazor</strong> add <code>app.AddClientSideTypography();</code> to your <code>Configure</code> method in <code>Startup.cs</code></li>
-    <li>Also for <strong>Client Side Blazor</strong>, add <code>&lt;style id="styled">&lt;/style></code> to the <code>head</code> tag of your <code>index.html</code></li>
-    <li>For <strong>Server Side Blazor</strong> add <code>@@(await Html.RenderComponentAsync&lt;BlazorStyled.ServerSideStyled>())</code> to the <code>head</code> tag
-        of your <code>_Hosts.cshtml</code></li>
     <li>Add <code>@@using BlazorTypography</code> to your <code>_Imports.razor</code> file</li>
+</ol>
+
+<h3>Client Side Blazor</h3>
+
+<ol>
+    <li>Add <code>app.AddClientSideTypography();</code> to your <code>Configure</code> method in <code>Startup.cs</code></li>
+    <li>Add <code>&lt;style id="styled">&lt;/style></code> to the <code>head</code> tag of your <code>index.html</code></li>
+</ol>
+
+<h3>Server Side Blazor</h3>
+
+<ol>
+    <li>
+        For <strong>Server Side Blazor</strong> add <code>@@(await Html.RenderComponentAsync&lt;BlazorStyled.ServerSideStyled>())</code> to the <code>head</code> tag
+        of your <code>_Hosts.cshtml</code>
+    </li>
+</ol>
+
+<h3>Tag Usage</h3>
+
+<p>Using the <code>&lt;Typography /></code> tag you can access almost all of the <code>Typography</code> API other than <code>OverrideStyles</code> and <code>OverrideThemeStyles</code> methods.</p>
+
+<ol>
+    <li>Put the <code><&lt;Typography /></code> tag in your page such as <code>MainLayout.cs</code></li>
+    <li>Optionally select a theme and customize it</li>
+</ol>
+
+<h3>API Usage</h3>
+<ol>
     <li>Inject ITypography into your control: <code>@@inject ITypography Typography</code></li>
     <li>Call <code>Typography.ApplyTypography()</code></li>
-    <li>Optionally, use a theme: <code>Typography.ApplyTypography(new BlazorTypography.Themes.Bootstrap())</code></li>
-    <li>You may also customize the theme</li>
+    <li>Optionally, use a theme: <code>Typography.ApplyTypography(new BlazorTypography.Themes.Bootstrap())</code> and customize it</li>
 </ol>
 
 <h2>Why</h2>
@@ -55,15 +83,23 @@
 <h3>Using themes</h3>
 <p>Here’s an example of how to use the Funston theme.</p>
 
-<PrettyCode CodeFile="_content/SamplePages/snippet1.html" />
+<div class="@topCodeSection">
+    <PrettyCode CodeFile="_content/SamplePages/ThemeTagUsage.html" Title="Tag Usage" />
+</div>
+
+<PrettyCode CodeFile="_content/SamplePages/snippet1.html" Title="API Usage" />
 
 <h3>Customizing themes</h3>
 
 <p>Themes are just C# objects so it’s easy to modify them as needed. For example, if you’re using the Funston theme but want to increase the base font size slightly:</p>
 
-<PrettyCode CodeFile="_content/SamplePages/snippet2.html" />
+<div class="@topCodeSection">
+    <PrettyCode CodeFile="_content/SamplePages/CustomizeThemeTagUsage.html" Title="Tag Usage" />
+</div>
 
-<p>Or you can use the imperative API <code>OverrideThemeStyles</code> to directly set/override styles on a theme:</p>
+<PrettyCode CodeFile="_content/SamplePages/snippet2.html" Title="API Usage" />
+
+<p>Or, if you using the API, you can use the imperative API <code>OverrideThemeStyles</code> to directly set/override styles on a theme:</p>
 
 <PrettyCode CodeFile="_content/SamplePages/snippet3.html" />
 
@@ -74,7 +110,11 @@
 
 <p>To use the Code plugin, add it to your theme before calling <code>ApplyTypography</code>.</p>
 
-<PrettyCode CodeFile="_content/SamplePages/snippet4.html" />
+<div class="@topCodeSection">
+    <PrettyCode CodeFile="_content/SamplePages/PluginTagUsage.html" Title="Tag Usage" />
+</div>
+
+<PrettyCode CodeFile="_content/SamplePages/snippet4.html" Title="API Usage" />
 
 <h2>API</h2>
 <h3>ITypographyOptions</h3>
@@ -86,13 +126,16 @@
 <ul>
     <li><strong>Title</strong>: The theme title.</li>
     <li><strong>BaseFontSize</strong>: The base font size in pixels, defaults to <code>16px</code>.</li>
-    <li><strong>BaseLineHeight</strong>: The base line height using the css unitless number, defaults to <code>1.5</code>.</li>
+    <li><strong>BaseLineHeight</strong>: The base line height using the css unitless number, defaults to <code>1.45</code>.</li>
     <li><strong>ScaleRatio</strong>: The “scale ratio” for the theme. This value is the ratio between the <code>h1</code> font size and the <code>BaseFontSize</code>. 
         So if the scale ratio is <code>2</code> and the <code>BaseFontSize</code> is <code>16px</code> then the <code>h1</code> font size is <code>32px</code>.</li>
     <li>
-        <strong>GoogleFonts</strong>: An array specifying Google Fonts for this project.
-
-        <PrettyCode CodeFile="_content/SamplePages/snippet5.html" />
+        <strong>GoogleFonts</strong>: An array specifying Google Fonts to load. The Fonts are loaded and ready to be used in your theme. When using the <code>&lt;Typography /></code>
+        tag, all font styles are automatically loaded.
+        <div class="@topCodeSection">
+            <PrettyCode CodeFile="_content/SamplePages/FontTagUsage.html" Title="Tag Usage" />
+        </div>
+        <PrettyCode CodeFile="_content/SamplePages/snippet5.html" Title="API Usage" />
     </li>
     <li><strong>HeaderFontFamily</strong>: An array of strings specifying the font family stack for headers e.g. <code>new List&lt;string> { "Helvetica", "sans-serif" }</code>. Defaults to a system UI font stack.</li>
     <li><strong>BodyFontFamily</strong>: An array of strings specifying the font family stack for the body, defaults to <code>new List&lt;string> { "georgia", "serif" }</code>.</li>
@@ -219,3 +262,7 @@ block inside of it
 <h5>Header 5</h5>
 
 <h6>Header 6</h6>
+
+@code {
+    private string topCodeSection;
+}

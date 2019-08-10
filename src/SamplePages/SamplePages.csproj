@@ -22,4 +22,11 @@
     <EmbeddedResource Include="wwwroot\**" Exclude="**\*.js;**\*.css" LogicalName="blazor:file:%(RecursiveDir)%(Filename)%(Extension)" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Remove="wwwroot\CustomizeThemeTagUsage.html" />
+    <Content Remove="wwwroot\FontTagUsage.html" />
+    <Content Remove="wwwroot\PluginTagUsage.html" />
+    <Content Remove="wwwroot\ThemeTagUsage.html" />
+  </ItemGroup>
+
 </Project>

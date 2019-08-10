@@ -2,9 +2,9 @@
 {
     public class CodePlugn : IPlugin
     {
+        public string Title => "Code";
         public void Run(Styles styles, ITypographyOptions options, VerticalRhythm vr)
         {
-
             string rhythm1 = vr.Rhythm(1);
             string blockMarginBottom;
             if (float.TryParse(options.BlockMarginBottom, out float result))

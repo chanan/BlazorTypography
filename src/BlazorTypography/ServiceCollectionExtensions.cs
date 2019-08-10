@@ -10,7 +10,7 @@ namespace BlazorTypography
         public static IServiceCollection AddTypography(this IServiceCollection serviceCollection)
         {
             serviceCollection.AddBlazorStyled(isDevelopment: false);
-            serviceCollection.AddTransient<ITypography, Typography>();
+            serviceCollection.AddTransient<ITypography, TypographyImpl>();
             serviceCollection.AddSingleton<IMixins, Mixins>();
             return serviceCollection;
         }
