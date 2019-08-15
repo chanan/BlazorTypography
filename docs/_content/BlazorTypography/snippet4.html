@@ -1,0 +1,14 @@
+﻿@inject ITypography Typography
+@using BlazorTypography.Themes
+@using BlazorTypography.Plugins
+
+@code {
+    protected override async Task OnInitAsync()
+    {
+        ITypographyOptions sternGrove = new SternGrove
+        {
+            Plugins = new List<IPlugin> { new CodePlugin() };
+        };
+        await Typography.ApplyTypography(sternGrove);
+    }
+}
