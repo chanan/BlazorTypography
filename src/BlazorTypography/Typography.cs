@@ -9,27 +9,27 @@ namespace BlazorTypography
 {
     public class Typography : ComponentBase
     {
-        [Parameter] private string Theme { get; set; }
-        [Parameter] private string BaseFontSize { get; set; } = "16px";
-        [Parameter] private string BaseLineHeight { get; set; } = "1.45";
-        [Parameter] private double? ScaleRatio { get; set; }
-        [Parameter] private string HeaderColor { get; set; } = "inherit";
-        [Parameter] private string BodyColor { get; set; } = "hsla(0,0%,0%,0.8)";
-        [Parameter] private string HeaderWeight { get; set; } = "bold";
-        [Parameter] private string BodyWeight { get; set; } = "normal";
-        [Parameter] private string BoldWeight { get; set; } = "bold";
-        [Parameter] private string BlockMarginBottom { get; set; } = "1";
-        [Parameter] private bool? IncludeNormalize { get; set; }
-        [Parameter] private string GoogleFonts { get; set; }
-        [Parameter] private string HeaderFontFamily { get; set; } = "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif";
-        [Parameter] private string BodyFontFamily { get; set; } = "georgia,serif";
-        [Parameter] private string Plugins { get; set; }
+        [Parameter] public string Theme { get; set; }
+        [Parameter] public string BaseFontSize { get; set; } = "16px";
+        [Parameter] public string BaseLineHeight { get; set; } = "1.45";
+        [Parameter] public double? ScaleRatio { get; set; }
+        [Parameter] public string HeaderColor { get; set; } = "inherit";
+        [Parameter] public string BodyColor { get; set; } = "hsla(0,0%,0%,0.8)";
+        [Parameter] public string HeaderWeight { get; set; } = "bold";
+        [Parameter] public string BodyWeight { get; set; } = "normal";
+        [Parameter] public string BoldWeight { get; set; } = "bold";
+        [Parameter] public string BlockMarginBottom { get; set; } = "1";
+        [Parameter] public bool? IncludeNormalize { get; set; }
+        [Parameter] public string GoogleFonts { get; set; }
+        [Parameter] public string HeaderFontFamily { get; set; } = "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif";
+        [Parameter] public string BodyFontFamily { get; set; } = "georgia,serif";
+        [Parameter] public string Plugins { get; set; }
 
         [Inject] private ITypography TypographyService { get; set; }
 
         private static readonly FontManager _fontManager = new FontManager();
 
-        protected override void OnInit()
+        protected override void OnInitialized()
         {
             ITypographyOptions themeClass = Theme != null ? TypographyService.ThemeForName(Theme) : new DefaultTypographyOptions();
             if(themeClass == null)

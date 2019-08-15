@@ -34,7 +34,7 @@ namespace SamplePages.Pages
         protected string BoldWeight { get; set; } = string.Empty;
         protected List<string> BoldWeights { get; set; } = new List<string>();
 
-        protected override void OnInit()
+        protected override void OnInitialized()
         {
             DefaultTypographyOptions defaultTheme = new DefaultTypographyOptions
             {
