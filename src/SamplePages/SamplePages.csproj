@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="BlazorPrettyCode" Version="1.0.0-preview8-03" />
+    <PackageReference Include="BlazorPrettyCode" Version="1.0.0-preview8-04" />
   </ItemGroup>
 
 </Project>

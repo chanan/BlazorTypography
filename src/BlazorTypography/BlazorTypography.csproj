@@ -6,7 +6,7 @@
     <IsPackable>true</IsPackable>
     <LangVersion>8.0</LangVersion>
     <PackageId>BlazorTypography</PackageId>
-    <Version>1.0.0-preview8-02</Version>
+    <Version>1.0.0-preview8-03</Version>
     <Authors>Chanan Braunstein</Authors>
     <Title>BlazorTypography</Title>
     <Description>A powerful toolkit for building websites with beautiful design</Description>
@@ -16,7 +16,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="BlazorStyled" Version="1.0.0-preview8-02" />
+    <PackageReference Include="BlazorStyled" Version="1.0.0-preview8-04" />
     <PackageReference Include="Microsoft.AspNetCore.Components" Version="3.0.0-preview8.19405.7" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.0.0-preview8.19405.7" />
   </ItemGroup>
