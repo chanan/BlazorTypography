@@ -7,7 +7,7 @@ namespace BlazorTypography.Themes
     {
         public override string Title { get; set; } = "Wordpress Theme 2010";
         public override string BaseFontSize { get; set; } = "16px";
-        public override string BaseLineHeight { get; set; } = "1.5";
+        public override string BaseLineHeight { get; set; } = 1.5f.ToString();
         public override List<string> BodyFontFamily { get; set; } = new List<string> { "georgia", "serif" };
         public override string HeaderColor { get; set; } = "hsla(0,0%,0%,1)";
         public override string BodyColor { get; set; } = "hsla(0,0%,0%,0.8)";

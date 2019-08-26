@@ -7,7 +7,7 @@ namespace BlazorTypography.Themes
     {
         public override string Title { get; set; } = "Wordpress Kubrick";
         public override string BaseFontSize { get; set; } = "12px";
-        public override string BaseLineHeight { get; set; } = "1.4";
+        public override string BaseLineHeight { get; set; } = 1.4f.ToString();
         public override List<string> BodyFontFamily { get; set; } = new List<string> { "Lucida Grande", "Verdana", "Arial", "Sans-Serif" };
         public override string BodyColor { get; set; } = "hsla(0,0%,0%,0.8)";
         public override string BodyWeight { get; set; } = "normal";

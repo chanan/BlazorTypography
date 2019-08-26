@@ -7,8 +7,8 @@ namespace BlazorTypography.Themes
     {
         public override string Title { get; set; } = "Doelger";
         public override string BaseFontSize { get; set; } = "17px";
-        public override string BaseLineHeight { get; set; } = "1.45";
-        public override string BlockMarginBottom { get; set; } = "0.8";
+        public override string BaseLineHeight { get; set; } = 1.45f.ToString();
+        public override string BlockMarginBottom { get; set; } = 0.8f.ToString();
         public override List<GoogleFont> GoogleFonts { get; set; } = new List<GoogleFont>
         {
             { new GoogleFont{ Name ="Arvo", Styles = new List<string>{ "700" } } },

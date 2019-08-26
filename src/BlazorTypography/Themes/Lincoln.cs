@@ -7,7 +7,7 @@ namespace BlazorTypography.Themes
     {
         public override string Title { get; set; } = "Lincoln";
         public override string BaseFontSize { get; set; } = "19px";
-        public override string BaseLineHeight { get; set; } = "1.58";
+        public override string BaseLineHeight { get; set; } = 1.58f.ToString();
         public override List<GoogleFont> GoogleFonts { get; set; } = new List<GoogleFont>
         {
             { new GoogleFont{ Name ="Varela Round", Styles = new List<string>{ "400" } } },

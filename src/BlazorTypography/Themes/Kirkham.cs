@@ -7,9 +7,9 @@ namespace BlazorTypography.Themes
     {
         public override string Title { get; set; } = "Kirkham";
         public override string BaseFontSize { get; set; } = "18px";
-        public override string BaseLineHeight { get; set; } = "1.44";
+        public override string BaseLineHeight { get; set; } = 1.44f.ToString();
         public override double? ScaleRatio { get; set; } = 2.15;
-        public override string BlockMarginBottom { get; set; } = "0.75";
+        public override string BlockMarginBottom { get; set; } = 0.75f.ToString();
         public override List<GoogleFont> GoogleFonts { get; set; } = new List<GoogleFont>
         {
             { new GoogleFont{ Name ="Playfair Display", Styles = new List<string>{ "700" } } },

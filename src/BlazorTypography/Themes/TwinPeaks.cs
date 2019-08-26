@@ -7,7 +7,7 @@ namespace BlazorTypography.Themes
     {
         public override string Title { get; set; } = "Twin Peaks";
         public override string BaseFontSize { get; set; } = "21px";
-        public override string BaseLineHeight { get; set; } = "1.5";
+        public override string BaseLineHeight { get; set; } = 1.5f.ToString();
         public override List<GoogleFont> GoogleFonts { get; set; } = new List<GoogleFont>
         {
             { new GoogleFont{ Name ="Rosario", Styles = new List<string>{ "700" } } },

@@ -8,7 +8,7 @@ namespace BlazorTypography.Themes
         private static readonly string _blockMarginBottom = (2 / 3f).ToString("F3");
         public override string Title { get; set; } = "Lawton";
         public override string BaseFontSize { get; set; } = "16px";
-        public override string BaseLineHeight { get; set; } = "1.5";
+        public override string BaseLineHeight { get; set; } = 1.5f.ToString();
         public override List<GoogleFont> GoogleFonts { get; set; } = new List<GoogleFont>
         {
             { new GoogleFont{ Name ="Raleway", Styles = new List<string>{ "800" } } },

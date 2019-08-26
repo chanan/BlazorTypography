@@ -7,8 +7,8 @@ namespace BlazorTypography
     {
         public virtual string Title { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public virtual string BaseFontSize { get; set; } = "16px";
-        public virtual string BaseLineHeight { get; set; } = "1.45";
-        public virtual string HeaderLineHeight { get; set; } = "1.1";
+        public virtual string BaseLineHeight { get; set; } = 1.45f.ToString();
+        public virtual string HeaderLineHeight { get; set; } = 1.1f.ToString();
         public virtual double? ScaleRatio { get; set; } = 2;
         public virtual List<string> HeaderFontFamily { get; set; } = new List<string> {
                 "-apple-system",

@@ -7,7 +7,7 @@ namespace BlazorTypography.Themes
     {
         public override string Title { get; set; } = "Bootstrap";
         public override string BaseFontSize { get; set; } = "16px";
-        public override string BaseLineHeight { get; set; } = "1.5";
+        public override string BaseLineHeight { get; set; } = 1.5f.ToString();
         public override List<string> BodyFontFamily { get; set; } = new List<string>
         {
             "-apple-system",

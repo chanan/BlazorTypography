@@ -7,7 +7,7 @@ namespace BlazorTypography.Themes
     {
         public override string Title { get; set; } = "Parnassus";
         public override string BaseFontSize { get; set; } = "17px";
-        public override string BaseLineHeight { get; set; } = "1.82";
+        public override string BaseLineHeight { get; set; } = 1.82f.ToString();
         public override double? ScaleRatio { get; set; } = 2.25;
         public override List<GoogleFont> GoogleFonts { get; set; } = new List<GoogleFont>
         {

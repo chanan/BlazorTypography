@@ -7,7 +7,7 @@ namespace BlazorTypography.Themes
     {
         public override string Title { get; set; } = "Wordpress Theme 2015";
         public override string BaseFontSize { get; set; } = "19px";
-        public override string BaseLineHeight { get; set; } = "1.68";
+        public override string BaseLineHeight { get; set; } = 1.68f.ToString();
         public override List<GoogleFont> GoogleFonts { get; set; } = new List<GoogleFont>
         {
             new GoogleFont{ Name = "Noto Serif", Styles = new List<string> { "400", "700" }}

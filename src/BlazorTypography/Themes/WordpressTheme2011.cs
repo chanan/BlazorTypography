@@ -7,7 +7,7 @@ namespace BlazorTypography.Themes
     {
         public override string Title { get; set; } = "Wordpress Theme 2011";
         public override string BaseFontSize { get; set; } = "15px";
-        public override string BaseLineHeight { get; set; } = "1.6";
+        public override string BaseLineHeight { get; set; } = 1.6f.ToString();
         public override double? ScaleRatio { get; set; } = 1.7333;
         public override List<string> BodyFontFamily { get; set; } = new List<string>
         {

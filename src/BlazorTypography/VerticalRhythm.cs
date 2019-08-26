@@ -111,7 +111,7 @@ namespace BlazorTypography
 
             return new BaseLine
             {
-                FontSize = _convert(toSize, _options.RhythmUnit, fromSize, null),
+                FontSize = _convert(toSize, _options.RhythmUnit, fromSize, null).FixDecimal(),
                 LineHeight = Rhythm(linesFloat, fromSize, null)
             };
         }
@@ -196,7 +196,7 @@ namespace BlazorTypography
                 lightnessStr = "0%,";
             }
 
-            return "hsla(" + hueNum + "," + saturation + "%," + lightnessStr + opacity + ")";
+            return "hsla(" + hueNum + "," + Math.Round(saturation, 2).ToString().FixDecimal() + "%," + lightnessStr + opacity.ToString().FixDecimal() + ")";
         }
 
         public float LinesForFontSize(string fontSize)
@@ -235,34 +235,35 @@ namespace BlazorTypography
         {
             return new BaseLine
             {
-                FontSize = Util.UnitLess(_options.BaseFontSize) / 16 * 100 + "%",
+                FontSize = (Math.Round(Util.UnitLess(_options.BaseFontSize) / 16 * 100, 2) + "%").FixDecimal(),
                 LineHeight = _options.BaseLineHeight
             };
         }
 
         public string Rhythm()
         {
-            return _rhythm(null, null, null);
+            return _rhythm(null, null, null).FixDecimal();
         }
 
         public string Rhythm(float? lines)
         {
-            return _rhythm(lines, null, null);
+            return _rhythm(lines, null, null).FixDecimal();
         }
 
         public string Rhythm(float? lines, string fontSize)
         {
-            return _rhythm(lines, fontSize, null);
+            return _rhythm(lines, fontSize, null).FixDecimal();
         }
 
         public string Rhythm(float? lines, string fontSize, float? offset)
         {
-            return _rhythm(lines, fontSize, offset);
+            return _rhythm(lines, fontSize, offset).FixDecimal();
         }
 
         public BaseLine Scale(double value)
         {
             int baseFont = int.Parse(Util.UnitLess(_options.BaseFontSize).ToString());
+            //string newSize = (ModularScale(value, _options.ScaleRatio.HasValue ? _options.ScaleRatio.Value.ToString() : null) * baseFont).ToString().FixDecimal();
             string newFontSize = $"{ModularScale(value, _options.ScaleRatio.HasValue ? _options.ScaleRatio.Value.ToString() : null) * baseFont}px";
             return AdjustFontSizeTo(newFontSize, null, null);
         }
@@ -270,7 +271,8 @@ namespace BlazorTypography
         public BaseLine Scale(float value, string scaleRatio)
         {
             int baseFont = int.Parse(Util.UnitLess(_options.BaseFontSize).ToString());
-            string newFontSize = $"{ModularScale(value, scaleRatio) * baseFont}px";
+            string newSize = (ModularScale(value, scaleRatio) * baseFont).ToString().FixDecimal();
+            string newFontSize = $"{newSize}px";
             return AdjustFontSizeTo(newFontSize, null, null);
         }
 
@@ -305,7 +307,7 @@ namespace BlazorTypography
             });
         }
 
-        private Func<string, string, string, string, string> ConvertFactory(string baseFontSize)
+        public Func<string, string, string, string, string> ConvertFactory(string baseFontSize)
         {
             return new Func<string, string, string, string, string>((length, toUnit, fromContext, toContext) =>
             {

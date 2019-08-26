@@ -6,8 +6,8 @@ namespace BlazorTypography.Themes
     public class Alton : BaseTypographyOptions
     {
         public override string BaseFontSize { get; set; } = "18px";
-        public override string BaseLineHeight { get; set; } = "1.78";
-        public override string BlockMarginBottom { get; set; } = "0.8";
+        public override string BaseLineHeight { get; set; } = 1.78f.ToString();
+        public override string BlockMarginBottom { get; set; } = 0.8f.ToString();
         public override string BodyColor { get; set; } = "black";
         public override List<string> BodyFontFamily { get; set; } = new List<string> { "Open Sans", "sans-serif" };
         public override string BodyWeight { get; set; } = "400";

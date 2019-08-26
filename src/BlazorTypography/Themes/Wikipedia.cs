@@ -7,7 +7,7 @@ namespace BlazorTypography.Themes
     {
         public override string Title { get; set; } = "Wikipedia";
         public override string BaseFontSize { get; set; } = "14px";
-        public override string BaseLineHeight { get; set; } = "1.57";
+        public override string BaseLineHeight { get; set; } = 1.57f.ToString();
         public override List<string> BodyFontFamily { get; set; } = new List<string> { "sans-serif" };
         public override string HeaderColor { get; set; } = "hsla(0,0%,0%,1)";
         public override string BodyColor { get; set; } = "hsla(0,0%,0%,0.85)";

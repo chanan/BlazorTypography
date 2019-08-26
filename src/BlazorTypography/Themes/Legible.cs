@@ -6,7 +6,7 @@ namespace BlazorTypography.Themes
     {
         public override string Title { get; set; } = "Legible";
         public override string BaseFontSize { get; set; } = "16px";
-        public override string BaseLineHeight { get; set; } = "1.4";
+        public override string BaseLineHeight { get; set; } = 1.4f.ToString();
         public override List<GoogleFont> GoogleFonts { get; set; } = new List<GoogleFont>
         {
             { new GoogleFont{ Name ="Fira Sans", Styles = new List<string>{ "400", "500" } } },

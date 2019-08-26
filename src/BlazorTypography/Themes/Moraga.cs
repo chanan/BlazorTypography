@@ -7,7 +7,7 @@ namespace BlazorTypography.Themes
     {
         public override string Title { get; set; } = "Moraga";
         public override string BaseFontSize { get; set; } = "18px";
-        public override string BaseLineHeight { get; set; } = "1.56";
+        public override string BaseLineHeight { get; set; } = 1.56f.ToString();
         public override List<GoogleFont> GoogleFonts { get; set; } = new List<GoogleFont>
         {
             { new GoogleFont{ Name ="Source Sans Pro", Styles = new List<string>{ "200", "400", "400i", "700" } } }
