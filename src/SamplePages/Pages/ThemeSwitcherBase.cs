@@ -43,7 +43,7 @@ namespace SamplePages.Pages
             Typography.ApplyTypography(defaultTheme);
         }
 
-        protected void OnChangeSelected(UIChangeEventArgs e)
+        protected void OnChangeSelected(ChangeEventArgs e)
         {
             Selected = (string)e.Value;
             ITypographyOptions theme = Typography.ThemeForName(Selected);
@@ -61,39 +61,39 @@ namespace SamplePages.Pages
             BoldWeight = theme.BoldWeight;
         }
 
-        protected void OnChangeFontsize(UIChangeEventArgs e)
+        protected void OnChangeFontsize(ChangeEventArgs e)
         {
             Fontsize = (string)e.Value;
         }
 
-        protected void OnChangeLineheight(UIChangeEventArgs e)
+        protected void OnChangeLineheight(ChangeEventArgs e)
         {
             Lineheight = (string)e.Value;
         }
 
-        protected void OnChangeRatio(UIChangeEventArgs e)
+        protected void OnChangeRatio(ChangeEventArgs e)
         {
             Ratio = (string)e.Value;
         }
 
-        protected void OnChangeSpacing(UIChangeEventArgs e)
+        protected void OnChangeSpacing(ChangeEventArgs e)
         {
             Spacing = (string)e.Value;
         }
 
-        protected void OnChangeCodePlugin(UIChangeEventArgs e)
+        protected void OnChangeCodePlugin(ChangeEventArgs e)
         {
             UseCodePlugin = (bool)e.Value;
         }
 
-        protected void OnChangeHeaderFont(UIChangeEventArgs e)
+        protected void OnChangeHeaderFont(ChangeEventArgs e)
         {
             HeaderFont = (string)e.Value;
             HeaderWeights = GetWeightForDropdown(HeaderFont);
             HeaderWeight = GetBoldStyle(HeaderFont);
         }
 
-        protected void OnChangeBodyFont(UIChangeEventArgs e)
+        protected void OnChangeBodyFont(ChangeEventArgs e)
         {
             BodyFont = (string)e.Value;
             BoldWeights = GetWeightForDropdown(BodyFont);
@@ -102,17 +102,17 @@ namespace SamplePages.Pages
             BodyWeight = "400";
         }
 
-        protected void OnChangeHeaderWeight(UIChangeEventArgs e)
+        protected void OnChangeHeaderWeight(ChangeEventArgs e)
         {
             HeaderWeight = (string)e.Value;
         }
 
-        protected void OnChangeBodyWeight(UIChangeEventArgs e)
+        protected void OnChangeBodyWeight(ChangeEventArgs e)
         {
             BodyWeight = (string)e.Value;
         }
 
-        protected void OnChangeBoldWeight(UIChangeEventArgs e)
+        protected void OnChangeBoldWeight(ChangeEventArgs e)
         {
             BoldWeight = (string)e.Value;
         }
