@@ -17,22 +17,23 @@
 <h2>Quick Start</h2>
 
 <ol>
-    <li>Add <code>services.AddTypography();</code> to your <code>Startup.cs</code></li>
     <li>Add <code>@@using BlazorTypography</code> to your <code>_Imports.razor</code> file</li>
 </ol>
 
 <h3>Client Side Blazor</h3>
 
 <ol>
-    <li>Add <code>app.AddComponent&lt;ClientSideStyled>("#styled");</code> to your <code>Configure</code> method in <code>Startup.cs</code></li>
+    <li>Add <code>builder.Services.AddTypography();</code> to your <code>Program.cs</code></li>
+    <li>Add <code>app.AddComponent&lt;ClientSideStyled>("#styled");</code> to your <code>Program.cs</code></li>
     <li>Add <code>&lt;style id="styled">&lt;/style></code> to the <code>head</code> tag of your <code>index.html</code></li>
 </ol>
 
 <h3>Server Side Blazor</h3>
 
 <ol>
+    <li>Add <code>services.AddTypography();</code> to your <code>Startup.cs</code></li>
     <li>
-        For <strong>Server Side Blazor</strong> add <code>@@(await Html.RenderComponentAsync&lt;BlazorStyled.ServerSideStyled>())</code> to the <code>head</code> tag
+        For <strong>Server Side Blazor</strong> add <code>@@(await Html.RenderComponentAsync&lt;BlazorStyled.ServerSideStyled>(RenderMode.Server))</code> to the <code>head</code> tag
         of your <code>_Hosts.cshtml</code>
     </li>
 </ol>
@@ -42,7 +43,7 @@
 <p>Using the <code>&lt;Typography /></code> tag you can access almost all of the <code>Typography</code> API other than <code>OverrideStyles</code> and <code>OverrideThemeStyles</code> methods.</p>
 
 <ol>
-    <li>Put the <code><&lt;Typography /></code> tag in your page such as <code>MainLayout.cs</code></li>
+    <li>Put the <code>&lt;Typography /></code> tag in your page such as <code>MainLayout.cs</code></li>
     <li>Optionally select a theme and customize it</li>
 </ol>
 
