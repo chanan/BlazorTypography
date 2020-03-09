@@ -16,27 +16,16 @@
 
 <h2>Quick Start</h2>
 
-<ol>
-    <li>Add <code>@@using BlazorTypography</code> to your <code>_Imports.razor</code> file</li>
-</ol>
+ <p>Add <code>@@using BlazorTypography</code> to your <code>_Imports.razor</code> file</p>
+
 
 <h3>Client Side Blazor</h3>
 
-<ol>
-    <li>Add <code>builder.Services.AddTypography();</code> to your <code>Program.cs</code></li>
-    <li>Add <code>app.AddComponent&lt;ClientSideStyled>("#styled");</code> to your <code>Program.cs</code></li>
-    <li>Add <code>&lt;style id="styled">&lt;/style></code> to the <code>head</code> tag of your <code>index.html</code></li>
-</ol>
+<p>Add <code>builder.Services.AddTypography();</code> to your <code>Program.cs</code></p>
 
 <h3>Server Side Blazor</h3>
 
-<ol>
-    <li>Add <code>services.AddTypography();</code> to your <code>Startup.cs</code></li>
-    <li>
-        For <strong>Server Side Blazor</strong> add <code>@@(await Html.RenderComponentAsync&lt;BlazorStyled.ServerSideStyled>(RenderMode.Server))</code> to the <code>head</code> tag
-        of your <code>_Hosts.cshtml</code>
-    </li>
-</ol>
+ <p>Add <code>services.AddTypography();</code> to your <code>Startup.cs</code></p>
 
 <h3>Tag Usage</h3>
 
