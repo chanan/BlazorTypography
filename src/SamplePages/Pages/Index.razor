@@ -21,11 +21,18 @@
 
 <h3>Client Side Blazor</h3>
 
-<p>Add <code>builder.Services.AddTypography();</code> to your <code>Program.cs</code></p>
+<ul>
+    <li>Add <code>builder.Services.AddBaseAddressHttpClient();</code> to your <code>Program.cs</code></li>
+    <li>Add <code>builder.Services.AddTypography();</code> to your <code>Program.cs</code></li>
+</ul>
+<p></p>
 
 <h3>Server Side Blazor</h3>
 
- <p>Add <code>services.AddTypography();</code> to your <code>Startup.cs</code></p>
+ <ul>
+     <li>Make sure to register HttpClient in your services in <code>Startup.cs</code></li>
+     <li>Add <code>services.AddTypography();</code> to your <code>Startup.cs</code></li>  
+ </ul>
 
 <h3>Tag Usage</h3>
 
