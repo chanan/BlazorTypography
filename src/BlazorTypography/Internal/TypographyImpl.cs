@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 
 namespace BlazorTypography.Internal
 {
@@ -38,12 +39,12 @@ namespace BlazorTypography.Internal
 
         public VerticalRhythm VerticalRhythm { get; set; } = new VerticalRhythm();
 
-        public void ApplyTypography()
+        public async Task ApplyTypography()
         {
-            ApplyTypography(new DefaultTypographyOptions());
+            await ApplyTypography(new DefaultTypographyOptions());
         }
 
-        public void ApplyTypography(ITypographyOptions options)
+        public async Task ApplyTypography(ITypographyOptions options)
         {
             Styles styles = new Styles();
             VerticalRhythm vr = new VerticalRhythm(new VerticalRhythmOptions(options));
@@ -353,7 +354,7 @@ namespace BlazorTypography.Internal
             //Write styles
 
             //First clear old styles
-            _styled.ClearStyles();
+            await _styled.ClearStylesAsync();
 
             // Set Google fonts
             if (options.GoogleFonts != null)
