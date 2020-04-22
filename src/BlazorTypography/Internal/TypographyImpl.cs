@@ -26,7 +26,7 @@ namespace BlazorTypography.Internal
 
         public TypographyImpl(IStyled styled, IMixins mixins)
         {
-            _styled = styled.WithId("BlazorTypography");
+            _styled = styled.WithId("BlazorTypography", 10); //Low priority because BlazorTypograhy may contain normalize which should come before any other styles
             _mixins = mixins;
         }
 
@@ -355,7 +355,7 @@ namespace BlazorTypography.Internal
             //First clear old styles
             _styled.ClearStyles();
 
-            // Set google fonts
+            // Set Google fonts
             if (options.GoogleFonts != null)
             {
                 List<BlazorStyled.GoogleFont> list = options.GoogleFonts.Select(font => new BlazorStyled.GoogleFont { Name = font.Name, Styles = font.Styles }).ToList();

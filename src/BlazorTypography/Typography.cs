@@ -32,11 +32,11 @@ namespace BlazorTypography
         protected override void OnInitialized()
         {
             ITypographyOptions themeClass = Theme != null ? TypographyService.ThemeForName(Theme) : new DefaultTypographyOptions();
-            if(themeClass == null)
+            if (themeClass == null)
             {
                 themeClass = new DefaultTypographyOptions();
             }
-            if(BaseFontSize != "16px")
+            if (BaseFontSize != "16px")
             {
                 themeClass.BaseFontSize = BaseFontSize;
             }
@@ -44,15 +44,15 @@ namespace BlazorTypography
             {
                 themeClass.BaseLineHeight = BaseLineHeight;
             }
-            if(ScaleRatio.HasValue)
+            if (ScaleRatio.HasValue)
             {
                 themeClass.ScaleRatio = ScaleRatio;
             }
-            if(HeaderColor != "inherit")
+            if (HeaderColor != "inherit")
             {
                 themeClass.HeaderColor = HeaderColor;
             }
-            if(BodyColor != "hsla(0,0%,0%,0.8)")
+            if (BodyColor != "hsla(0,0%,0%,0.8)")
             {
                 themeClass.BodyColor = BodyColor;
             }
@@ -68,33 +68,33 @@ namespace BlazorTypography
             {
                 themeClass.BoldWeight = BoldWeight;
             }
-            if(BlockMarginBottom != "1")
+            if (BlockMarginBottom != "1")
             {
                 themeClass.BlockMarginBottom = BlockMarginBottom;
             }
-            if(IncludeNormalize.HasValue)
+            if (IncludeNormalize.HasValue)
             {
                 themeClass.IncludeNormalize = IncludeNormalize;
             }
-            if(HeaderFontFamily != "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif")
+            if (HeaderFontFamily != "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif")
             {
                 List<string> headerFontFamily = HeaderFontFamily.Split(',').ToList();
                 themeClass.HeaderFontFamily = headerFontFamily;
             }
-            if(BodyFontFamily != "georgia,serif")
+            if (BodyFontFamily != "georgia,serif")
             {
                 List<string> bodyFontFamily = BodyFontFamily.Split(',').ToList();
                 themeClass.BodyFontFamily = bodyFontFamily;
             }
-            if(Plugins != null)
+            if (Plugins != null)
             {
                 //For now, plugins are in the Plugins namespace, but in the future they could be external
                 themeClass.Plugins = new List<IPlugin>();
                 string[] plugins = Plugins.Split(',');
-                foreach(string pluginname in plugins)
+                foreach (string pluginname in plugins)
                 {
                     IPlugin plugin = PluginForName(pluginname);
-                    if(plugin != null)
+                    if (plugin != null)
                     {
                         themeClass.Plugins.Add(plugin);
                     }
@@ -103,18 +103,26 @@ namespace BlazorTypography
 
 
             //Load all styles of the listed fonts
-            if(!string.IsNullOrWhiteSpace(GoogleFonts))
+            if (!string.IsNullOrWhiteSpace(GoogleFonts))
             {
-                if (themeClass.GoogleFonts == null) themeClass.GoogleFonts = new List<GoogleFont>();
+                if (themeClass.GoogleFonts == null)
+                {
+                    themeClass.GoogleFonts = new List<GoogleFont>();
+                }
+
                 string[] fonts = GoogleFonts.Split(',');
-                foreach(string fontname in fonts)
+                foreach (string fontname in fonts)
                 {
                     Font font = GetFont(fontname.Trim());
-                    if (font == null) continue;
+                    if (font == null)
+                    {
+                        continue;
+                    }
+
                     List<string> styles = font.Weights.Select(w =>
                     {
                         w = w.Replace("regular", "400");
-                        if(w == "italic")
+                        if (w == "italic")
                         {
                             w = "400i";
                         }
@@ -141,8 +149,8 @@ namespace BlazorTypography
         {
             IPlugin plugin = null;
             List<TypeInfo> plugins = (from type in Assembly.GetAssembly(typeof(IPlugin)).DefinedTypes
-                                     where type.ImplementedInterfaces.Contains(typeof(IPlugin))
-                                     select type).ToList();
+                                      where type.ImplementedInterfaces.Contains(typeof(IPlugin))
+                                      select type).ToList();
 
             foreach (TypeInfo type in plugins)
             {
