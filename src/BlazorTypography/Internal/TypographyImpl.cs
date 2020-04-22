@@ -360,16 +360,16 @@ namespace BlazorTypography.Internal
             if (options.GoogleFonts != null)
             {
                 List<BlazorStyled.GoogleFont> list = options.GoogleFonts.Select(font => new BlazorStyled.GoogleFont { Name = font.Name, Styles = font.Styles }).ToList();
-                _styled.AddGoogleFonts(list);
+                await _styled.AddGoogleFontsAsync(list);
             }
 
             if (options.IncludeNormalize.HasValue && options.IncludeNormalize.Value)
             {
-                _styled.Css(_mixins.Normalize() + styles.ToString());
+                await _styled.CssAsync(_mixins.Normalize() + styles.ToString());
             }
             else
             {
-                _styled.Css(styles.ToString());
+                await _styled.CssAsync(styles.ToString());
             }
         }
 
